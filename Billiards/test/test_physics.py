@@ -296,7 +296,7 @@ def test_time_of_impact_with_wall():
     assert time_of_impact_with_wall(pos_ball, vel1, 0.2, posW_left, velW, _normal, side) == approx(0.2153846153846154)
     new_pos = pos_ball + vel1 * time_of_impact_with_wall(pos_ball, vel1, 0.2, posW_left, velW, _normal, side)
     assert new_pos[0] == approx(1.021538461538462), new_pos[0]
-    print(new_pos)
+
 
     # test_simulations.py
     side = "bottom"
