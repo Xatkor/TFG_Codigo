@@ -1,105 +1,31 @@
-# from Billares.obstacles import InfiniteWall, Disk, Ball
 
-# from Billares.obstacles import Obstacle
-from Billiards.physics import elastic_collision, time_of_impact_with_wall
+from Billiards.obstacles import Ball, InfiniteWall
+from Billiards.physics import calc_next_obstacle
+
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 import os
 
-
-class Ball:
-    """ A ball which is going to move in the billiard"""
-
-    def __init__(self, pos, vel, radius=0) -> None:
-        """
-         Args:
-            point: Position of the ball
-            velocity: Velocity of the ball.
-            radius: Radius pf the ball. Default: 0
-           """
-        self.pos = np.asarray(pos)
-        self.velocity = np.asarray(vel)
-        self.radius = radius
-
-
-class InfiniteWall:
-    """ An infinite wall where balls can collide only from one side. """
-
-    def __init__(self, start_point, end_point, velocity, side) -> None:
-        """
-         Args:
-            start_point: A point of the wall.
-            end_point: A point of the wall.
-            vel: Velocity of the wall.
-            side: Position of the wall: left, right, top, bottom.
-           """
-        self.start_point = np.asarray(start_point)
-        self.end_point = np.asarray(end_point)
-        self.velocity = np.asarray(velocity)
-        self.side = side
-
-        dx, dy = self.end_point - self.start_point
-        if dx == 0 and dy == 0:
-            raise ValueError(f"this is not a line.{self.start_point}, {self.end_point}, {side}")
-
-        if side == "right" or side == "bottom":
-            self._normal = -np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
-        else:
-            self._normal = np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
-
-    def calc_toi(self, pos, vel, radius):
-        return time_of_impact_with_wall(pos, vel, radius, self.start_point, self.velocity, self._normal, self.side)
-
-    def update(self, vel):
-        """ Calculate the velocity of a ball after colliding with the wall. """
-        # print(self._normal, self.end_point, self.start_point)
-        #return vel - 2 * self._normal * np.dot(vel, self._normal) + self.velocity
-        return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
-
-
-def calc_next_obstacle(pos, vel, radius, obstacles):
-    """ Find the closest colliding obstacle for the given ball
-
-        Args:
-            idx: Index of the ball
-
-        Returns:
-            tuple: (time, velocity of the ball)-pair of the next collision or (INF, None) if ball will not impact any obstacle
-    """
-
-    t_min, obs_min = INF, None
-    for obs in obstacles:
-        # t = obs.calc_toi(pos, vel, radius)
-        t = time_of_impact_with_wall(pos, vel, radius, obs.start_point, obs.velocity, obs._normal, obs.side)
-        """ print(f" - Muro  {obs.side} : {t}")
-        print(f"Posicion bola:{pos}")
-        print(f"Velocidad bola:{vel}")
-        print(f"Posicion Muro:{obs.start_point}") """
-        if t > 0 and t < t_min:
-            t_min, obs_min = t, obs
-        # ¿What if none of the collide?
-    return t_min, obs_min
-
-
 INF = float("inf")
 
+
 # Velocities of walls
-top_wall_velocity = np.asarray([0, 2], dtype=np.float64)
+top_wall_velocity = np.asarray([0, 0], dtype=np.float64)
 bottom_wall_velocity = np.asarray([0, 0], dtype=np.float64)
 left_wall_velocity = np.asarray([0, 0])
 right_wall_velocity = np.asarray([0, 0])
 
 # Position of walls
-top_wall_position = np.asarray([[0, 10], [2, 10]], dtype=np.float64)
+top_wall_position = np.asarray([[0, 100], [2, 100]], dtype=np.float64)
 bottom_wall_position = np.asarray([[0, 1], [2, 1]], dtype=np.float64)
 left_wall_position = np.asarray([[1, 0], [1, 1]])
-right_wall_position = np.asarray([[10, 0], [10, 1]])
+right_wall_position = np.asarray([[100, 0], [100, 1]])
 
 # Creating a ball
 pos_ball = np.asarray([5, 5])
-vel1 = np.asarray([-30, 20])
+vel1 = np.asarray([-300, 200])
 ball = Ball(pos_ball, vel1)
 
 # Array which will storage the properties of the ball for each collision
@@ -126,7 +52,7 @@ plt.axvline(left_wall_position[1][0], color="red")
 plt.axvline(right_wall_position[1][0], color="red")
 
 # Number of collisions and starting the simulation
-num_of_iterations = 100
+num_of_iterations = 1000
 i = 0
 while i < num_of_iterations:
 
@@ -201,7 +127,7 @@ plt.axvline(right_wall_position[1][0], color="green")
 plt.plot(ball_positions_X, ball_positions_Y, alpha=0.2, color="green")
 plt.scatter(ball_positions_X, ball_positions_Y, alpha=0.5, color="red")
 
-#plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_path.png")
+plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_path.png")
 
 plt.show()
 
@@ -223,6 +149,6 @@ ax[2].plot(iterations, ball_positions_Y)
 ax[2].title.set_text("Y")
 plt.tight_layout()
 
-#plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_properties.png")
+plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_properties.png")
 
 plt.show()

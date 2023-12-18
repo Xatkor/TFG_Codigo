@@ -186,3 +186,24 @@ def time_of_impact_with_wall(pos1, vel1, radius, posW, velW, _normal, side):
         return INF
     else:
         return t
+
+
+def calc_next_obstacle(pos, vel, radius, obstacles):
+    """ Find the closest colliding obstacle for the given ball
+
+        Args:
+            pos : Position of the ball
+            vel : VElocity of the ball
+            radius : Radius of the ball
+            obstacles : List of obstacles in the billiard
+
+        Returns:
+            sorted list of (time, obstacle)-pair of the next collision or INF if never collide
+    """
+    times = []
+    for obs in obstacles:
+        # t = obs.calc_toi(pos, vel, radius)
+        t = time_of_impact_with_wall(pos, vel, radius, obs.start_point, obs.velocity, obs._normal, obs.side)
+        times.append((t, obs))
+    return sorted(times, key=lambda x: x[0])
+

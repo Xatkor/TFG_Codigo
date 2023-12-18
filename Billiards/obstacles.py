@@ -1,0 +1,53 @@
+import numpy as np
+
+from Billiards.physics import time_of_impact_with_wall
+
+class Ball:
+    """ A ball which is going to move in the billiard"""
+
+    def __init__(self, pos, vel, radius=0) -> None:
+        """
+         Args:
+            pos: Position of the ball
+            vel: Velocity of the ball.
+            radius: Radius pf the ball. Default: 0
+           """
+        self.pos = np.asarray(pos)
+        self.velocity = np.asarray(vel)
+        self.radius = radius
+
+
+
+class InfiniteWall:
+    """ An infinite wall where balls can collide only from one side. """
+
+    def __init__(self, start_point, end_point, velocity, side) -> None:
+        """
+         Args:
+            start_point: A point of the wall.
+            end_point: A point of the wall.
+            velocity: Velocity of the wall.
+            side: Position of the wall: left, right, top, bottom.
+           """
+        self.start_point = np.asarray(start_point)
+        self.end_point = np.asarray(end_point)
+        self.velocity = np.asarray(velocity)
+        self.side = side
+
+        dx, dy = self.end_point - self.start_point
+        if dx == 0 and dy == 0:
+            raise ValueError(f"this is not a line.{self.start_point}, {self.end_point}, {side}")
+
+        if side == "right" or side == "bottom":
+            self._normal = -np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
+        else:
+            self._normal = np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
+
+    def calc_toi(self, pos, vel, radius):
+        return time_of_impact_with_wall(pos, vel, radius, self.start_point, self.velocity, self._normal, self.side)
+
+    def update(self, vel):
+        """ Calculate the velocity of a ball after colliding with the wall. """
+        # print(self._normal, self.end_point, self.start_point)
+        #return vel - 2 * self._normal * np.dot(vel, self._normal) + self.velocity
+        return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
