@@ -207,3 +207,5 @@ def calc_next_obstacle(pos, vel, radius, obstacles):
         times.append((t, obs))
     return sorted(times, key=lambda x: x[0])
 
+
+

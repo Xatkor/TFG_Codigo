@@ -21,18 +21,24 @@ class Ball:
 class InfiniteWall:
     """ An infinite wall where balls can collide only from one side. """
 
-    def __init__(self, start_point, end_point, velocity, side) -> None:
+    def __init__(self, start_point, end_point, velocity, side, relativistic=False) -> None:
         """
          Args:
             start_point: A point of the wall.
             end_point: A point of the wall.
             velocity: Velocity of the wall.
             side: Position of the wall: left, right, top, bottom.
+            relativistic: True if wall is relativistic. Default: False
            """
         self.start_point = np.asarray(start_point)
         self.end_point = np.asarray(end_point)
         self.velocity = np.asarray(velocity)
         self.side = side
+        self.relativistic = relativistic
+
+        if self.relativistic:
+            if np.linalg.norm(self.velocity) > 1:
+                raise ValueError("Velocity must be less than 1")
 
         dx, dy = self.end_point - self.start_point
         if dx == 0 and dy == 0:
@@ -48,6 +54,8 @@ class InfiniteWall:
 
     def update(self, vel):
         """ Calculate the velocity of a ball after colliding with the wall. """
-        # print(self._normal, self.end_point, self.start_point)
-        #return vel - 2 * self._normal * np.dot(vel, self._normal) + self.velocity
-        return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
+        if self.relativistic:
+            # One dimensional  relativistic billiard
+            return (-vel + 2 * self.velocity - vel * np.linalg.norm(self.velocity)**2) / (1 - 2 * vel * self.velocity + self.velocity*self.velocity)
+        else:
+            return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
