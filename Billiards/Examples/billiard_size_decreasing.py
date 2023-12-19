@@ -1,5 +1,3 @@
-import timeit
-
 from Billiards.physics import calc_next_obstacle
 from Billiards.obstacles import InfiniteWall, Ball
 
@@ -12,10 +10,10 @@ import os
 INF = float("inf")
 
 # Velocities of walls
-top_wall_velocity = np.asarray([0, 0], dtype=np.float64)
-bottom_wall_velocity = np.asarray([0, 0], dtype=np.float64)
-left_wall_velocity = np.asarray([0, 0])
-right_wall_velocity = np.asarray([10, 0])
+top_wall_velocity = np.asarray([0, -5], dtype=np.float64)
+bottom_wall_velocity = np.asarray([0, 1], dtype=np.float64)
+left_wall_velocity = np.asarray([1, 0])
+right_wall_velocity = np.asarray([-4, 0])
 
 # Position of walls
 top_wall_position = np.asarray([[0, 10], [2, 10]], dtype=np.float64)
@@ -143,7 +141,7 @@ plt.axvline(right_wall_position[1][0], color="green")
 plt.plot(ball_positions_X, ball_positions_Y, alpha=0.2, color="green")
 plt.scatter(ball_positions_X, ball_positions_Y, alpha=0.5, color="red")
 
-#plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_path.png")
+plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_path.png")
 
 plt.show()
 
@@ -165,6 +163,6 @@ ax[2].plot(iterations, ball_positions_Y)
 ax[2].title.set_text("Y")
 plt.tight_layout()
 
-#plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_properties.png")
+plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_properties.png")
 
 plt.show()

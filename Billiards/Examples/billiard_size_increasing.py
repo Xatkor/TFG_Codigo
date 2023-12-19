@@ -1,85 +1,10 @@
-# from Billares.obstacles import InfiniteWall, Disk, Ball
-
-# from Billares.obstacles import Obstacle
-from Billiards.physics import elastic_collision, time_of_impact_with_wall
+from Billiards.physics import calc_next_obstacle
+from Billiards.obstacles import InfiniteWall, Ball
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 import os
-
-
-class Ball:
-    """ A ball which is going to move in the billiard"""
-
-    def __init__(self, pos, vel, radius=0) -> None:
-        """
-         Args:
-            point: Position of the ball
-            velocity: Velocity of the ball.
-            radius: Radius pf the ball. Default: 0
-           """
-        self.pos = np.asarray(pos)
-        self.velocity = np.asarray(vel)
-        self.radius = radius
-
-
-class InfiniteWall:
-    """ An infinite wall where balls can collide only from one side. """
-
-    def __init__(self, start_point, end_point, velocity, side) -> None:
-        """
-         Args:
-            start_point: A point of the wall.
-            end_point: A point of the wall.
-            vel: Velocity of the wall.
-            side: Position of the wall: left, right, top, bottom.
-           """
-        self.start_point = np.asarray(start_point)
-        self.end_point = np.asarray(end_point)
-        self.velocity = np.asarray(velocity)
-        self.side = side
-
-        dx, dy = self.end_point - self.start_point
-        if dx == 0 and dy == 0:
-            raise ValueError(f"this is not a line.{self.start_point}, {self.end_point}, {side}")
-
-        if side == "right" or side == "bottom":
-            self._normal = -np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
-        else:
-            self._normal = np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
-
-    def calc_toi(self, pos, vel, radius):
-        return time_of_impact_with_wall(pos, vel, radius, self.start_point, self.velocity, self._normal, self.side)
-
-    def update(self, vel):
-        """ Calculate the velocity of a ball after colliding with the wall. """
-        # print(self._normal, self.end_point, self.start_point)
-        return vel - 2 * self._normal * np.dot(vel, self._normal) + self.velocity
-
-
-def calc_next_obstacle(pos, vel, radius, obstacles):
-    """ Find the closest colliding obstacle for the given ball
-
-        Args:
-            idx: Index of the ball
-
-        Returns:
-            tuple: (time, velocity of the ball)-pair of the next collision or (INF, None) if ball will not impact any obstacle
-    """
-
-    t_min, obs_min = INF, None
-    for obs in obstacles:
-        # t = obs.calc_toi(pos, vel, radius)
-        t = time_of_impact_with_wall(pos, vel, radius, obs.start_point, obs.velocity, obs._normal, obs.side)
-        """ print(f" - Muro  {obs.side} : {t}")
-        print(f"Posicion bola:{pos}")
-        print(f"Velocidad bola:{vel}")
-        print(f"Posicion Muro:{obs.start_point}") """
-        if t > 0 and t < t_min:
-            t_min, obs_min = t, obs
-        # ¿What if none of the collide?
-    return t_min, obs_min
 
 
 INF = float("inf")
@@ -148,17 +73,30 @@ while i < num_of_iterations:
 
     obstacles = [top_wall, bottom_wall, left_wall, right_wall]
 
-    # Time to the next collision and with the resulting wall
-    t, obstacle_collide = calc_next_obstacle(ball.pos, ball.velocity, ball.radius, obstacles)
+    times_obstacles = calc_next_obstacle(ball.pos, ball.velocity, ball.radius, obstacles)
+
+    t = times_obstacles[0][0]
+
     if t == INF:
         print("No more collisions")
         break
 
     # Update properties of the ball
-    new_ball_velocity = obstacle_collide.update(vel1)
-    pos_ball = ball.pos + ball.velocity * t
-    vel1 = new_ball_velocity
-    ball = Ball(pos_ball, vel1, 0.0)
+    if times_obstacles[1][0] - times_obstacles[0][0] < 1e-6:  # Time difference is to close, it collides with a corner
+        if times_obstacles[0][1].side == "top" or times_obstacles[0][1].side == "bottom":
+            new_ball_velocity_Y = times_obstacles[0][1].update(vel1)[1]
+            new_ball_velocity_X = times_obstacles[1][1].update(vel1)[0]
+        else:
+            new_ball_velocity_X = times_obstacles[0][1].update(vel1)[0]
+            new_ball_velocity_Y = times_obstacles[1][1].update(vel1)[1]
+        vel1 = (new_ball_velocity_X, new_ball_velocity_Y)
+        pos_ball = ball.pos + ball.velocity * t
+        ball = Ball(pos_ball, vel1, 0.0)
+    else:
+        new_ball_velocity = times_obstacles[0][1].update(vel1)
+        pos_ball = ball.pos + ball.velocity * t
+        vel1 = new_ball_velocity
+        ball = Ball(pos_ball, vel1, 0.0)
 
     # Storage of time
     time += t
