@@ -67,7 +67,7 @@ while i < num_of_iterations:
 
     # Re-creating walls with the new position
     top_wall = InfiniteWall(top_wall_position[0], top_wall_position[1], top_wall_velocity, side="top", relativistic=True)
-    bottom_wall = InfiniteWall(bottom_wall_position[0], bottom_wall_position[1], bottom_wall_velocity, side="bottom")
+    bottom_wall = InfiniteWall(bottom_wall_position[0], bottom_wall_position[1], bottom_wall_velocity, side="bottom", relativistic=True)
     left_wall = InfiniteWall(left_wall_position[0], left_wall_position[1], left_wall_velocity, side="left")
     right_wall = InfiniteWall(right_wall_position[0], right_wall_position[1], right_wall_velocity, side="right")
 
