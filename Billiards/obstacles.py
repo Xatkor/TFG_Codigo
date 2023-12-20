@@ -2,6 +2,7 @@ import numpy as np
 
 from Billiards.physics import time_of_impact_with_wall
 
+
 class Ball:
     """ A ball which is going to move in the billiard"""
 
@@ -15,7 +16,6 @@ class Ball:
         self.pos = np.asarray(pos)
         self.velocity = np.asarray(vel)
         self.radius = radius
-
 
 
 class InfiniteWall:
@@ -56,6 +56,23 @@ class InfiniteWall:
         """ Calculate the velocity of a ball after colliding with the wall. """
         if self.relativistic:
             # One dimensional  relativistic billiard
-            return (-vel + 2 * self.velocity - vel * np.linalg.norm(self.velocity)**2) / (1 - 2 * vel * self.velocity + self.velocity*self.velocity)
+            return self.relativistic_velocity(vel)
         else:
             return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
+
+    def relativistic_velocity(self, vel):
+        """ Calculate the velocity of a ball after colliding with the wall when relativistic mode is enabled"""
+
+
+        if self.side == "left" or self.side == "right":
+            wall_velocity = self.velocity[0]
+            denominator = 1 - 2 * wall_velocity * vel[0] + wall_velocity * wall_velocity
+            velocity_x = (-vel[0] + 2 * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
+            velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
+        else:
+            wall_velocity = self.velocity[1]
+            denominator = 1 - 2 * wall_velocity * vel[1] + wall_velocity ** 2
+            velocity_y = (-vel[1] + 2 * wall_velocity - vel[1] * wall_velocity * wall_velocity) / denominator
+            velocity_x = (1 - wall_velocity * wall_velocity) * vel[0] / denominator
+
+        return velocity_x, velocity_y

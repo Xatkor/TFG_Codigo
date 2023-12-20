@@ -6,24 +6,29 @@ import numpy as np
 
 import os
 
-
 INF = float("inf")
 
+# -------------------------------------
+
+Relativistic_mode = True
+
+# -------------------------------------
+
 # Velocities of walls
-top_wall_velocity = np.asarray([0, -0.1], dtype=np.float64)
+top_wall_velocity = np.asarray([0, 0], dtype=np.float64)
 bottom_wall_velocity = np.asarray([0, 0], dtype=np.float64)
 left_wall_velocity = np.asarray([0, 0])
-right_wall_velocity = np.asarray([0, 0])
+right_wall_velocity = np.asarray([-0.1, 0])
 
 # Position of walls
 top_wall_position = np.asarray([[0, 200000], [2, 200000]], dtype=np.float64)
 bottom_wall_position = np.asarray([[0, 1], [2, 1]], dtype=np.float64)
 left_wall_position = np.asarray([[1, 0], [1, 1]])
-right_wall_position = np.asarray([[2, 0], [2, 1]])
+right_wall_position = np.asarray([[200000, 0], [200000, 1]])
 
 # Creating a ball
-pos_ball = np.asarray([1.5, 1.5])
-vel1 = np.asarray([0, 0.7])
+pos_ball = np.asarray([100, 100])
+vel1 = np.asarray([0.6, 0.4])
 ball = Ball(pos_ball, vel1)
 
 # Array which will storage the properties of the ball for each collision
@@ -31,10 +36,10 @@ ball_positions = [pos_ball]
 ball_velocities = [vel1]
 
 # Array which will storage the position of walls for each collision
-top_wall_positions = [top_wall_position[0]]
-bottom_wall_positions = [bottom_wall_position[0]]
-left_wall_positions = [left_wall_position[0]]
-right_wall_positions = [right_wall_position[0]]
+top_wall_positions = [top_wall_position]
+bottom_wall_positions = [bottom_wall_position]
+left_wall_positions = [left_wall_position]
+right_wall_positions = [right_wall_position]
 
 # Plotting initial ball's position
 plt.scatter(pos_ball[0], pos_ball[1], alpha=0.5, color="blue")
@@ -50,26 +55,24 @@ plt.axvline(left_wall_position[1][0], color="red")
 plt.axvline(right_wall_position[1][0], color="red")
 
 # Number of collisions and starting the simulation
-num_of_iterations = 1000
+num_of_iterations = 300
 i = 0
 while i < num_of_iterations:
 
     # If two walls are at the same position there is no billiard.
-    if top_wall_position[0][1] == bottom_wall_position[0][1] or left_wall_position[1][0] == right_wall_position[1][0]:
+    if top_wall_position[0][1] < bottom_wall_position[0][1] or left_wall_position[1][0] > right_wall_position[1][0]:
         print("There is no more billiard. Some walls has merged.")
         break
 
-    # Adding walls' position to teh array
-    top_wall_positions.append(top_wall_position)
-    bottom_wall_positions.append(bottom_wall_position)
-    left_wall_positions.append(left_wall_position)
-    right_wall_positions.append(right_wall_position)
+
 
     # Re-creating walls with the new position
-    top_wall = InfiniteWall(top_wall_position[0], top_wall_position[1], top_wall_velocity, side="top", relativistic=True)
-    bottom_wall = InfiniteWall(bottom_wall_position[0], bottom_wall_position[1], bottom_wall_velocity, side="bottom", relativistic=True)
-    left_wall = InfiniteWall(left_wall_position[0], left_wall_position[1], left_wall_velocity, side="left")
-    right_wall = InfiniteWall(right_wall_position[0], right_wall_position[1], right_wall_velocity, side="right")
+    top_wall = InfiniteWall(top_wall_position[0], top_wall_position[1], top_wall_velocity, side="top",
+                            relativistic=Relativistic_mode)
+    bottom_wall = InfiniteWall(bottom_wall_position[0], bottom_wall_position[1], bottom_wall_velocity, side="bottom",
+                               relativistic=Relativistic_mode)
+    left_wall = InfiniteWall(left_wall_position[0], left_wall_position[1], left_wall_velocity, side="left", relativistic=Relativistic_mode)
+    right_wall = InfiniteWall(right_wall_position[0], right_wall_position[1], right_wall_velocity, side="right", relativistic=Relativistic_mode)
 
     obstacles = [top_wall, bottom_wall, left_wall, right_wall]
 
@@ -79,17 +82,17 @@ while i < num_of_iterations:
     t = times_obstacles[0][0]
 
     if t == INF:
-        print("No more collisions")
+        print(f"No more collisions after {i} collisions")
         break
 
     # Update properties of the ball
-    if times_obstacles[1][0] - times_obstacles[0][0] < 1e-6: # Time difference is to close, it collides with a corner
+    if times_obstacles[1][0] - times_obstacles[0][0] < 1e-9:  # Time difference is to close, it collides with a corner
         if times_obstacles[0][1].side == "top" or times_obstacles[0][1].side == "bottom":
-           new_ball_velocity_Y = times_obstacles[0][1].update(vel1)[1]
-           new_ball_velocity_X = times_obstacles[1][1].update(vel1)[0]
+            new_ball_velocity_Y = times_obstacles[0][1].update(vel1)[1]
+            new_ball_velocity_X = times_obstacles[1][1].update(vel1)[0]
         else:
-           new_ball_velocity_X = times_obstacles[0][1].update(vel1)[0]
-           new_ball_velocity_Y = times_obstacles[1][1].update(vel1)[1]
+            new_ball_velocity_X = times_obstacles[0][1].update(vel1)[0]
+            new_ball_velocity_Y = times_obstacles[1][1].update(vel1)[1]
         vel1 = (new_ball_velocity_X, new_ball_velocity_Y)
         pos_ball = ball.pos + ball.velocity * t
         ball = Ball(pos_ball, vel1, 0.0)
@@ -99,10 +102,11 @@ while i < num_of_iterations:
         vel1 = new_ball_velocity
         ball = Ball(pos_ball, vel1, 0.0)
 
-
     # Storage of time
+    # in relativistic mode it is needed to refactor the time due to dilation
     time += t
     simulation_time.append(time)
+
 
     # Storage of ball's properties
     ball_positions.append(pos_ball)
@@ -113,6 +117,12 @@ while i < num_of_iterations:
     bottom_wall_position = bottom_wall_position + bottom_wall_velocity * t
     left_wall_position = left_wall_position + left_wall_velocity * t
     right_wall_position = right_wall_position + right_wall_velocity * t
+
+    # Adding walls' position to the array
+    top_wall_positions.append(top_wall_position)
+    bottom_wall_positions.append(bottom_wall_position)
+    left_wall_positions.append(left_wall_position)
+    right_wall_positions.append(right_wall_position)
 
     """ print("--"*10)
     print(f"itetarion: {i+1}")
@@ -125,7 +135,6 @@ while i < num_of_iterations:
     print(f"Current time simulation: {simulation_time[i+1]}") """
     i += 1
 
-
 # Separation of the components of the position vector
 ball_positions_X = [punto[0] for punto in ball_positions]
 ball_positions_Y = [punto[1] for punto in ball_positions]
@@ -137,7 +146,6 @@ plt.axhline(top_wall_position[0][1], color="green")
 plt.axhline(bottom_wall_position[0][1], color="green")
 plt.axvline(left_wall_position[1][0], color="green")
 plt.axvline(right_wall_position[1][0], color="green")
-
 
 # Plot trajectories and collision points
 plt.plot(ball_positions_X, ball_positions_Y, alpha=0.2, color="green")
@@ -158,7 +166,8 @@ fig, ax = plt.subplots(3, 1)
 
 # Graphs of ball's properties during the simulation
 ax[0].plot(iterations, ball_velocities_modulus)
-ax[0].axhline(1, color="red", linestyle="--", alpha=0.8)
+if Relativistic_mode:
+    ax[0].axhline(1, color="red", linestyle="--", alpha=0.8)
 ax[0].title.set_text("Velocity")
 ax[1].plot(iterations, ball_positions_X)
 ax[1].title.set_text("X")

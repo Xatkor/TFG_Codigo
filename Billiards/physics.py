@@ -181,7 +181,7 @@ def time_of_impact_with_wall(pos1, vel1, radius, posW, velW, _normal, side):
         else:
             t = (radius + posW[1] - pos1[1]) / (vel1[1] - velW[1])
 
-    if t < 1e-6:
+    if t < 1e-9:
         # they don't collide
         return INF
     else:
