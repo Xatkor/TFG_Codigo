@@ -26,7 +26,7 @@ class InfiniteWall:
          Args:
             start_point: A point of the wall.
             end_point: A point of the wall.
-            velocity: Velocity of the wall.
+            velocity: Velocity of the wall. If relativistic is True, velocity must be a fraction of the speed of light
             side: Position of the wall: left, right, top, bottom.
             relativistic: True if wall is relativistic. Default: False
            """
@@ -49,20 +49,32 @@ class InfiniteWall:
         else:
             self._normal = np.asarray([-dy, dx]) / np.linalg.norm([-dy, dx])
 
-    def calc_toi(self, pos, vel, radius):
-        return time_of_impact_with_wall(pos, vel, radius, self.start_point, self.velocity, self._normal, self.side)
-
     def update(self, vel):
-        """ Calculate the velocity of a ball after colliding with the wall. """
+        """ Calculate the velocity of a ball after colliding with the wall.
+
+        Args:
+            vel: Velocity of the ball
+
+        Returns:
+            New velocity of the ball after impact
+
+        """
         if self.relativistic:
-            # One dimensional  relativistic billiard
+            # Velocity in a relativistic billiard
             return self.relativistic_velocity(vel)
         else:
+            # Velocity in a classical billiard
             return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
 
     def relativistic_velocity(self, vel):
-        """ Calculate the velocity of a ball after colliding with the wall when relativistic mode is enabled"""
+        """ Calculate the velocity of a ball after colliding with the wall when relativistic mode is enabled
 
+        Args:
+            vel: Velocity of the ball
+
+        Returns:
+            tuple: velocity of the ball after impact
+        """
 
         if self.side == "left" or self.side == "right":
             wall_velocity = self.velocity[0]
