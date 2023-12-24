@@ -1,0 +1,26 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+
+\begin{document}
+
+\begin{tikzpicture}
+    \draw[] (0, 0) -- (4, 0);
+    \filldraw[color=verdeodi!60, fill=verdeodi!5, very thick](1, 1) circle (0.5);
+    \filldraw[color=verdeodi!60, fill=verdeodi!5, very thick](3, 1) circle (0.5);
+
+    \draw (1.4, 0) arc (180:135:0.6) node[midway, left]{$\phi$};
+    \draw (2.6, 0) arc (0:45:0.6) node[midway, right]{$\phi$};
+
+
+    \draw[gray!70, dashed] (1, 1) -- (2, 0) -- (3, 1);
+    \draw[->, thick] (1, 1) -- (1.5, 0.5) node[above, yshift=0mm, xshift=2mm]{$\mathbf{p}$}; 
+    \draw[->, thick] (3, 1) -- (3.5, 1.5) node[above, right, xshift=0mm]{$\mathbf{p}'$}; 
+    
+
+    
+    
+
+\end{tikzpicture}
+
+\end{document}

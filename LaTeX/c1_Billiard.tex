@@ -1,0 +1,127 @@
+\documentclass[11pt, spanish]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=1.5cm}
+\setlength{\parindent}{0\paperheight}
+\usepackage{color}
+%\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{esint}
+\usepackage{colortbl}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{amssymb, amsmath}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usetikzlibrary{arrows,decorations.markings,plotmarks}
+\selectlanguage{spanish}
+\usepackage{caption}
+\usepackage{svg}
+\usepackage{fancybox}
+\usepackage{enumitem}
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+\usepackage[font={color=verdeodi,it},figurename=Fig.,labelfont={it}]{caption}
+\usepackage[most]{tcolorbox}
+\usepackage{float}
+\newtcolorbox{fancybox}[1][]{ %%%%%%%
+enhanced,
+boxrule=1pt,arc=8pt,boxsep=0pt,
+left=0.8em,right=0.8em,top=1ex,bottom=1ex,colback=verdeodi!20,colframe=verdeodi,#1}
+\usepackage[Glenn]{fncychap}
+\newcommand{\stylecolor}{\color{verdeodi!90!black}} % choose the color
+\ChNameVar{\stylecolor\Large\fontfamily{put}\selectfont}
+
+\begin{document}
+
+\chapter{Partícula en un billar}
+
+Una partícula contenida en un billar puede definirse como una partícula libre sometida a un potencial infinito
+
+\begin{equation}
+    H = \dfrac{p^2}{2m} + V
+\end{equation}
+
+donde \( V \) se puede definir de manera general como
+
+\begin{equation}
+    V = \begin{cases}
+        0 \text{ en el interior de } \Omega \\
+        \infty \text{ en el exterior de } \Omega
+    \end{cases}
+\end{equation}
+
+\vspace{3mm}
+
+Con esta definición del hamiltoniano que describe la dinámica de la partícula entre colisiones podemos ver que la trayectoria seguida será siempre una línea recta, y a una velocidad constante entre colisiones.
+
+\vspace{3mm}
+
+\begin{figure}
+    
+\end{figure}
+
+\section{Billar clásico}
+
+Situándonos en la teoría clásica vamos a suponer un billar cuyas paredes tienen masa infinita y donde las colisiones producidas son totalmente elásticas. Procedamos a ver como se ve modificada la velocidad de la partícula en el momento de la colisión.
+
+\vspace{3mm}
+
+Al ser una colisión elástica el ángulo de reflexión será igual al ángulo con el que llega la partícula al punto de colisión. En el caso de tener paredes estáticas y una partícula con momento inicial \( \mathbf{p} \), el cambio que se produce en el momento es 
+
+\begin{equation}
+    \mathbf{p}' = \mathbf{p} - 2\mathbf{n}(\mathbf{p} \cdot \mathbf{n})
+    \label{eq:elastic_col}
+\end{equation}
+
+Podemos notar que el cambio del momento se produce únicamente en la dirección normal a la pared dado el producto \( (\mathbf{p} \cdot \mathbf{n}) \), que es nulo cuando son vectores perpendiculares y deja el momento invariante.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1.5]{images/elastic_collision.pdf}
+    \caption{Cambio de momento tras una colisión elástica}
+    \label{fig:elastic_col}
+\end{figure}
+
+\vspace{3mm}
+
+Supongamos ahora que tenemos una partícula con momento \( \mathbf{p} \) y una pared también en movimiento con momento \( \mathbf{P} \) con dirección a la normal. Para obtener el cambio de momento tras la colisión nos trasladamos al sistema de referencia donde la pared está en reposo, así podemos aplicar la ecuación \ref{eq:elastic_col} y volver al sistema de referencia inicial.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1.5]{images/cambio_sistema_referencia.pdf}
+    \caption{Posición de la pared y la partícula en los sistemas $S_0$ y $S$}
+    \label{fig:elastic_col}
+\end{figure}
+
+\vspace{3mm}
+
+El sistema de referencia S sitúa a la pared en su origen y se mueve con velocidad \( \mathbf{w} \) (igual a la del muro). La velocidad relativa de la partícula en ese nuevo sistema es
+
+\begin{equation}
+    \mathbf{v}_S = \mathbf{u} - \mathbf{w}
+\end{equation}
+
+La nueva velocidad tras colisionar será
+
+\begin{equation}
+    \mathbf{v}_S' = \mathbf{v}_S - 2\mathbf{n}(\mathbf{v}_S \cdot \mathbf{n})
+\end{equation}
+
+Ahora deshaciendo la transformación de la velocidad y volviendo al sistema \( S_0 \), se obtiene
+
+\begin{align}
+    \mathbf{u}' &= \mathbf{v}_S' + \mathbf{w} \\
+    &= \mathbf{v}_S - 2\mathbf{n}(\mathbf{v}_S \cdot \mathbf{n}) + \mathbf{w} \\
+    &= \mathbf{u} - 2\mathbf{n}\left[(\mathbf{u} - \mathbf{w}) \cdot \mathbf{n}\right]
+\end{align}
+
+\vspace{3mm}
+
+\section{Billar relativista}
+
+
+\end{document}
