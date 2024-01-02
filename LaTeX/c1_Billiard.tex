@@ -13,14 +13,13 @@
 \usepackage{colortbl}
 \usepackage{babel}
 \usepackage{enumitem}
-\usepackage{amssymb, amsmath}
+\usepackage{amssymb}
 \usepackage{tikz}
 \usepackage{booktabs}
 \usepackage{subcaption}
 \usetikzlibrary{arrows,decorations.markings,plotmarks}
 \selectlanguage{spanish}
 \usepackage{caption}
-\usepackage{svg}
 \usepackage{fancybox}
 \usepackage{enumitem}
 \definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
@@ -34,6 +33,10 @@ left=0.8em,right=0.8em,top=1ex,bottom=1ex,colback=verdeodi!20,colframe=verdeodi,
 \usepackage[Glenn]{fncychap}
 \newcommand{\stylecolor}{\color{verdeodi!90!black}} % choose the color
 \ChNameVar{\stylecolor\Large\fontfamily{put}\selectfont}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
 
 \begin{document}
 
@@ -56,7 +59,19 @@ donde \( V \) se puede definir de manera general como
 
 \vspace{3mm}
 
-Con esta definición del hamiltoniano que describe la dinámica de la partícula entre colisiones podemos ver que la trayectoria seguida será siempre una línea recta, y a una velocidad constante entre colisiones.
+Con esta definición de hamiltoniano no podemos describir totalmente el movimiento de la partícula, ya que en la frontera del billar no está definido (se hace infinito). Entre colisiones se tendrá el movimiento de una partícula libre pero al llegar a la frontera, la partícula colisionará con la pared y verá modificada su velocidad. Este cambio de velocidad será tratado como un choque totalmente elástico contra una pared de masa infinita sin posibilidad de atraversarla. 
+
+\vspace{3mm}
+
+En el caso de tener paredes en movimiento se puede seguir usando la misma definición de hamiltoniano y potencial, pero ahora se debe de tener en cuenta que la geometría del billar depende del tiempo \( \Omega(t) \).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{images/billar_generico.pdf}
+    \caption{Billar genérico}
+    \label{fig:bilar_generico}
+\end{figure}
+
 
 \vspace{3mm}
 
@@ -70,7 +85,7 @@ Situándonos en la teoría clásica vamos a suponer un billar cuyas paredes tien
 
 \vspace{3mm}
 
-Al ser una colisión elástica el ángulo de reflexión será igual al ángulo con el que llega la partícula al punto de colisión. En el caso de tener paredes estáticas y una partícula con momento inicial \( \mathbf{p} \), el cambio que se produce en el momento es 
+Al ser una colisión elástica el ángulo de reflexión será igual al ángulo con el que llega la partícula al punto de colisión. En el caso de tener paredes estáticas y una partícula con momento inicial \( \mathbf{p} = m\mathbf{u}\), el cambio que se produce en el momento es 
 
 \begin{equation}
     \mathbf{p}' = \mathbf{p} - 2\mathbf{n}(\mathbf{p} \cdot \mathbf{n})
@@ -94,7 +109,7 @@ Supongamos ahora que tenemos una partícula con momento \( \mathbf{p} \) y una p
     \centering
     \includegraphics[scale=1.5]{images/cambio_sistema_referencia.pdf}
     \caption{Posición de la pared y la partícula en los sistemas $S_0$ y $S$}
-    \label{fig:elastic_col}
+    \label{fig:cambio_referencia}
 \end{figure}
 
 \vspace{3mm}
@@ -121,7 +136,104 @@ Ahora deshaciendo la transformación de la velocidad y volviendo al sistema \( S
 
 \vspace{3mm}
 
+Se puede ver que en el caso de una colisión frontal contra la pared la velocidad que adquiere la partícula es 
+
+\begin{equation}
+    \mathbf{u}^\prime = - \mathbf{u}
+    \label{eq:velocidad_inversa_clasica}
+\end{equation}
+
 \section{Billar relativista}
+
+Dejando de lado la teoría clásica nos trasladamos al marco de la relatividad especial, donde nos encontramos con la restricción de una velocidad máxima a la que una partícula puede moverse. En este apartado asumimos un espacio plano donde el movimiento de la partícula no se produce por fuerzas gravitacionales sino por fuerzas externas. 
+
+\vspace{3mm}
+
+Dado que estamos usando la relatividad especial es conveniente emplear la notación caracterísitica de esta teoría. Así definimos un cuadrivector para el momento, a partir de ahora lo llamaremos 4-momentum, que contiene tanto la energía como el momento de la partícula
+% Referencia libro - Hobson M.P., Efstathiou G.P., Lasenby A.N. - GR - An Introduction for Physicists(Cambridge,2006)
+% Pagina 119
+\begin{equation}
+    p^\mu = (E/c, \: \mathbf{p})
+    \label{eq:4-momentum}
+\end{equation}
+
+donde \( E \) es la energía de la partícula medida en el sistema de referencia \( S_0 \) y \( \mathbf{p} \) es el momento medido en el sistema \( S_0 \) asociado a la partícula. Las componentes de este cuadrivector se expresan en función del factor de Lorentz de la siguiente manera
+
+\begin{align}
+    E &= \gamma m c^2 \\
+    \mathbf{p} &= \gamma m \mathbf{u}
+\end{align}
+
+Con esta definición del 4-momentum es posible calcular su longitud y obtener su invariante asociado
+
+\begin{equation}
+    p^\mu p_\mu \longrightarrow E^2 - p^2 c^2 = m^2c^4
+    \label{eq:invariamente_momento_energia}
+\end{equation}
+
+\vspace{3mm}
+
+Centrándonos ahora en una única dimension vamos a calcular como se ve modificada la velocidad tras la colisión de dos objetos. Consideremos una pared inicialmente en reposo con masa \( m_1 \) que tras la colisión obtiene una velocidad \( \bar{w} \), y una partícula con velocidad inicial \( u \) y masa \( m _2 \) que tras colisionar tiene una velocidad \( \bar{u} \). En primer lugar vamos a modificar la expresión del momento para una velocidad genérica \( v \) de la siguiente manera
+
+\begin{align}
+    \gamma &= \dfrac{1}{\sqrt{1 - \dfrac{v^2}{c^2}}} \\
+    \gamma^2\left( 1 - \dfrac{u^2}{c^2} \right) &= 1 \nonumber \\
+    \gamma v &= c\sqrt{\gamma^2 -1}
+\end{align}
+
+Así la ecuación \ref{eq:4-momentum} nos queda
+
+\begin{equation}
+    p^\mu = \left( E/c, \: mc\sqrt{\gamma^2 -1} \right)
+\end{equation}
+
+En nuestro caso tenemos así las expresiones
+
+\begin{align}
+    p^\mu_1 &= \left( E_1/c, 0 \right)  &\bar{p}^{\:\mu}_1 = \left( \bar{E_1}/c, \: c\sqrt{\bar{\gamma}^2_1 -1}  \right) \\
+    p^\mu_2 &= \left( E_2/c, \: c\sqrt{\gamma^2_2 -1} \right)   &\bar{p}^{\:\mu}_2 = \left( \bar{E_2}/c, \: c\sqrt{\bar{\gamma}^2_2 -1}  \right) \\
+\end{align}
+
+donde \( \bar{p}^{\:\mu}_i \) son los 4-momentum tras la colisión. Dado que estamos considerando colisiones totalmente elásticas el 4-momentum se conserva, y podemos de este modo obtener la velocidad de la partícula. El sistema de ecuaciones a resolver es
+
+\begin{equation}
+    p^\mu_1 + p^\mu_2 = \bar{p}^{\:\mu}_1 + \bar{p}^{\:\mu}_2
+\end{equation}
+
+\begin{align}
+        \begin{split}
+            m_1\gamma_1 + m_2 &= m_1\bar{\gamma}_1 + m_2\bar{\gamma}_2 \\
+        0 + c\sqrt{\gamma^2_2 -1} &= c\sqrt{\bar{\gamma}^2_1 -1} + c\sqrt{\bar{\gamma}^2_2 -1}
+        \end{split}
+\end{align}
+
+De aquí se obtiene la velocidad de la partícula tras la colisión
+
+\begin{align}
+    \bar{\gamma}_2 &= \dfrac{2 m_1 m_2 + \gamma_2(m_1^2 + m_2^2)}{m_1^2+m_2^2+2 m_1 m_2 \gamma_2} \\[3mm]
+    \bar{u} &= \dfrac{m_2^2 - m_1^2}{m_1^2 + m_2^2 + 2 m_1 m_2 / \gamma_2}u
+    \label{eq:velocidad_colision_1D}
+\end{align}
+
+En el caso de tomar la pared con una masa \( m_1 \gg m_2 \) obtenemos el mismo resultado que en el caso clásico \ref{eq:velocidad_inversa_clasica}. Con este resultado podemos considerar ahora que la pared se encuentra en movimiento con una velocidad \( w \). Para obtener la velocidad de la partícula nos cambiamos al sistema de referencia S (mostrado en la figura \ref{fig:cambio_referencia}) donde se mueve con una velocidad igual a la del muro \( w \), de este modo la pared permanece en reposo y podemos aplicar \ref{eq:velocidad_colision_1D}. Tras ello volvemos al sistema de referencia inicial \( S_0 \).
+
+\vspace{3mm}
+
+En este nuevo sistema de referencia la posición y tiempo es
+
+\begin{align}
+    x_S &= \gamma(x - wt) \\
+    \bar{t} &= \gamma(t - \dfrac{xw}{c^2})
+\end{align}
+
+que tomando diferenciales y dividiendo se obtiene
+
+\textcolor{red}{ESCRIBIR EL DESARROLLO QUE SE HA HECHO EN PAPEL O MODIFICARLO PARA USAR MATRICES}    
+
+
+
+
+    
 
 
 \end{document}
