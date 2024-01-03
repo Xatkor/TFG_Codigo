@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+\usetikzlibrary{arrows,decorations.markings,plotmarks}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    % Muro
+    \draw[black, very thick] (0, 0) -- (0, 4);
+    \draw[-stealth, dashed] (0, 3) -- (1, 3) node[midway, above]{$\mathbf{n}$};
+    \draw[-stealth] (0, 1) -- (1, 1) node[midway, above]{$\mathbf{w}$};
+
+    % Particula
+    \filldraw[color=verdeodi!60, fill=verdeodi!5](1, 2) circle (0.3);
+    \draw[-stealth] (1, 2) -- (2, 2.5) node[midway, above]{$\mathbf{u}$};
+    \draw[-stealth, red] (2, 2) -- (2, {2 + sin(26.56)}) node[midway, right]{$u_\perp$};
+    \draw[-stealth, blue] (1, 2) -- ({1.05 + cos(26.56)}, 2) node[midway, below, xshift=2mm]{$u_\parallel$};
+
+\end{tikzpicture}
+
+
+\end{document}
