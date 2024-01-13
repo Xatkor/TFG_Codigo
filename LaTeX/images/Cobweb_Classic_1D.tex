@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{scalerel}
+
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+
+\newcommand{\cobweb}[3][.5]{% \cobweb[<start value>]{<function>}{<iterations>}
+    \begin{tikzpicture}[scale=3,declare function={f(\x)=#2;}]
+    %\tikzstyle{every node}=[font=\small]
+    \xdef\startv{#1}
+    \draw[<->, thick](0,1.1)|-(1.1,0);
+    %\draw[gray!70!black] (0,0)--(1,1) node[midway, yshift=10cm]{$f(x)=x$};
+    \draw[gray, domain=0:1.1, smooth, thick] plot (\x,\x);% node[right] {$u_n = u_{n-1}$};
+    \draw[blue, domain=0.2:1.1, smooth, thick] plot (\x,{f(\x)});% node[right] {$u_{n} = f(u_{n-1})$};
+    \foreach \t[evaluate=\t as \newv using f(\startv)] in {0,...,#3}{
+    \draw[verdeodi!60!white, thick] (\startv,\startv)|-(\newv,\newv) ;
+    \draw[verdeodi, dotted](\startv,0) -- (\startv,\startv);
+    \filldraw[verdeodi!90!black] (\startv,0) circle (0.3pt);
+    \draw[verdeodi!90!black, thick] (\startv, 0) node[below]{$x_{\t}$};
+    \xdef\startv{\newv}}
+    \end{tikzpicture}}
+
+    \newcommand{\cobwebB}[3][.5]{% \cobweb[<start value>]{<function>}{<iterations>}
+    \begin{tikzpicture}[scale=3,declare function={f(\x)=#2;}]
+    %\tikzstyle{every node}=[font=\tiny]
+    \xdef\startv{#1}
+    \draw[<->, thick](0,1.1)|-(1.1,0);
+    %\draw[gray!70!black] (0,0)--(1,1) node[midway, yshift=10cm]{$f(x)=x$};
+    \draw[gray, domain=0:1.1, smooth, thick] plot (\x,\x);% node[right] {$u_n = u_{n-1}$};
+    \draw[blue, domain=0:1.1, smooth, thick] plot (\x,{f(\x)});% node[right] {$u_{n} = f(u_{n-1})$};
+    \foreach \t[evaluate=\t as \newv using f(\startv)] in {0,...,#3}{
+    \draw[verdeodi!60!white, thick] (\startv,\startv)|-(\newv,\newv) ;
+    \draw[verdeodi, dotted](\startv,0) -- (\startv,\startv);
+    \filldraw[verdeodi!90!black] (\startv,0) circle (0.3pt);
+    \draw[verdeodi!90!black] (\startv, 0) node[below]{$x_{\t}$};
+    \xdef\startv{\newv}}
+    \end{tikzpicture}}
+
+\newcommand{\velocity}{0.1}
+\newcommand{\velocityB}{-0.08}
+
+\begin{document}
+
+%\cobweb[1]{\x-2*\velocity}{4}\qquad
+\cobwebB[0.1]{\x-2*\velocityB}{5}\qquad
+
+
+\end{document}

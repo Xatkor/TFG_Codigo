@@ -10,29 +10,29 @@ INF = float("inf")
 
 # -------------------------------------
 
-Relativistic_mode = False
+Relativistic_mode = True
 
 # -------------------------------------
 
 # Velocities of walls
-top_wall_velocity = np.asarray([0, 0], dtype=np.float64)
-bottom_wall_velocity = np.asarray([0, 0], dtype=np.float64)
-left_wall_velocity = np.asarray([0, 0])
-right_wall_velocity = np.asarray([0, 0])
+top_wall_velocity = np.asarray([0, 0.04], dtype=np.float64)
+bottom_wall_velocity = np.asarray([0, 0.03], dtype=np.float64)
+left_wall_velocity = np.asarray([0.0, 0])
+right_wall_velocity = np.asarray([0.0, 0])
 
 
 # The code only support positions in the positive XY plane
 # Position of walls
-top_wall_position = np.asarray([[0, 200], [2, 200]], dtype=np.float64)
+top_wall_position = np.asarray([[0, 3000], [2, 3000]], dtype=np.float64)
 bottom_wall_position = np.asarray([[0, 1], [2, 1]], dtype=np.float64)
-left_wall_position = np.asarray([[1, 0], [1, 1]])
-right_wall_position = np.asarray([[200, 0], [200, 1]])
+left_wall_position = np.asarray([[100, 0], [100, 1]])
+right_wall_position = np.asarray([[3000, 0], [3000, 1]])
 
 
 # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
 # Creating a ball
-pos_ball = np.asarray([100, 100])
-vel1 = np.asarray([200, 500])
+pos_ball = np.asarray([500, 1500])
+vel1 = np.asarray([0.3, 0.6])
 ball = Ball(pos_ball, vel1)
 
 # Array which will store the properties of the ball for each collision
@@ -58,8 +58,11 @@ plt.axhline(bottom_wall_position[0][1], color="red")
 plt.axvline(left_wall_position[1][0], color="red")
 plt.axvline(right_wall_position[1][0], color="red")
 
+ball_acceleration = []
+
+
 # Number of collisions and starting the simulation
-num_of_iterations = 100
+num_of_iterations = 10000
 i = 0
 while i < num_of_iterations:
 
@@ -67,8 +70,6 @@ while i < num_of_iterations:
     if top_wall_position[0][1] < bottom_wall_position[0][1] or left_wall_position[1][0] > right_wall_position[1][0]:
         print("There is no more billiard. Some walls has merged.")
         break
-
-
 
     # Re-creating walls with the new position
     top_wall = InfiniteWall(top_wall_position[0], top_wall_position[1], top_wall_velocity, side="top",
@@ -115,6 +116,7 @@ while i < num_of_iterations:
     # Store ball's properties
     ball_positions.append(pos_ball)
     ball_velocities.append(vel1)
+    ball_acceleration.append(np.abs(ball_velocities[i][0]) - np.abs(ball_velocities[i-1][0]))
 
     # Store walls' properties
     top_wall_position = top_wall_position + top_wall_velocity * t
@@ -173,4 +175,12 @@ plt.tight_layout()
 #plt.savefig(os.path.dirname(__file__) + "/" + os.path.basename(__file__).split(".")[0] + "_properties.png")
 
 plt.show()
+
+plt.plot(iterations[:-2], ball_acceleration[1:])
+
+plt.show()
+
+
+
+
 

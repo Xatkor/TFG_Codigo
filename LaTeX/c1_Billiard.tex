@@ -281,8 +281,101 @@ Derivando cada componente de \ref{eq:transformacion_2d} y dividiendo como se ha 
 Tras la colisón en este sistema de referencia \( S \) con la pared en reposo, las componentes se ven modificadas de acuerdo a \( \bar{u}_{\parallel, S} = -u_{\parallel, S} \) y \( \bar{u}_{\perp, S} = u_{\perp, S} \). De este modo volviendo al sistema de referencial inicial \( S_0 \) concluimos que las nuevas componentes de la velocidad para la partícula son
 
 \begin{align}
-    \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel + (w_\parallel/c)^2} \\[2mm]
-    \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel + (w_\parallel/c)^2}
+    \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2} \\[2mm]
+    \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}
 \end{align}
+
+\section{Trayectorias/Geometría de una partícula}
+
+Como se ha podido ver tras cada colisión la partícula puede ver modificada su velocidad o no. La pregunta que surge es para que casos podemos decir que la velocidad va a aumentar y para cuales disminuirá. Además es interesante estudiar cuál es el límite de esta velocidad. 
+
+\vspace{3mm}
+
+Vamos a suponer que estamos en el espacio de una dismensión con dos paredes que móviles con una misma velocidad pero sentidos opuestos, esto es, si una se desplaza a la derecha la otra lo hará a la izquierda. Tras cada colisión la partícua obtendrá una velocidad
+
+\begin{equation}\label{eq:velocidad_discreta_1D}
+    u_n = u_{n-1} - 2\left( u_{n-1} - w_n \cdot (-1)^{n+1} \right)
+\end{equation}
+
+donde \( n \) es la n-ésima colisión, y \( w_n \) es el módulo de la velocidad de las paredes. Dado que la partícula colisionará con una de las paredes podemos reescribir la expresión \ref{eq:velocidad_discreta_1D} como si la partícula rebotara con la pared y volviera a moverse hacia esa pared (Otra opción sería tomar a uno de los muros en resposo dejando sin modificar la velocidad en esa colisión, así \ref{eq:velocidad_discreta_1D} valdría para valores \( n \) pares). 
+
+\begin{equation}\label{eq:valor_absoluto_clasico}
+    \left| u_n \right| =\left| -u_{n-1} + 2w_n \right|
+\end{equation}
+
+Nos encontramos así con un mapa unidimensional (\textit{one-dimensional map} en inglés) que podemos analizar. Lo mismo ocurre para el caso relativista donde la expresión en este caso es
+
+\begin{equation}\label{eq:valor_absoluto_relativista}
+    \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
+\end{equation}
+
+Para analizar ambos casos es conveniente usar \textit{Cobwebs} \textcolor{red}{Referencia Strogatz}, así las gráficas obtenidas para ambos casos son las figuras mostradas en \ref{fig:Cobweb_Classic_1D}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=1.5]{images/Cobweb_Classic_1D_A.pdf}
+        \caption{$w_n>0$}
+        \label{fig:Cobweb_Classic_1D_A}
+    \end{subfigure}
+    \hfill
+    %\hspace{0mm}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=1.5]{images/Cobweb_Classic_1D_B.pdf}
+        \caption{$w_n<0$}
+        \label{fig:Cobweb_Classic_1D_B}
+    \end{subfigure}
+    \caption{Cobwebs en el caso clásico donde se ha considerado que la partícula inicia con una velocidad $u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a) La pared se mueve en la misma dirección que la partícula. b) La pared va en sentido contrario a la partícula. En ambas imágenes se muestra en azul la función \ref{eq:valor_absoluto_clasico} y en gris \( u_n = u_{n-1} \).}
+        \label{fig:Cobweb_Classic_1D}
+\end{figure}
+
+Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtiene la partícula va a depender de la dirección que tome la velocidad de la pared. Así en aquellos casos donde las paredes se muevan en el mismo sentido de la partícula desacelerarán la partícula hasta llegar a una velocidad \( u_k \) donde la partícula dejará de colisionar con las paredes, ya que se llegará a un punto donde \( u_k < w_n \). En el caso opueto donde las paredes siempre se dirijan hacia la partícula veremos como su velocidad aumenta sin ningún límite tras cada colisión. Estaríamos entonces presenciando la aceleración de Fermi.
+
+\vspace{3mm}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[scale=1.3]{images/Cobweb_Relatitivy_1D_A.pdf}
+        \caption{$w_n<0$}
+        \label{fig:Cobweb_Rel_1D_A}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[scale=1.3]{images/Cobweb_Relatitivy_1D_B.pdf}
+        \caption{$w_n<0$}
+        \label{fig:Cobweb_Rel_1D_B}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[scale=1.3]{images/Cobweb_Relatitivy_1D_C.pdf}
+        \caption{$w_n>0$}
+        \label{fig:Cobweb_Rel_1D_C}
+    \end{subfigure}
+    \caption{Cobwebs en el caso relativista donde se ha considerado \( c=1 \) y la partícula  con una velocidad inicial$u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a), b) La pared se mueve en la misma dirección que la partícula con distinta velocidad para cada figura. c) La pared va en sentido contrario a la partícula. En todas las imágenes se muestra en azul la función \ref{eq:valor_absoluto_relativista} y en gris \( u_n = u_{n-1} \).}
+        \label{fig:Cobweb_Classic_1D}
+\end{figure}
+
+Para el caso donde utilizamos la teoría relativista (simplificando las expresiones usando \( c = 1\)) obtenemos resultados similares. Cuando la velocidad de la pared tiene la misma dirección de la partícula (Figura \ref{fig:Cobweb_Rel_1D_C}) se puede ver como decrece la velocidad llegando también a una velocidad \( u_k < w_n \). El caso opuesto (Figuras \ref{fig:Cobweb_Rel_1D_A}, \ref{fig:Cobweb_Classic_1D_B}) se observa un aumento en la velocidad pero con un límite marcado por la intesección de ambas rectas, que en este caso es la velocidad de la luz,
+
+\begin{align}\label{eq:Solucion_cobweb}
+    u_n &= f(u_n) \nonumber\\
+    u_n &= -\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \\
+    0 &= \dfrac{w_n\left( 2u_n^2-2c^2 \right)}{c^2} \nonumber\\
+    u_n &= \pm c \nonumber
+\end{align}
+
+\vspace{3mm}
+
+De la solución encontrada debemos quedarnos con la positiva, ya que la velocidad que obtenemos debe ser siempre positiva debido al valor absoluto. Además ese valor negativo en \ref{eq:Solucion_cobweb} implica usar el trozo de la función situada en el primer cuadrante.
+
+\vspace{3mm}
+
+En un espacio de dos dimensiones no es posible realizar estas simplificaciones, pero podemos extrapolar estos resultados para preveer el comportamiento de la velocidad. En este espacio tenemos ahora un área que se verá modificada de acuerdo a la velocidad de las paredes, por ello podemos pensar que en los casos donde se vea disminuida veremos aparecer la aceleración de Fermi, ya que al menos uno de las paredes tendrá una velocidad con dirección opuesta a la partícula. Es posible encontrar alguna configuración donde las paredes consigan cancelar la aceleración producida por las otras, y esto se dará en aquellos casos donde el área se vea aumentada. 
 
 \end{document}

@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{scalerel}
+
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+
+\newcommand{\cobweb}[3][.5]{% \cobweb[<start value>]{<function>}{<iterations>}
+    \begin{tikzpicture}[scale=3,declare function={f(\x)=#2;}]
+    %tikzstyle{every node}=[font=\tiny]
+    \xdef\startv{#1}
+    %\draw[<->, thick](0,1.1)|-(1.1,0);
+    \draw[->, thick](-0.05,0)--(1.1,0);
+    \draw[->, thick](0,-0.05)--(0,1.1);
+    %\draw[gray!70!black] (0,0)--(1,1) node[midway, yshift=10cm]{$f(x)=x$};
+    \draw[gray, domain=0:1, smooth, thick] plot (\x,\x);% node[right, xshift=3mm, yshift=-3mm] {$u_{n} = u_{n-1}$};
+    \draw[blue, domain=0.2:1, smooth, thick] plot (\x,{f(\x)});% node[right, yshift=2mm, xshift=3mm] {$u_{n} = f(u_{n-1})$};
+    \foreach \t[evaluate=\t as \newv using f(\startv)] in {0,...,#3}{
+    \draw[verdeodi!60!white, thick] (\startv,\startv)|-(\newv,\newv) ;
+    \draw[verdeodi, dotted](\startv,0) -- (\startv,\startv);
+    \filldraw[verdeodi!90!black] (\startv,0) circle (0.3pt);
+    \draw[verdeodi!90!black] (\startv, 0) node[below]{$\scaleto{x\mathstrut}{6pt}_{\scaleto{\t\mathstrut}{4pt}}$};
+    \xdef\startv{\newv}}
+    \draw[verdeodi, dotted](0, 1) -- (1,1);
+    \draw[verdeodi!90!black] (0, 1) node[left]{\scaleto{1\mathstrut}{11pt}};
+    \end{tikzpicture}}
+
+\newcommand{\velocity}{-0.1}
+\newcommand{\velocityB}{0.1}
+
+\begin{document}
+
+%\cobweb[0.1]{-(-\x+2*\velocity-\velocity^2*\x)/(1-2*\velocity*\x+\velocity^2)}{5}\qquad
+\cobweb[0.8]{-(-\x+2*\velocityB-\velocityB^2*\x)/(1-2*\velocityB*\x+\velocityB^2)}{4}\qquad
+%\cobweb[0.6]{-(-\x+2*\velocity-\velocity^2*\x)/(1-2*\velocity*\x+\velocity^2)}{5}\qquad
+
+\end{document}
