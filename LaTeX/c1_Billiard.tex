@@ -285,7 +285,8 @@ Tras la colisón en este sistema de referencia \( S \) con la pared en reposo, l
     \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}
 \end{align}
 
-\section{Trayectorias/Geometría de una partícula}
+\section{Aceleración de Fermi
+}
 
 Como se ha podido ver tras cada colisión la partícula puede ver modificada su velocidad o no. La pregunta que surge es para que casos podemos decir que la velocidad va a aumentar y para cuales disminuirá. Además es interesante estudiar cuál es el límite de esta velocidad. 
 
@@ -331,7 +332,7 @@ Para analizar ambos casos es conveniente usar \textit{Cobwebs} \textcolor{red}{R
         \label{fig:Cobweb_Classic_1D}
 \end{figure}
 
-Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtiene la partícula va a depender de la dirección que tome la velocidad de la pared. Así en aquellos casos donde las paredes se muevan en el mismo sentido de la partícula desacelerarán la partícula hasta llegar a una velocidad \( u_k \) donde la partícula dejará de colisionar con las paredes, ya que se llegará a un punto donde \( u_k < w_n \). En el caso opueto donde las paredes siempre se dirijan hacia la partícula veremos como su velocidad aumenta sin ningún límite tras cada colisión. Estaríamos entonces presenciando la aceleración de Fermi.
+Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtiene la partícula va a depender de la dirección que tome la velocidad de la pared. Así en aquellos casos donde las paredes se muevan en el mismo sentido de la partícula desacelerarán la partícula hasta llegar a una velocidad \( u_k \) donde la partícula dejará de colisionar con la pared móvil, ya que se llegará a un punto donde \( u_k < w_n \). En el caso opuesto donde las paredes siempre se dirijan hacia la partícula veremos como su velocidad aumenta sin ningún límite tras cada colisión. Estaríamos entonces presenciando la aceleración de Fermi.
 
 \vspace{3mm}
 
@@ -372,10 +373,25 @@ Para el caso donde utilizamos la teoría relativista (simplificando las expresio
 
 \vspace{3mm}
 
-De la solución encontrada debemos quedarnos con la positiva, ya que la velocidad que obtenemos debe ser siempre positiva debido al valor absoluto. Además ese valor negativo en \ref{eq:Solucion_cobweb} implica usar el trozo de la función situada en el primer cuadrante.
+La solución encontrada son dos puntos fijos pero debemos quedarnos con la positiva, ya que la velocidad que obtenemos debe ser siempre positiva debido al valor absoluto. Además ese valor negativo en \ref{eq:Solucion_cobweb} implica usar el trozo de la función situada en el primer cuadrante. Podemos profundizar más y ver qué estabilidad tiene este punto
+
+\begin{equation}
+    \dfrac{du_n}{du} = f'(u_n) = \dfrac{1 - 2w^2/c^2 + w^4/c^4}{1 + 4/c^4\left( u^2w^2-uw^3 \right) + 4/c^2\left( u^2w^2-uw \right) + w^4/c^4}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1.2]{images/Estabilidad_Cobweb.pdf}
+    \caption{Diagrama de la derivada de $u_n$ evaluada en el punto fijo en función de la velocidad de la pared. En rojo la estabilidad del punto.}
+    \label{fig:estabilidad_cobweb}
+\end{figure}
 
 \vspace{3mm}
 
-En un espacio de dos dimensiones no es posible realizar estas simplificaciones, pero podemos extrapolar estos resultados para preveer el comportamiento de la velocidad. En este espacio tenemos ahora un área que se verá modificada de acuerdo a la velocidad de las paredes, por ello podemos pensar que en los casos donde se vea disminuida veremos aparecer la aceleración de Fermi, ya que al menos uno de las paredes tendrá una velocidad con dirección opuesta a la partícula. Es posible encontrar alguna configuración donde las paredes consigan cancelar la aceleración producida por las otras, y esto se dará en aquellos casos donde el área se vea aumentada. 
+Para ver la estabilidad del punto se debe analizar si \( \left| f'(c) \right| \) es mayor o menor a la unidad \textcolor{red}{Refrencia Strogatz}. Usando la figura \ref{fig:estabilidad_cobweb} podemos ver como para valores \( w_n < 0 \) se cumple \( \left| f'(c) \right| < 1 \), siendo estables, y lo opuesto ocurre para \( w_n > 0 \) conviertiéndose en inestables.
+
+\vspace{3mm}
+
+En un espacio de dos dimensiones no es posible realizar estas simplificaciones, pero podemos extrapolar estos resultados para preveer el comportamiento de la velocidad. En este espacio tenemos ahora un área que se verá modificada de acuerdo a la velocidad de las paredes, por ello podemos pensar que en los casos donde se vea disminuida veremos aparecer la aceleración de Fermi, ya que al menos una de las paredes tendrá una velocidad con dirección opuesta a la partícula generando esta aceleración. Existen configuraciones donde no se vea la aceleración de Fermi, pero son aquellas donde la partícula apenas colisiones con alguna de las paredes móviles (p.e. Colisiones en una única dirección contra paredes cuya distancia se mantenga constante).
 
 \end{document}

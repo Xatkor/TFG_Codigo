@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{tikz,pgfplots}
+\usepackage{scalerel}
+\pgfplotsset{compat=1.6}
+
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        axis x line=center,
+        axis y line=center,
+        ymin=-1,
+        ymax=3,
+        xlabel=$w$,
+        ticks=none,
+    ]
+    \addplot[color=blue, domain=-0.3:0.3, samples=100]{(\x*\x+1+2*\x)/(1-2*\x+\x*\x)}node[above, midway, xshift=-3mm]{$f'(c)$};
+    \addplot[color=verdeodi, domain=-0.3:0.3, dashed]{1} node[above, midway, xshift=-3mm]{$1$};
+    \filldraw[color=red!60, fill=red!5] (axis cs: 0,-0) circle (2pt);
+    \draw[red, -stealth, thick] (axis cs: 0.007,0) -- (axis cs: 0.1, 0);
+    \draw[red, stealth-, thick] (axis cs: -0.007,0) -- (axis cs: -0.1, 0);
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}
