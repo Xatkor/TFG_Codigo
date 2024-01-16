@@ -1,41 +1,5 @@
 \documentclass[11pt, spanish]{book}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[a4paper]{geometry}
-\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=1.5cm}
-\setlength{\parindent}{0\paperheight}
-\usepackage{color}
-%\usepackage{xcolor}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{esint}
-\usepackage{colortbl}
-\usepackage{babel}
-\usepackage{enumitem}
-\usepackage{amssymb}
-\usepackage{tikz}
-\usepackage{booktabs}
-\usepackage{subcaption}
-\usetikzlibrary{arrows,decorations.markings,plotmarks}
-\selectlanguage{spanish}
-\usepackage{caption}
-\usepackage{fancybox}
-\usepackage{enumitem}
-\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
-\usepackage[font={color=verdeodi,it},figurename=Fig.,labelfont={it}]{caption}
-\usepackage[most]{tcolorbox}
-\usepackage{float}
-\newtcolorbox{fancybox}[1][]{ %%%%%%%
-enhanced,
-boxrule=1pt,arc=8pt,boxsep=0pt,
-left=0.8em,right=0.8em,top=1ex,bottom=1ex,colback=verdeodi!20,colframe=verdeodi,#1}
-\usepackage[Glenn]{fncychap}
-\newcommand{\stylecolor}{\color{verdeodi!90!black}} % choose the color
-\ChNameVar{\stylecolor\Large\fontfamily{put}\selectfont}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+\usepackage{MiEstilo}
 
 
 \begin{document}
@@ -298,7 +262,7 @@ Vamos a suponer que estamos en el espacio de una dismensión con dos paredes que
     u_n = u_{n-1} - 2\left( u_{n-1} - w_n \cdot (-1)^{n+1} \right)
 \end{equation}
 
-donde \( n \) es la n-ésima colisión, y \( w_n \) es el módulo de la velocidad de las paredes. Dado que la partícula colisionará con una de las paredes podemos reescribir la expresión \ref{eq:velocidad_discreta_1D} como si la partícula rebotara con la pared y volviera a moverse hacia esa pared (Otra opción sería tomar a uno de los muros en resposo dejando sin modificar la velocidad en esa colisión, así \ref{eq:velocidad_discreta_1D} valdría para valores \( n \) pares). 
+donde \( n \) es la n-ésima colisión, y \( w_n \) es el módulo de la velocidad de las paredes. Dado que la partícula colisionará con una de las paredes podemos reescribir la expresión \ref{eq:velocidad_discreta_1D} como si la partícula rebotara con la pared y volviera a moverse hacia esa pared (Otra opción sería tomar a uno de los muros en resposo dejando sin modificar la velocidad en esa colisión, así \ref{eq:velocidad_discreta_1D} se aplicaría para valores \( n \) impares con la pared que se mueve y obviando el término potencia). 
 
 \begin{equation}\label{eq:valor_absoluto_clasico}
     \left| u_n \right| =\left| -u_{n-1} + 2w_n \right|
@@ -310,7 +274,7 @@ Nos encontramos así con un mapa unidimensional (\textit{one-dimensional map} en
     \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
 \end{equation}
 
-Para analizar ambos casos es conveniente usar \textit{Cobwebs} \textcolor{red}{Referencia Strogatz}, así las gráficas obtenidas para ambos casos son las figuras mostradas en \ref{fig:Cobweb_Classic_1D}
+Para analizar ambos casos es conveniente usar \textit{Cobwebs} \textcolor{red}{Referencia Strogatz}, las cuales son gráficas que muestran hacia donde evoluciona la función en cada iteración. Así las gráficas obtenidas para ambos casos son las figuras mostradas en \ref{fig:Cobweb_Classic_1D}
 
 \begin{figure}[H]
     \centering
@@ -359,7 +323,7 @@ Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtien
         \label{fig:Cobweb_Rel_1D_C}
     \end{subfigure}
     \caption{Cobwebs en el caso relativista donde se ha considerado \( c=1 \) y la partícula  con una velocidad inicial$u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a), b) La pared se mueve en la misma dirección que la partícula con distinta velocidad para cada figura. c) La pared va en sentido contrario a la partícula. En todas las imágenes se muestra en azul la función \ref{eq:valor_absoluto_relativista} y en gris \( u_n = u_{n-1} \).}
-        \label{fig:Cobweb_Classic_1D}
+        \label{fig:Cobweb_Rel_1D}
 \end{figure}
 
 Para el caso donde utilizamos la teoría relativista (simplificando las expresiones usando \( c = 1\)) obtenemos resultados similares. Cuando la velocidad de la pared tiene la misma dirección de la partícula (Figura \ref{fig:Cobweb_Rel_1D_C}) se puede ver como decrece la velocidad llegando también a una velocidad \( u_k < w_n \). El caso opuesto (Figuras \ref{fig:Cobweb_Rel_1D_A}, \ref{fig:Cobweb_Classic_1D_B}) se observa un aumento en la velocidad pero con un límite marcado por la intesección de ambas rectas, que en este caso es la velocidad de la luz,

@@ -1,0 +1,37 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=1.5cm}
+\setlength{\parindent}{0\paperheight}
+\usepackage{color}
+%\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{esint}
+\usepackage{colortbl}
+\usepackage{babel}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usetikzlibrary{arrows,decorations.markings,plotmarks}
+\selectlanguage{spanish}
+\usepackage{caption}
+\usepackage{fancybox}
+\usepackage{enumitem}
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+\usepackage[font={color=verdeodi,it},figurename=Fig.,labelfont={it}]{caption}
+\usepackage[most]{tcolorbox}
+\usepackage{float}
+\newtcolorbox{fancybox}[1][]{ %%%%%%%
+enhanced,
+boxrule=1pt,arc=8pt,boxsep=0pt,
+left=0.8em,right=0.8em,top=1ex,bottom=1ex,colback=verdeodi!20,colframe=verdeodi,#1}
+\usepackage[Glenn]{fncychap}
+\newcommand{\stylecolor}{\color{verdeodi!90!black}} % choose the color
+\ChNameVar{\stylecolor\Large\fontfamily{put}\selectfont}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
