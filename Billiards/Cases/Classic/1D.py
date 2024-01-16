@@ -11,17 +11,17 @@ INF = float("inf")
 
 # -------------------------------------
 
-Relativistic_mode = False
+Relativistic_mode = True
 
 # -------------------------------------
 
 # Velocities of walls
-top_wall_velocity = np.array([0, -3], dtype=np.float64)
-bottom_wall_velocity = np.array([0, 3], dtype=np.float64)
-left_wall_velocity = np.array([3, 0])
-right_wall_velocity = np.array([-3, 0])
+top_wall_velocity = np.array([0, -0.03], dtype=np.float64)
+bottom_wall_velocity = np.array([0, 0.03], dtype=np.float64)
+left_wall_velocity = np.array([0.03, 0])
+right_wall_velocity = np.array([-0.03, 0])
 
-num_of_iterations = 10
+num_of_iterations = 40
 ball_velocities_average = np.zeros(num_of_iterations + 1)
 nmax = 20
 for j in range(nmax):
@@ -38,7 +38,7 @@ for j in range(nmax):
     # x, y = random.randint(101, 2999), random.randint(2, 2999)
     x, y = 1500, 1500
     angle = random.uniform(0, 360)
-    vx, vy = 20 * np.cos(angle), 20 * np.sin(angle)  # Velocities must be same for every simulation
+    vx, vy = 0.1 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -142,13 +142,14 @@ for j in range(nmax):
 
 
 graph1 = Plotter()
-graph1.plot_path(ball_positions)
 graph1.plot_billiard_rectangle(top_wall_positions, bottom_wall_positions, left_wall_positions, right_wall_positions)
+graph1.plot_path(ball_positions)
 graph1.display()
 
 graph2 = Plotter()
-graph2.plot_velocity(ball_velocities_modulus)
+graph2.plot_velocity(ball_velocities_modulus, True)
 graph2.display()
+# iterations = [k for k in range(len(ball_velocities_modulus))]
+# plt.plot(iterations, ball_velocities_modulus)
+# plt.show()
 
-# total number of collisions
-iterations = [k for k in range(len(ball_velocities_modulus))]
