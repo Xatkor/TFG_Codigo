@@ -28,7 +28,7 @@ class Plotter:
                                   edgecolor='black',
                                   fill=True,
                                   lw=1,
-                                  alpha=0.1)
+                                  alpha=0.2)
             self.ax.add_patch(rectangle)
         self.ax.set_xlim(left_wall_positions[0][0][0], right_wall_positions[0][0][0])
         plt.axis("off")
@@ -48,11 +48,12 @@ class Plotter:
         self.ax.plot(ball_positions_X, ball_positions_Y, color=self.path_color, zorder=10)
         plt.axis("off")
 
-    def plot_velocity(self, velocity, relativistic=False):
+    def plot_velocity(self, velocity, relativistic=False, points=True, color="#357169"):
         self.fig2, self.ax2 = plt.subplots(figsize=(10, 7))
         iterations = np.arange(len(velocity), dtype=int)
-        self.ax2.plot(iterations, velocity, color=self.billiard_color)
-        self.ax2.scatter(iterations, velocity, edgecolors=self.billiard_color, color="white", zorder=10)
+        self.ax2.plot(iterations, velocity, color=color)
+        if points:
+            self.ax2.scatter(iterations, velocity, edgecolors=color, color="white", zorder=10, s=20)
 
         self.ax2.set_ylabel("$< v >$")
         self.ax2.set_xlabel("$n$")

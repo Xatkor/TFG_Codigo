@@ -8,43 +8,63 @@
 Para diversos casos donde las paredes se mueven mover o no, se va realizar la simulación de un partícula en el interior de un billar rectangular. Para ello el procedimiento es usar el código creado \textcolor{red}{Referenciar código mio} para distintos grupos de \( 10^3 \) partículas, no interactuantes entre sí, siguiendo las siguientes pautas:
 
 \begin{enumerate}
-    \item Cada grupo tiene el mismo módulo de velocidad pero con posiciones y direcciones de velocidades aleatorias para cada partícula.
+    \item Cada grupo tiene el mismo módulo de velocidad pero con direcciones de velocidades aleatorias para cada partícula.
+    \item Las posiciones son las mismas.
     \item Las condiciones iniciales de cada pared son las mismas para todos los grupos
     \item El resultado final corresponde a la velocidad media de todas las partículas tras cada colisión con alguna de las paredes.
     \item En caso de no obtener más colisiones con nigún muro, se mantendrá la última velocidad obtenida para el cálculo de la media en cada colisión del resto de partículas.
 \end{enumerate}
 
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.35]{images/Billiard_general.pdf}
+        \caption{$w_i<0$}
+        \label{fig:a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.35]{images/Billiards_generico_2.pdf}
+        \caption{$w=0$}
+        \label{fig:s}
+    \end{subfigure}
+    \caption{Trayectoria de una partícula. a) En un billar con paredes dirigiéndose hacia el centro. b) Paredes con velocidad nula}
+\end{figure}
+
 \section{Caso unidimensional}
 
-Vamos a analizar la situación donde la partícula se encuentra entre dos paredes moviéndose en un sólo eje.
+Vamos a analizar la situación donde la partícula se encuentra entre dos paredes con velocidad no nula, siendo las colisiones tanto elásticas como inelásticas.
 
 \subsection{Clasico}
 \begin{enumerate}
-    \item Area expandir 
-    \item Area contraer
-    \item  Paredes oscilatorias
+    \item Area expandir X
+    \item Area contraer X
+    \item  Paredes oscilatorias \textcolor{red}{Con el codigo no se puede simular, ya que calcula el tiempo tras detectar una colision. Si el muro se aleja de la partícula con mayor velocidad que esta, aunque llegue a su máxima amplitud y invierta su dirección causando entonces un choque con la partícula, el programa no es capaz de detectarlo.}
     \item Colisión inelástica
 \end{enumerate}
 \subsection{Relativista}
 \begin{enumerate}
-    \item Area expandir
-    \item Area contraer
-    \item  Paredes oscilatorias
+    \item Area expandir X
+    \item Area contraer X
+    \item  Paredes oscilatorias \textcolor{red}{Igual que en el caso clásico}
     \item Colisión inelástica
 \end{enumerate}
 \section{Dos dimensiones}
 
 \subsection{Clasico}
 \begin{enumerate}
-    \item Area expandir
-    \item Area contraer
+    \item Area expandir X
+    \item Area contraer X
+    \item Concidicones mixtas \textcolor{blue}{Se ha modificado la distancia, y las velocidades de cada muro son diferentes entre sí}.
     \item Paredes oscilatorias
     \item Colisión inelástica
 \end{enumerate}
 \subsection{Relativista}
 \begin{enumerate}
-    \item Area expandir
-    \item Area contraer
+    \item Area expandir X
+    \item Area contraer X
+    \item Concidicones mixtas \textcolor{blue}{Se ha modificado la distancia, y las velocidades de cada muro son diferentes entre sí}.
     \item Paredes oscilatorias
     \item Colisión inelástica
 \end{enumerate}

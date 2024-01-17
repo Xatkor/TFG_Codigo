@@ -19,30 +19,30 @@ Relativistic_mode = False
 list_velocities_modulus = []
 
 # Velocities of walls
-top_wall_velocity = np.array([0, -0.0], dtype=np.float64)
+top_wall_velocity = np.array([0, 0.0], dtype=np.float64)
 bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
-left_wall_velocity = np.array([0, 0])
-right_wall_velocity = np.array([-3, 0])
+left_wall_velocity = np.array([0.01, 0])
+right_wall_velocity = np.array([-0.01, 0])
 
-num_of_iterations = 10
+num_of_iterations = 50
 ball_velocities_average = np.zeros(num_of_iterations + 1)
-nmax = 10
+nmax = 100
 for j in range(nmax):
     # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
 
     # The code only support positions in the positive XY plane
     # Position of walls
-    top_wall_position = np.array([[0, 3000], [2, 3000]], dtype=np.float64)
+    top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
     bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
     left_wall_position = np.array([[1, 0], [1, 1]])
-    right_wall_position = np.array([[3000, 0], [3000, 1]])
+    right_wall_position = np.array([[1000, 0], [1000, 1]])
 
     # Creating a ball
-    # x, y = random.randint(101, 2999), random.randint(2, 2999)
-    x, y = 1500, 1500
+    #x, y = random.randint(1, 9), random.randint(2, 9)
+    x, y = 500, 500
     angle = random.uniform(0, 360)
-    vx, vy = 10 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
-    #vx, vy = 10 * random.choice([-1, 1]), random.randint(-15, 15)
+    #vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    vx, vy = 0.1 * random.choice([-1, 1]), 0
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -143,13 +143,13 @@ for j in range(nmax):
     ball_velocities_average = ball_velocities_average + ball_velocities_modulus
     list_velocities_modulus.append(ball_velocities_modulus)
 
-graph1 = Plotter()
-graph1.plot_billiard_rectangle(top_wall_positions, bottom_wall_positions, left_wall_positions, right_wall_positions)
-graph1.plot_path(ball_positions)
-graph1.display()
+# graph1 = Plotter()
+# graph1.plot_billiard_rectangle(top_wall_positions, bottom_wall_positions, left_wall_positions, right_wall_positions)
+# graph1.plot_path(ball_positions)
+# graph1.display()
 
 graph2 = Plotter()
-graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode)
+graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=True)
 graph2.display()
 
 # Save velocities as DataFrame
@@ -159,6 +159,5 @@ graph2.display()
 # df['mean'] = df.mean(axis=1)
 # df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
-
-
-
+df = pd.DataFrame(ball_velocities_average/nmax)
+df.to_csv(f"1D-N{nmax}-V-100.txt", sep="\t")
