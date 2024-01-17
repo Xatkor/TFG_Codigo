@@ -6,24 +6,27 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import numpy as np
 import random
+import pandas as pd
 
 INF = float("inf")
 
 # -------------------------------------
 
-Relativistic_mode = True
+Relativistic_mode = False
 
 # -------------------------------------
 
-# Velocities of walls
-top_wall_velocity = np.array([0, -0.03], dtype=np.float64)
-bottom_wall_velocity = np.array([0, 0.03], dtype=np.float64)
-left_wall_velocity = np.array([0.03, 0])
-right_wall_velocity = np.array([-0.03, 0])
+list_velocities_modulus = []
 
-num_of_iterations = 40
+# Velocities of walls
+top_wall_velocity = np.array([0, -0.0], dtype=np.float64)
+bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
+left_wall_velocity = np.array([0, 0])
+right_wall_velocity = np.array([-3, 0])
+
+num_of_iterations = 10
 ball_velocities_average = np.zeros(num_of_iterations + 1)
-nmax = 20
+nmax = 10
 for j in range(nmax):
     # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
 
@@ -38,7 +41,8 @@ for j in range(nmax):
     # x, y = random.randint(101, 2999), random.randint(2, 2999)
     x, y = 1500, 1500
     angle = random.uniform(0, 360)
-    vx, vy = 0.1 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    vx, vy = 10 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    #vx, vy = 10 * random.choice([-1, 1]), random.randint(-15, 15)
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -56,6 +60,8 @@ for j in range(nmax):
     # Starting simulation time
     simulation_time = [0]
     time = 0
+
+    df = pd.DataFrame()
 
     # Number of collisions and starting the simulation
     i = 0
@@ -135,11 +141,7 @@ for j in range(nmax):
         ball_velocities_modulus = np.append(ball_velocities_modulus, add)
 
     ball_velocities_average = ball_velocities_average + ball_velocities_modulus
-
-    # Separation of the components of the position vector
-    ball_positions_X = [punto[0] for punto in ball_positions]
-    ball_positions_Y = [punto[1] for punto in ball_positions]
-
+    list_velocities_modulus.append(ball_velocities_modulus)
 
 graph1 = Plotter()
 graph1.plot_billiard_rectangle(top_wall_positions, bottom_wall_positions, left_wall_positions, right_wall_positions)
@@ -147,9 +149,16 @@ graph1.plot_path(ball_positions)
 graph1.display()
 
 graph2 = Plotter()
-graph2.plot_velocity(ball_velocities_modulus, True)
+graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode)
 graph2.display()
-# iterations = [k for k in range(len(ball_velocities_modulus))]
-# plt.plot(iterations, ball_velocities_modulus)
-# plt.show()
+
+# Save velocities as DataFrame
+# df = pd.DataFrame(list_velocities_modulus)
+# new_columns = {i: f'p{i+1}' for i in range(df.shape[1] - 1)}
+# df = df.transpose().rename(columns=new_columns)
+# df['mean'] = df.mean(axis=1)
+# df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
+
+
+
 

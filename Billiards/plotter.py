@@ -43,17 +43,19 @@ class Plotter:
             self.ax.axvline(right_wall_positions[k][0][0], color="green", alpha=(k) / len(top_wall_positions))
 
     def plot_path(self, ball_positions):
-        ball_positions_X = [punto[0] for punto in ball_positions]
-        ball_positions_Y = [punto[1] for punto in ball_positions]
+        ball_positions_X, ball_positions_Y = np.array(ball_positions).T
 
         self.ax.plot(ball_positions_X, ball_positions_Y, color=self.path_color, zorder=10)
         plt.axis("off")
 
     def plot_velocity(self, velocity, relativistic=False):
         self.fig2, self.ax2 = plt.subplots(figsize=(10, 7))
-        iterations = [k for k in range(len(velocity))]
+        iterations = np.arange(len(velocity), dtype=int)
         self.ax2.plot(iterations, velocity, color=self.billiard_color)
         self.ax2.scatter(iterations, velocity, edgecolors=self.billiard_color, color="white", zorder=10)
+
+        self.ax2.set_ylabel("$< v >$")
+        self.ax2.set_xlabel("$n$")
         if relativistic:
             self.ax2.axhline(1, color=self.path_color, ls="--")
 
