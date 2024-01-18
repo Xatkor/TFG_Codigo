@@ -2,8 +2,7 @@ from Billiards.physics import calc_next_obstacle
 from Billiards.obstacles import InfiniteWall, Ball
 from Billiards.plotter import Plotter
 
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
+
 import numpy as np
 import random
 import pandas as pd
@@ -12,19 +11,19 @@ INF = float("inf")
 
 # -------------------------------------
 
-Relativistic_mode = True
+Relativistic_mode = False
 
 # -------------------------------------
 
 list_velocities_modulus = []
 
 # Velocities of walls
-top_wall_velocity = np.array([0, 0.01], dtype=np.float64)
-bottom_wall_velocity = np.array([0, 0.1], dtype=np.float64)
-left_wall_velocity = np.array([0.03, 0])
-right_wall_velocity = np.array([0.01, 0])
+top_wall_velocity = np.array([0, 0.0], dtype=np.float64)
+bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
+left_wall_velocity = np.array([0, 0])
+right_wall_velocity = np.array([5, 0])
 
-num_of_iterations = 230
+num_of_iterations = 130
 ball_velocities_average = np.zeros(num_of_iterations + 1)
 nmax = 100
 for j in range(nmax):
@@ -41,7 +40,8 @@ for j in range(nmax):
     #x, y = random.randint(1, 9), random.randint(2, 9)
     x, y = 500, 500
     angle = random.uniform(0, 360)
-    vx, vy = 0.1 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    #vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    vx, vy = 500 * random.choice([-1, 1]), 0
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -148,7 +148,7 @@ for j in range(nmax):
 # graph1.display()
 
 graph2 = Plotter()
-graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=False)
+graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=True)
 graph2.display()
 
 # Save velocities as DataFrame
@@ -159,4 +159,4 @@ graph2.display()
 # df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
 df = pd.DataFrame(ball_velocities_average/nmax)
-df.to_csv(f"2D-N{nmax}-V-0.1.txt", sep="\t")
+df.to_csv(f"1D_A-N{nmax}-U-500.txt", sep="\t")

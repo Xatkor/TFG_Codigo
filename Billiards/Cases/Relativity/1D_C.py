@@ -12,7 +12,7 @@ INF = float("inf")
 
 # -------------------------------------
 
-Relativistic_mode = False
+Relativistic_mode = True
 
 # -------------------------------------
 
@@ -21,15 +21,13 @@ list_velocities_modulus = []
 # Velocities of walls
 top_wall_velocity = np.array([0, 0.0], dtype=np.float64)
 bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
-left_wall_velocity = np.array([0.01, 0])
-right_wall_velocity = np.array([-0.01, 0])
+left_wall_velocity = np.array([0.3, 0])
+right_wall_velocity = np.array([0.2, 0])
 
 num_of_iterations = 50
 ball_velocities_average = np.zeros(num_of_iterations + 1)
 nmax = 100
 for j in range(nmax):
-    # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
-
     # The code only support positions in the positive XY plane
     # Position of walls
     top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
@@ -42,7 +40,7 @@ for j in range(nmax):
     x, y = 500, 500
     angle = random.uniform(0, 360)
     #vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
-    vx, vy = 0.1 * random.choice([-1, 1]), 0
+    vx, vy = 0.3 * random.choice([-1, 1]), 0
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -149,7 +147,7 @@ for j in range(nmax):
 # graph1.display()
 
 graph2 = Plotter()
-graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=True)
+graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=False)
 graph2.display()
 
 # Save velocities as DataFrame
@@ -160,4 +158,4 @@ graph2.display()
 # df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
 df = pd.DataFrame(ball_velocities_average/nmax)
-df.to_csv(f"1D-N{nmax}-V-100.txt", sep="\t")
+df.to_csv(f"1D_C_L>R-N{nmax}-V-03.txt", sep="\t")

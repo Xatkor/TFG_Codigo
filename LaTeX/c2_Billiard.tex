@@ -112,6 +112,7 @@ Dejando de lado la teoría clásica nos trasladamos al marco de la relatividad e
 \vspace{3mm}
 
 Dado que estamos usando la relatividad especial es conveniente emplear la notación caracterísitica de esta teoría. Así definimos un cuadrivector para el momento, a partir de ahora lo llamaremos 4-momentum, que contiene tanto la energía como el momento de la partícula
+\textcolor{red}{Referencia libro - Hobson M.P., Efstathiou G.P., Lasenby A.N. - GR - An Introduction for Physicists(Cambridge,2006) }
 % Referencia libro - Hobson M.P., Efstathiou G.P., Lasenby A.N. - GR - An Introduction for Physicists(Cambridge,2006)
 % Pagina 119
 \begin{equation}\label{eq:4-momentum}
@@ -238,15 +239,15 @@ donde el factor de Lorentz\footnote{Es fácil ver que \( \lVert \mathbf{w} \rVer
 Derivando cada componente de \ref{eq:transformacion_2d} y dividiendo como se ha hecho anteriormente, se obtiene
 
 \begin{align}
-    \dfrac{dr_{\parallel, S}}{dt_S} = u_{\parallel,S} &= \dfrac{u_\parallel - w_\parallel}{1 - w_\parallel u_\parallel / c^2} \\[2mm]
-    \dfrac{dr_{\perp, S}}{dt_S} = u_{\perp,S} &= u_\perp\dfrac{\sqrt{1 - {(w/c)}^2}}{1 - u_\parallel w_\parallel / c^2}
+    \dfrac{dr_{\parallel, S}}{dt_S} = u_{\parallel,S} &= \dfrac{u_\parallel - w_\parallel}{1 - w_\parallel u_\parallel / c^2} \label{eq:velocity_change1}\\[2mm]
+    \dfrac{dr_{\perp, S}}{dt_S} = u_{\perp,S} &= u_\perp\dfrac{\sqrt{1 - {(w/c)}^2}}{1 - u_\parallel w_\parallel / c^2} \label{eq:velocity_change2}
 \end{align}
 
 Tras la colisón en este sistema de referencia \( S \) con la pared en reposo, las componentes se ven modificadas de acuerdo a \( \bar{u}_{\parallel, S} = -u_{\parallel, S} \) y \( \bar{u}_{\perp, S} = u_{\perp, S} \). De este modo volviendo al sistema de referencial inicial \( S_0 \) concluimos que las nuevas componentes de la velocidad para la partícula son
 
 \begin{align}
-    \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2} \\[2mm]
-    \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}
+    \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2} \label{eq:velocidad_paralela}\\[2mm]
+    \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}\label{eq:velocidad_perpendicular}
 \end{align}
 
 \section{Aceleración de Fermi
@@ -322,17 +323,17 @@ Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtien
         \caption{$w_n>0$}
         \label{fig:Cobweb_Rel_1D_C}
     \end{subfigure}
-    \caption{Cobwebs en el caso relativista donde se ha considerado \( c=1 \) y la partícula  con una velocidad inicial$u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a), b) La pared se mueve en la misma dirección que la partícula con distinta velocidad para cada figura. c) La pared va en sentido contrario a la partícula. En todas las imágenes se muestra en azul la función \ref{eq:valor_absoluto_relativista} y en gris \( u_n = u_{n-1} \).}
+    \caption{Cobwebs en el caso relativista donde se ha considerado \( c=1 \) y la partícula  con una velocidad inicial $u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a), b) La pared se mueve en la misma dirección que la partícula con distinta velocidad para cada figura. c) La pared va en sentido contrario a la partícula. En todas las imágenes se muestra en azul la función \ref{eq:valor_absoluto_relativista} y en gris \( u_n = u_{n-1} \).}
         \label{fig:Cobweb_Rel_1D}
 \end{figure}
 
 Para el caso donde utilizamos la teoría relativista (simplificando las expresiones usando \( c = 1\)) obtenemos resultados similares. Cuando la velocidad de la pared tiene la misma dirección de la partícula (Figura \ref{fig:Cobweb_Rel_1D_C}) se puede ver como decrece la velocidad llegando también a una velocidad \( u_k < w_n \). El caso opuesto (Figuras \ref{fig:Cobweb_Rel_1D_A}, \ref{fig:Cobweb_Classic_1D_B}) se observa un aumento en la velocidad pero con un límite marcado por la intesección de ambas rectas, que en este caso es la velocidad de la luz,
 
-\begin{align}\label{eq:Solucion_cobweb}
+\begin{align}
     u_n &= f(u_n) \nonumber\\
-    u_n &= -\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \\
+    u_n &= -\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2}\label{eq:Solucion_cobweb} \\
     0 &= \dfrac{w_n\left( 2u_n^2-2c^2 \right)}{c^2} \nonumber\\
-    u_n &= \pm c \nonumber
+    u_n &= \pm c \label{eq:Solucion_cobweb,valor}
 \end{align}
 
 \vspace{3mm}
@@ -357,5 +358,67 @@ Para ver la estabilidad del punto se debe analizar si \( \left| f'(c) \right| \)
 \vspace{3mm}
 
 En un espacio de dos dimensiones no es posible realizar estas simplificaciones, pero podemos extrapolar estos resultados para preveer el comportamiento de la velocidad. En este espacio tenemos ahora un área que se verá modificada de acuerdo a la velocidad de las paredes, por ello podemos pensar que en los casos donde se vea disminuida veremos aparecer la aceleración de Fermi, ya que al menos una de las paredes tendrá una velocidad con dirección opuesta a la partícula generando esta aceleración. Existen configuraciones donde no se vea la aceleración de Fermi, pero son aquellas donde la partícula apenas colisiones con alguna de las paredes móviles (p.e. Colisiones en una única dirección contra paredes cuya distancia se mantenga constante).
+
+\section{Colisión inelástica}
+
+Hasta ahora se ha supuesto que la colisión es totalmente elástica y no existe pérdida de energía tras cada colisión, lo que ocasiona que pueda existir la aceleración de Fermi. Vamos a suponer que tras cada colisión la velocidad de la partícula, en un sistema donde la pared está en reposo, se ve modificada de acuerdo a 
+
+\begin{equation}
+    \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
+\end{equation}
+
+donde \( \epsilon \) es el factor de restitución. Para obtener la solución en el caso realtivista podemos usar de nuevo las expresiones \ref{eq:velocity_change1} y \ref{eq:velocity_change2}, pero teniendo en cuenta que al igual que antes la única componente de la velocidad que se ve modificada es la paralela a la normal, manteniéndose constante la perpendicular. 
+
+\vspace{3mm}
+
+Entonces se tiene
+
+\begin{equation}
+    \bar{u}_\parallel = \dfrac{-\epsilon u_\parallel + w_\parallel (1 + \epsilon) -  u_\parallel (w_\parallel/c)^2}{1 - (1 + \epsilon)u_\parallel w_\parallel/c^2 + \epsilon (w_\parallel/c)^2}
+\end{equation}
+
+que si usamos \( \epsilon = 1 \) como en una colisión totalmente elástica obtenemos la expresión \ref{eq:velocidad_paralela}
+
+\vspace{3mm}
+
+De nuevo nos encontramos con una función discreta que sólo se modifica cuando existe una colisión. Así podemos emplear el mismo análisis para el caso elástico y ver si aparece la aceleración de Fermi. Considerando que siempre impacta contra la misma pared podemos obtener la velocidad máxima que podrá adquirir la partícula
+
+\begin{align}\label{eq:Solucion_cobweb_inelastica}
+    u_n &= g(u_n) \nonumber\\
+    u_n &= -\dfrac{-\epsilon u_{n-1} + w_n(1+\epsilon) -  u_{n-1}(w_n/c)^2}{1 - (1+\epsilon)w_n u_{n-1}/c^2 + \epsilon(w_n/c)^2} \\
+    0 &= u_n^2\left[ -(1+\epsilon)w/c^2 \right] + u\left[ 1 - \epsilon + (\epsilon - 1)w/c^2 \right] + w(1+\epsilon) \nonumber\\
+    u_n &= \dfrac{-\left[ 1 -  (\epsilon - 1)w/c^2 \right] \pm \sqrt{\left[ 1 - \epsilon (\epsilon - 1)w/c^2 \right]^2 + 4(1+\epsilon)^2(w/c)^2}}{2(1+\epsilon)w/c^2} \label{eq:Solucion_cobweb_inelastica_valor}
+\end{align}
+
+Si volvemos al caso elástico con \( \epsilon = 1 \) obtenemos el mismo resultado que en \ref{eq:Solucion_cobweb,valor}, por lo tanto debemos quedarnos con la solución correspondiente a la suma de los términos del numerador. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/Simulaciones/Relatividad_1D/Plano_fases.pdf}
+    \caption{Velocidad máxima de la patícula para las distintas configuraciones del coeficiente de restitución y de la pared.}
+    \label{fig:plano_fases_coef_wall}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=1.5]{images/Cobweb_Relativity_inelastic_e05_w-01.pdf}
+        \caption{$\varepsilon = 0.5$}
+        \label{fig:Cobweb_inelastics_A}
+    \end{subfigure}
+    \hfill
+    %\hspace{0mm}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=1.5]{images/Cobweb_Relativity_inelastic_e08_w-01.pdf}
+        \caption{$\varepsilon = 0.8$}
+        \label{fig:Cobweb_inelastics_B}
+    \end{subfigure}
+    \caption{Cobwebs para el caso con colisiones relativistas inelásticas considerando $c=1$. a) La partícula inicia con una velocidad cercana a la de la luz. b) La velocidad inicia con una velocidad baja. }
+        \label{fig:Cobweb_inelastics}
+\end{figure}
+
+Los diagramas \ref{fig:Cobweb_inelastics} muestran como el valor dado por \ref{eq:Solucion_cobweb_inelastica_valor} siempre es atractivo, es decir, cualquier condición inicial va a terminar con la velocidad máxima dada.
 
 \end{document}
