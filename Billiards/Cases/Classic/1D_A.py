@@ -27,7 +27,6 @@ num_of_iterations = 130
 ball_velocities_average = np.zeros(num_of_iterations + 1)
 nmax = 100
 for j in range(nmax):
-    # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
 
     # The code only support positions in the positive XY plane
     # Position of walls
@@ -39,8 +38,8 @@ for j in range(nmax):
     # Creating a ball
     #x, y = random.randint(1, 9), random.randint(2, 9)
     x, y = 500, 500
-    angle = random.uniform(0, 360)
-    #vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    # angle = random.uniform(0, 360)
+    # vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
     vx, vy = 500 * random.choice([-1, 1]), 0
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
@@ -152,11 +151,11 @@ graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=Tru
 graph2.display()
 
 # Save velocities as DataFrame
-# df = pd.DataFrame(list_velocities_modulus)
-# new_columns = {i: f'p{i+1}' for i in range(df.shape[1] - 1)}
+# df1 = pd.DataFrame(list_velocities_modulus)
+# new_columns = {i: f'p{i+1}' for i in range(df1.shape[1] - 1)}
 # df = df.transpose().rename(columns=new_columns)
 # df['mean'] = df.mean(axis=1)
-# df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
+# df1.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
 df = pd.DataFrame(ball_velocities_average/nmax)
 df.to_csv(f"1D_A-N{nmax}-U-500.txt", sep="\t")

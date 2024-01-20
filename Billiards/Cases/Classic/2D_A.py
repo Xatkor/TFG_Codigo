@@ -39,10 +39,10 @@ for j in range(nmax):
     right_wall_position = np.array([[1000, 0], [1000, 1]])
 
     # Creating a ball
-    #x, y = random.randint(1, 9), random.randint(2, 9)
+    # x, y = random.randint(2, 999), random.randint(2, 999)
     x, y = 500, 500
-    #angle = random.uniform(0, 360)
-    vx, vy = 500 * np.array([np.cos(angle[j]), np.sin(angle[j])])# Velocities must be same for every simulation
+    # angle = random.uniform(0, 360)
+    vx, vy = 500 * np.array([np.cos(angle[j]), np.sin(angle[j])]) # Velocities must be same for every simulation
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
