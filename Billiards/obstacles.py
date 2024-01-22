@@ -18,10 +18,11 @@ class Ball:
         self.radius = radius
 
 
+
 class InfiniteWall:
     """ An infinite wall where balls can collide only from one side. """
 
-    def __init__(self, start_point, end_point, velocity, side, relativistic=False) -> None:
+    def __init__(self, start_point, end_point, velocity, side, relativistic=False, restitution=1) -> None:
         """
          Args:
             start_point: A point of the wall.
@@ -29,12 +30,16 @@ class InfiniteWall:
             velocity: Velocity of the wall. If relativistic is True, velocity must be a fraction of the speed of light
             side: Position of the wall: left, right, top, bottom.
             relativistic: True if wall is relativistic. Default: False
+            restitution: Restitution of the ball. Default: 1.
+                    elastic collision -> restitution = 1
+                    inelastic collision -> restitution <= 0
            """
         self.start_point = np.asarray(start_point)
         self.end_point = np.asarray(end_point)
         self.velocity = np.asarray(velocity)
         self.side = side
         self.relativistic = relativistic
+        self.restitution = restitution
 
         if self.relativistic:
             if np.linalg.norm(self.velocity) > 1:
@@ -64,7 +69,7 @@ class InfiniteWall:
             return self.relativistic_velocity(vel)
         else:
             # Velocity in a classical billiard
-            return vel - 2 * self._normal * np.dot((vel - self.velocity), self._normal)
+            return vel - (1 + self.restitution) * self._normal * np.dot((vel - self.velocity), self._normal)
 
     def relativistic_velocity(self, vel):
         """ Calculate the velocity of a ball after colliding with the wall when relativistic mode is enabled
@@ -77,14 +82,18 @@ class InfiniteWall:
         """
 
         if self.side == "left" or self.side == "right":
+            # wall_velocity = self.velocity[0]
+            # denominator = 1 - 2 * wall_velocity * vel[0] + wall_velocity * wall_velocity
+            # velocity_x = (-vel[0] + 2 * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
+            # velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
             wall_velocity = self.velocity[0]
-            denominator = 1 - 2 * wall_velocity * vel[0] + wall_velocity * wall_velocity
-            velocity_x = (-vel[0] + 2 * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
+            denominator = 1 - (1 + self.restitution) * wall_velocity * vel[0] + wall_velocity * wall_velocity * self.restitution
+            velocity_x = (-vel[0] * self.restitution + (1 + self.restitution) * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
             velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
         else:
             wall_velocity = self.velocity[1]
-            denominator = 1 - 2 * wall_velocity * vel[1] + wall_velocity ** 2
-            velocity_y = (-vel[1] + 2 * wall_velocity - vel[1] * wall_velocity * wall_velocity) / denominator
+            denominator = 1 - (1 + self.restitution) * wall_velocity * vel[1] + wall_velocity * wall_velocity * self.restitution
+            velocity_y = (-vel[1] * self.restitution + (1 + self.restitution) * wall_velocity - vel[1] * wall_velocity * wall_velocity) / denominator
             velocity_x = (1 - wall_velocity * wall_velocity) * vel[0] / denominator
 
         return velocity_x, velocity_y

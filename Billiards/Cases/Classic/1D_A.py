@@ -12,6 +12,7 @@ INF = float("inf")
 # -------------------------------------
 
 Relativistic_mode = False
+Coef_restitution = 1
 
 # -------------------------------------
 
@@ -72,14 +73,14 @@ for j in range(nmax):
 
         # Re-creating walls with the new position
         top_wall = InfiniteWall(top_wall_position[0], top_wall_position[1], top_wall_velocity, side="top",
-                                relativistic=Relativistic_mode)
+                                relativistic=Relativistic_mode, restitution=Coef_restitution)
         bottom_wall = InfiniteWall(bottom_wall_position[0], bottom_wall_position[1], bottom_wall_velocity,
                                    side="bottom",
-                                   relativistic=Relativistic_mode)
+                                   relativistic=Relativistic_mode, restitution=Coef_restitution)
         left_wall = InfiniteWall(left_wall_position[0], left_wall_position[1], left_wall_velocity, side="left",
-                                 relativistic=Relativistic_mode)
+                                 relativistic=Relativistic_mode, restitution=Coef_restitution)
         right_wall = InfiniteWall(right_wall_position[0], right_wall_position[1], right_wall_velocity, side="right",
-                                  relativistic=Relativistic_mode)
+                                  relativistic=Relativistic_mode, restitution=Coef_restitution)
 
         obstacles = [top_wall, bottom_wall, left_wall, right_wall]
 
@@ -157,5 +158,5 @@ graph2.display()
 # df['mean'] = df.mean(axis=1)
 # df1.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
-df = pd.DataFrame(ball_velocities_average/nmax)
-df.to_csv(f"1D_A-N{nmax}-U-500.txt", sep="\t")
+# df = pd.DataFrame(ball_velocities_average/nmax)
+# df.to_csv(f"1D_A-N{nmax}-U-500.txt", sep="\t")
