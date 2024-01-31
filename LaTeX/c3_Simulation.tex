@@ -5,7 +5,7 @@
 
 \chapter{Resultados numéricos}
 
-Para diversos casos donde las paredes se mueven mover o no, se va realizar la simulación de un partícula en el interior de un billar rectangular. Para ello el procedimiento es usar el código creado \textcolor{red}{Referenciar código mio} para distintos grupos de \( 10^3 \) partículas, no interactuantes entre sí, siguiendo las siguientes pautas:
+Para diversos casos donde las paredes se mueven mover o no, se va realizar la simulación de un partícula en el interior de un billar rectangular. Para ello el procedimiento es usar el código creado \textcolor{red}{Referenciar código mio} para distintos grupos de \( 10^2 \) partículas, no interactuantes entre sí, siguiendo las siguientes pautas:
 
 \begin{enumerate}
     \item Cada grupo tiene el mismo módulo de velocidad pero con direcciones de velocidades aleatorias para cada partícula.
@@ -32,11 +32,44 @@ Para diversos casos donde las paredes se mueven mover o no, se va realizar la si
     \caption{Trayectoria de una partícula. a) En un billar con paredes dirigiéndose hacia el centro. b) Paredes con velocidad nula}
 \end{figure}
 
+
+Los billares que interesan simular son aquellos que tienen al menos una de las paredes con velocidad no nula. Además para realizar una mejor comparación vamos a separar los casos donde la partícula se encuentra en un espacio de una dimensión y el de dos dimensiones, comparando ambas teorías en sus correspondiente dimensión.
+
 \section{Caso unidimensional}
 
-Vamos a analizar la situación donde la partícula se encuentra entre dos paredes con velocidad no nula, siendo las colisiones tanto elásticas como inelásticas.
+Nos situamos en un espacio donde podemos suponer que las paredes son dos puntos móviles donde la partícula puede desplazarse sobre la línea que los une. Dado que el cambio del módulo de la  velocidad en la partícula es debido al movimiento de las paredes, la distancia \( d(t) \) va a dejar de ser constante. De otro modo, la partícula oscilaría entre dos paredes moviéndose en la misma dirección y misma velocidad donde la partícula aumentaría y disminuiría su velocidad en un mismo factor. 
 
 \subsection{Clasico}
+
+Según la teoría desarrollada en el capítulo anterior cuando al menos una de las paredes se mueve de forma que su movimiento tiende a aumentar el área del billar, en este caso la distancia entre las paredes se ve reducida, entonces las velocidad disminuye. Esto se ve también en las simulaciones (Figura \ref{fig:1D_A}) llegando además a una velocidad donde la partícula ya no colisiona con ninguna de las paredes. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{images/Simulaciones/Clasico_1D/1D_A.pdf}
+    \caption{Velocidades medias tras cada colisión en una dimensión. La distancia entre paredes aumenta}
+    \label{fig:1D_A}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{images/Simulaciones/Clasico_1D/1D_B.pdf}
+    \caption{Velocidades medias tras cada colisión en una dimensión. La distancia entre paredes disminuye}
+    \label{fig:1D_B}
+\end{figure}
+
+Si nos situamos en el caso contrario vemos que los resultados son inversos (Figura \ref{fig:1D_B}). La velocidad tiende hacia el infinito sin aproximarse a un ningún valor al igual que se podía ver en las Cobwebs (Figura \ref{fig:Cobweb_Classic_1D} \textcolor{red}{En otro capitulo}). 
+
+\vspace{3mm}
+
+Es interesante ver también los casos donde las paredes tienen velocidades distintas donde una intenta ampliar la distancia y la otra acortarla. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{images/Simulaciones/Clasico_1D/1D_B.pdf}
+    \caption{Velocidades medias tras cada colisión en una dimensión. La distancia entre paredes disminuye}
+    \label{fig:1D_B}
+\end{figure}
 \begin{enumerate}
     \item Area expandir X
     \item Area contraer X
@@ -44,6 +77,9 @@ Vamos a analizar la situación donde la partícula se encuentra entre dos parede
     \item Colisión inelástica
 \end{enumerate}
 \subsection{Relativista}
+
+Si nos situamos ahora en el contexto relativista sabemos que no es posible superar la velocidad para ninguna partícula, además de haberlo comprobado teóricamente en el capítuo anterior. Realizando la misma simulación pero con velocidades en función de la velocidad de la luz (Figura \ref{})
+
 \begin{enumerate}
     \item Area expandir X
     \item Area contraer X
@@ -68,6 +104,5 @@ Vamos a analizar la situación donde la partícula se encuentra entre dos parede
     \item Paredes oscilatorias
     \item Colisión inelástica
 \end{enumerate}
-
 
 \end{document}
