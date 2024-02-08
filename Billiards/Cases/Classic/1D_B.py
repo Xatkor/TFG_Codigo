@@ -20,12 +20,12 @@ list_velocities_modulus = []
 # Velocities of walls
 top_wall_velocity = np.array([0, 0.0], dtype=np.float64)
 bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
-left_wall_velocity = np.array([5, 0])
+left_wall_velocity = np.array([0, 0])
 right_wall_velocity = np.array([-5, 0])
 
 num_of_iterations = 100
 ball_velocities_average = np.zeros(num_of_iterations + 1)
-nmax = 100
+nmax = 1000
 for j in range(nmax):
     # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
 
@@ -37,11 +37,12 @@ for j in range(nmax):
     right_wall_position = np.array([[1000, 0], [1000, 1]])
 
     # Creating a ball
-    #x, y = random.randint(1, 9), random.randint(2, 9)
-    x, y = 500, 500
+    x, y = random.randint(3, 999), 0
+    # x, y = 500, 500
     angle = random.uniform(0, 360)
-    #vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
-    vx, vy = 100 * random.choice([-1, 1]), 0
+    # vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
+    # vx, vy = 100 * random.choice([-1, 1]), 0
+    vx, vy = random.uniform(-1000, 1000), 0
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -159,4 +160,4 @@ graph2.display()
 # df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
 df = pd.DataFrame(ball_velocities_average/nmax)
-df.to_csv(f"1D_B-N{nmax}-U-100.txt", sep="\t")
+df.to_csv(f"1D_B-N{nmax}-vWall-slow.txt", sep="\t")

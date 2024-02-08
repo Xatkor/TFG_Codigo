@@ -21,11 +21,11 @@ list_velocities_modulus = []
 top_wall_velocity = np.array([0, 0.0], dtype=np.float64)
 bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
 left_wall_velocity = np.array([11, 0])
-right_wall_velocity = np.array([11.5, 0])
+right_wall_velocity = np.array([15, 0])
 
-num_of_iterations = 350
-ball_velocities_average = np.zeros(num_of_iterations + 1)
-nmax = 1
+num_of_iterations = 500
+ball_velocities_sum = np.zeros(num_of_iterations + 1)
+nmax = 100
 for j in range(nmax):
     # TODO: Simulate a number of balls with different initial conditions and calculate the mean velocity
 
@@ -37,11 +37,12 @@ for j in range(nmax):
     right_wall_position = np.array([[1000, 0], [1000, 1]])
 
     # Creating a ball
-    #x, y = random.randint(1, 9), random.randint(2, 9)
-    x, y = 500, 500
+    x, y = random.randint(3, 999), 0
+    # x, y = 500, 500
     angle = random.uniform(0, 360)
     #vx, vy = 5 * np.array([np.cos(angle), np.sin(angle)])# Velocities must be same for every simulation
-    vx, vy = 100 * random.choice([-1, 1]), 0
+    # vx, vy = 100 * random.choice([-1, 1]), 0
+    vx, vy = random.uniform(-200, 200), 0
     pos_ball = np.array([x, y])
     vel1 = np.asarray([vx, vy])
     ball = Ball(pos_ball, vel1)
@@ -139,8 +140,8 @@ for j in range(nmax):
         add = [ball_velocities_modulus[-1]] * (num_of_iterations + 1 - len(ball_velocities_modulus))
         ball_velocities_modulus = np.append(ball_velocities_modulus, add)
 
-    ball_velocities_average = ball_velocities_average + ball_velocities_modulus
-    list_velocities_modulus.append(ball_velocities_modulus)
+    ball_velocities_sum = ball_velocities_sum + ball_velocities_modulus
+    # list_velocities_modulus.append(ball_velocities_modulus)
 
 # graph1 = Plotter()
 # graph1.plot_billiard_rectangle(top_wall_positions, bottom_wall_positions, left_wall_positions, right_wall_positions)
@@ -148,7 +149,7 @@ for j in range(nmax):
 # graph1.display()
 
 graph2 = Plotter()
-graph2.plot_velocity(ball_velocities_average/nmax, Relativistic_mode, points=True)
+graph2.plot_velocity(ball_velocities_sum/nmax, Relativistic_mode, points=True)
 graph2.display()
 
 # Save velocities as DataFrame
@@ -158,5 +159,5 @@ graph2.display()
 # df['mean'] = df.mean(axis=1)
 # df.to_csv(f"1D-N{nmax}-.txt", sep="\t")
 
-df = pd.DataFrame(ball_velocities_average/nmax)
-df.to_csv(f"1D_L<R_B-N{nmax}-U-100.txt", sep="\t")
+df = pd.DataFrame(ball_velocities_sum/nmax)
+df.to_csv(f"1D_L<R_FarV-N{nmax}.txt", sep="\t")
