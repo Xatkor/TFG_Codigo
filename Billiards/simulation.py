@@ -5,6 +5,7 @@ from Billiards.plotter import Plotter
 import numpy as np
 import random
 import pandas as pd
+from tqdm import tqdm
 
 
 class Simulation1D:
@@ -52,7 +53,7 @@ class Simulation1D:
         list_velocities_modulus = []
 
         ball_velocities_sum = np.zeros(num_of_iterations + 1)
-        for j in range(nmax):
+        for j in tqdm(range(nmax)):
             # The code only support positions in the positive XY plane
             self.top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
             self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
@@ -96,7 +97,7 @@ class Simulation1D:
                 # If two walls are at the same position there is no billiard.
                 if self.top_wall_position[0][1] < self.bottom_wall_position[0][1] or self.left_wall_position[1][0] > \
                         self.right_wall_position[1][0]:
-                    print("There is no more billiard. Some walls has merged.")
+                    # print("There is no more billiard. Some walls have merged.")
                     break
 
                 # Re-creating walls with the new position
@@ -124,7 +125,7 @@ class Simulation1D:
                 t = times_obstacles[0][0]
 
                 if t == self.INF:
-                    print(f"No more collisions after {i} collisions")
+                    # print(f"No more collisions after {i} collisions")
                     break
 
                 # Update properties of the ballΩ
@@ -258,7 +259,7 @@ class Simulation2D:
         list_velocities_modulus = []
 
         ball_velocities_sum = np.zeros(num_of_iterations + 1)
-        for j in range(nmax):
+        for j in tqdm(range(nmax)):
             # The code only support positions in the positive XY plane
             self.top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
             self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
@@ -300,7 +301,7 @@ class Simulation2D:
                 # If two walls are at the same position there is no billiard.
                 if self.top_wall_position[0][1] < self.bottom_wall_position[0][1] or self.left_wall_position[1][0] > \
                         self.right_wall_position[1][0]:
-                    print("There is no more billiard. Some walls has merged.")
+                    # print("There is no more billiard. Some walls have merged.")
                     break
 
                 # Re-creating walls with the new position
@@ -328,7 +329,7 @@ class Simulation2D:
                 t = times_obstacles[0][0]
 
                 if t == self.INF:
-                    print(f"No more collisions after {i} collisions")
+                    # print(f"No more collisions after {i} collisions")
                     break
 
                 # Update properties of the ballΩ

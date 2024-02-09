@@ -78,13 +78,6 @@ def elastic_collision(pos1: tuple, vel1: tuple, mass1: float, pos2: tuple, vel2:
         vel1, vel2
 
     """
-
-    # TODO:
-    # - Implementar la velocidad final relativista.
-    # - Dejar la opcion de velocidad clasica.
-    # - Si es un muro su velocidad final se mantiene (vel2_input = vel2_output)
-    #   y solo cambia la velocidad de la bola, vel1.
-
     pos_diff = np.subtract(pos2, pos1)
     vel_diff = np.subtract(vel2, vel1)
 
