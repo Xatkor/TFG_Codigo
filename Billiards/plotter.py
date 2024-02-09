@@ -3,10 +3,6 @@ from matplotlib.patches import Rectangle
 import numpy as np
 
 
-def display():
-    plt.show()
-
-
 class Plotter:
     def __init__(self):
         self.ax = None
@@ -44,7 +40,6 @@ class Plotter:
 
     def plot_path(self, ball_positions):
         ball_positions_X, ball_positions_Y = np.array(ball_positions).T
-
         self.ax.plot(ball_positions_X, ball_positions_Y, color=self.path_color, zorder=10)
         plt.axis("off")
 
@@ -59,8 +54,6 @@ class Plotter:
         self.ax2.set_xlabel("$n$")
         if relativistic:
             self.ax2.axhline(1, color=self.path_color, ls="--")
-
-
 
     def display(self):
         plt.show()

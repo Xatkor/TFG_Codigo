@@ -18,7 +18,6 @@ class Ball:
         self.radius = radius
 
 
-
 class InfiniteWall:
     """ An infinite wall where balls can collide only from one side. """
 
@@ -87,13 +86,17 @@ class InfiniteWall:
             # velocity_x = (-vel[0] + 2 * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
             # velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
             wall_velocity = self.velocity[0]
-            denominator = 1 - (1 + self.restitution) * wall_velocity * vel[0] + wall_velocity * wall_velocity * self.restitution
-            velocity_x = (-vel[0] * self.restitution + (1 + self.restitution) * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
+            denominator = 1 - (1 + self.restitution) * wall_velocity * vel[
+                0] + wall_velocity * wall_velocity * self.restitution
+            velocity_x = (-vel[0] * self.restitution + (1 + self.restitution) * wall_velocity - vel[
+                0] * wall_velocity * wall_velocity) / denominator
             velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
         else:
             wall_velocity = self.velocity[1]
-            denominator = 1 - (1 + self.restitution) * wall_velocity * vel[1] + wall_velocity * wall_velocity * self.restitution
-            velocity_y = (-vel[1] * self.restitution + (1 + self.restitution) * wall_velocity - vel[1] * wall_velocity * wall_velocity) / denominator
+            denominator = 1 - (1 + self.restitution) * wall_velocity * vel[
+                1] + wall_velocity * wall_velocity * self.restitution
+            velocity_y = (-vel[1] * self.restitution + (1 + self.restitution) * wall_velocity - vel[
+                1] * wall_velocity * wall_velocity) / denominator
             velocity_x = (1 - wall_velocity * wall_velocity) * vel[0] / denominator
 
         return velocity_x, velocity_y
