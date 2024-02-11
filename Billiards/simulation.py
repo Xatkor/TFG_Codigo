@@ -34,10 +34,10 @@ class Simulation1D:
         self.right_wall_velocity = np.asarray(wall_velocities[3])
 
         # Positions of the walls
-        self.top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
+        self.top_wall_position = np.array([[0, 50000], [2, 50000]], dtype=np.float64)
         self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
         self.left_wall_position = np.array([[1, 0], [1, 1]])
-        self.right_wall_position = np.array([[1000, 0], [1000, 1]])
+        self.right_wall_position = np.array([[50000, 0], [50000, 1]])
 
         self.top_wall_positions = []
         self.bottom_wall_positions = []
@@ -55,10 +55,10 @@ class Simulation1D:
         ball_velocities_sum = np.zeros(num_of_iterations + 1)
         for j in tqdm(range(nmax)):
             # The code only support positions in the positive XY plane
-            self.top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
+            self.top_wall_position = np.array([[0, 50000], [2, 50000]], dtype=np.float64)
             self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
             self.left_wall_position = np.array([[1, 0], [1, 1]])
-            self.right_wall_position = np.array([[1000, 0], [1000, 1]])
+            self.right_wall_position = np.array([[50000, 0], [50000, 1]])
 
             # Creating a ball
             if self.Relativistic_mode:
@@ -95,7 +95,7 @@ class Simulation1D:
             while i < num_of_iterations:
 
                 # If two walls are at the same position there is no billiard.
-                if self.top_wall_position[0][1] < self.bottom_wall_position[0][1] or self.left_wall_position[1][0] > \
+                if self.top_wall_position[0][1] <= self.bottom_wall_position[0][1] or self.left_wall_position[1][0] >= \
                         self.right_wall_position[1][0]:
                     # print("There is no more billiard. Some walls have merged.")
                     break
@@ -199,12 +199,14 @@ class Simulation1D:
             graph2.plot_velocity(ball_velocities_average, self.Relativistic_mode, points=False)
             graph2.display()
 
-    def save_results(self, ball_velocities_average, name="file.txt"):
+    def save_results(self, ball_velocities_average, Coef_restitution=1, name="file.txt"):
         df = pd.DataFrame(ball_velocities_average)
         df["top_velocities"] = self.top_wall_velocity[1]
         df["bottom_velocities"] = self.bottom_wall_velocity[1]
         df["left_velocities"] = self.left_wall_velocity[0]
         df["right_velocities"] = self.right_wall_velocity[0]
+        if Coef_restitution != 1:
+            df["Coef_restitution"] = Coef_restitution
         df.to_csv(name, sep="\t")
         # Save velocities as DataFrame
         # df = pd.DataFrame(list_velocities_modulus)
@@ -261,10 +263,10 @@ class Simulation2D:
         ball_velocities_sum = np.zeros(num_of_iterations + 1)
         for j in tqdm(range(nmax)):
             # The code only support positions in the positive XY plane
-            self.top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
+            self.top_wall_position = np.array([[0, 5000], [2, 5000]], dtype=np.float64)
             self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
             self.left_wall_position = np.array([[1, 0], [1, 1]])
-            self.right_wall_position = np.array([[1000, 0], [1000, 1]])
+            self.right_wall_position = np.array([[5000, 0], [5000, 1]])
 
             # Creating a ball
             if self.Relativistic_mode:

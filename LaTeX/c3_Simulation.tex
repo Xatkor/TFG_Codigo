@@ -29,7 +29,11 @@ Los billares que interesan simular son aquellos que tienen al menos una de las p
 
 \section{Caso unidimensional}
 
-Nos situamos en un espacio donde podemos suponer que las paredes son dos puntos móviles donde la partícula puede desplazarse sobre la línea que los une. Dado que el cambio del módulo de la velocidad en la partícula es debido al movimiento de las paredes, la distancia \( d(t) \) va a dejar de ser constante. De otro modo, la partícula oscilaría entre dos paredes moviéndose en la misma dirección y misma velocidad donde la partícula aumentaría y disminuiría su velocidad en un mismo factor. 
+Nos situamos en un espacio donde las partículas están confinadas entre las paredes de un billar rectangular, y donde tiene su movimiento está restringido a la línea recta que une dos paredes paralelas. Con esta restricción y la posibilidad de que esas paredes paralelas puedan moverse sobre esa misma línea vamos a ver si los resultados numéricos afirman la teoría.
+
+\vspace{3mm}
+
+Con estas condiciones vamos a simular situaciones donde la distancia \( d(t) \) va a dejar de ser constante. De otro modo, la partícula oscilaría entre dos paredes moviéndose en la misma dirección y misma velocidad donde la partícula aumentaría y disminuiría su velocidad en un mismo factor y no habría interés en su estudio.
 
 \subsection{Clasico}
 
@@ -89,8 +93,6 @@ El caso opuesto donde las paredes se distancian (Figura \ref{fig:relatividad_1D_
 
 \vspace{3mm}
 
-De nuevo podemos ver diferentes escenarios con ambas paredes móviles. 
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.65]{images/Simulaciones/Relatividad_1D/1D_A-N1000.pdf}
@@ -105,9 +107,43 @@ De nuevo podemos ver diferentes escenarios con ambas paredes móviles.
     \label{fig:relatividad_1D_B}
 \end{figure}
 
+Se pueden observar distintos escenarios con ambas paredes móviles. En primer lugar (Figura \ref{fig:relatividad_1D_C}), la distancia entre las paredes aumenta, lo que resulta en una velocidad media descendente hasta que se alcanza una velocidad constante. Posteriormente, cuando la distancia entre las paredes disminuye (Figura \ref{fig:relatividad_1D_C2}), se observa nuevamente un aumento en la velocidad, aproximándose a la velocidad de la luz.
 
+\vspace{3mm}
+
+Se puede notar la diferencia que existe entre la rapidez a la que la velocidad crece y decrece. Cuando la distancia aumenta la velocidad pérdida en 500 colisiones es de un \( 60\% \) mientras que al disminuir la distancia en el mismo número de colisiones aumenta en un \( 586\% \). Esto hace ver la gran aceleración que se ve producida aún teniendo la tasa de cambio de la distancia en un mismo factor (las paredes interecambian velocidades de un caso a otro).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{images/Simulaciones/Relatividad_1D/1D_C-N1000.pdf}
+    \caption{Velocidades medias tras cada colisión en una dimensión. La distancia entre paredes aumenta}
+    \label{fig:relatividad_1D_C}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.65]{images/Simulaciones/Relatividad_1D/1D_C2-N1000.pdf}
+    \caption{Velocidades medias tras cada colisión en una dimensión. La distancia entre paredes aumenta}
+    \label{fig:relatividad_1D_C2}
+\end{figure}
 
 \subsection{Colisión inelástica}
+
+Hasta ahora hemo visto como tanto para el caso clásico como para el relativista obtenemos una aceleración cuando la distancia entre paredes se ve aumentada. Por lo tanto estamos en presencia de una aceleración de Fermi. En el mundo real esta aceleración no podría darse dado que entre las sucesivas colisiones las partículas se ven sometidas a distintas fuerzas que reducen la velociadad (p.e. fuerza de fricción). 
+
+\vspace{3mm}
+
+De las distintas formas que pueden suprimir la aceleración vamos a utlizar la pérdida de energía que se produce en cada colisión, así estaríamos ante colisiones inelásticas. Recordemos que esta supresión sólo se aplica al caso relativista, ya que, es el que más interés causa al ser el más cercano a la realidad.
+
+\vspace{3mm}
+
+Se debe tener en cuenta que las soluciones obtenidas en el capítulo anterior suponen colisiones sucesivas con una pared con la misma velocidad y siempre en sentido contrario a la dirección de la partícula. Hasta ahora sólo se han visto billares donde una pared era móvil o tenían una velocidad cercana entre sí. Esto era así por la equivalencia que se podía encontrar entre billares para llegar a una velocidad muy cercana a la de la luz sin importar el número de colisiones que eran necesarias para llegar a ese valor. Estos casos estudiados teóricamente se pueden ver en las figuras \textcolor{blue}{Poner las figuras de la A-D y comentarlas}.
+
+\vspace{3mm}
+
+Los casos donde no se puede hacer un desarrollo matemático se muestran en las figuras \textcolor{blue}{Poner las figuras de la E-\ldots y comentarlas}.
+
+\textcolor{blue}{No llega a una velocidad máxima fija sino que oscila entre dos valores. Cuando la línea es recta significa que el billar ha terminado con el area A=0 y no simula más}
 
 \section{Dos dimensiones}
 
