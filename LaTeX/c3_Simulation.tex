@@ -129,7 +129,7 @@ Se puede notar la diferencia que existe entre la rapidez a la que la velocidad c
 
 \subsection{Colisión inelástica}
 
-Hasta ahora hemo visto como tanto para el caso clásico como para el relativista obtenemos una aceleración cuando la distancia entre paredes se ve aumentada. Por lo tanto estamos en presencia de una aceleración de Fermi. En el mundo real esta aceleración no podría darse dado que entre las sucesivas colisiones las partículas se ven sometidas a distintas fuerzas que reducen la velociadad (p.e. fuerza de fricción). 
+Hasta ahora hemo visto como tanto para el caso clásico como para el relativista obtenemos una aceleración cuando la distancia entre paredes se ve aumentada. Por lo tanto estamos en presencia de una aceleración de Fermi. En el mundo real esta aceleración no podría darse dado que entre las sucesivas colisiones las partículas se ven sometidas a distintas fuerzas que reducen la velocidad (p.e. fuerza de fricción). 
 
 \vspace{3mm}
 
@@ -171,7 +171,7 @@ Se debe tener en cuenta que las soluciones obtenidas en el capítulo anterior su
     \label{fig:1D_inelastic_B}
 \end{figure}
 
-\subsection{Ajuste de los resultados}
+\subsection{Análisis de los resultados}
 
 Como se ha podido ver las gráficas mostradas se asemejan a funciones contínuas. En los casos donde aparecía la aceleración de Fermi se pueden aproximar a funciones sigmoide
 
@@ -181,20 +181,84 @@ Como se ha podido ver las gráficas mostradas se asemejan a funciones contínuas
 
 e incluso con mayor exactitud a una función de distribuión acumulativa
 
-\begin{equation}
-    f(n) = 1 - \gamma\exp(-\beta n^\alpha)
+\begin{equation}\label{eq:acumulativa_general}
+    f(n) = \delta - \gamma\exp(-\beta n^\alpha)
 \end{equation}
 
-donde \( \alpha, \beta, \gamma \) son constantes a determinar para cada billar. 
+donde \( \alpha, \beta, \gamma, \delta \) son constantes a determinar para cada billar. Estas constantes de alguna manera van a estar relacionadas con las propiedades del billar (velocidad y coeficiente de restitución). La ecuación \ref{eq:acumulativa_general} marca el parámetro \( \eta \) como el valor máximo que puede alcanzar esa función, entonces su valor va a limitar la velocidad de la partícula. Esa limitación depende fuertemente del tipo de colisión que se vaya a considerar y la velocidad que tengan las paredes, por lo tanto, ese valor \( \delta \) saldrá de la ecuación \ref{eq:Solucion_cobweb_inelastica}\textcolor{red}{En otro capitulo}. El parámetro \( \alpha \) determina como de horizontal es la función, valores \( c < 0 \) se curva hacia arriba, valores \( c > 0 \) se curva hacia abajo. El parámetro \( \beta \) determina que rápido se llega al valor máximo (tendrá relación con la velocidad de la pared.). El parámetro \( \alpha \) es similar a \( \beta \) en cuanto a dependencia pero no de valor.
 
-\textcolor{purple}{La función que mejor parece ajustarse a simple vista es \( f(x)=1 - a\cdot\exp(c\cdot x^b) \). Es una distribución acumulativa. Los valores de \( (a, b, c) \) deberína ser a = velocidad inicial, c = velocidad de la pared, b = una constante, x = numero de colisiones.} 
+\vspace{3mm}
 
-\textcolor{blue}{Ajustar las graficas a las funciones expuestas}
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/1D_B-N1000_fit.pdf}
+        \caption{$w_r = -0.001 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/1D_B2-N1000_fit.pdf}
+        \caption{$w_r = -0.01 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/1D_B3-N1000_fit.pdf}
+        \caption{$w_r = -0.1 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/1D_C2-N1000_fit.pdf}
+        \caption{$w_r = 0.01 \quad w_l = 0.011$}
+    \end{subfigure}
+    \caption{Ajuste de los datos a la ecuación \ref{eq:acumulativa_general}. Los valores \( w_l \) y \( w_r \) corresponden a la velocidad de la pared derecha e izquierda, respectivamente. Todas las colisiones son totalmente elásticas.}
+    \label{fig:ajuste_1D_relativity}
+\end{figure}
 
+\vspace{3mm}
 
-Los casos donde no se puede hacer un desarrollo matemático se muestran en las figuras \textcolor{blue}{Poner las figuras de la E-\ldots y comentarlas}.
+Se observa al ajustar los datos (Figura \ref{fig:ajuste_1D_relativity}) que todas las funciones se aproximan de manera muy exacta. Además el parámetro \( \beta \) toma un valor constante \( \approx 0.74 \). El único valor que se mantiene constante en estos billares es el coeficiente de restitución y la velocidad máxima que puede adquirir la partícula, ambos iguales a la unidad. De este modo podemos relacionar el número de colisiones elásticas con la velocidad de la partícula de la forma
 
-\textcolor{blue}{No llega a una velocidad máxima fija sino que oscila entre dos valores. Cuando la línea es recta significa que el billar ha terminado con el area A=0 y no simula más}
+\begin{equation}
+    \expval{v} = 1 - \gamma e^{-0.74n}
+\end{equation}
+
+Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}) debemos comprobar si ese valor constante \( \beta \) sigue siendo igual o se ve modificado por igual en todos los casos, incluso si varía dentro de los casos inlásticos. 
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_1D/1D_A-N1000_fit.pdf}
+        \caption{$w_r = -0.001 \quad w_l = 0 \quad \epsilon = 0.99$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_1D/1D_B-N1000_fit.pdf}
+        \caption{$w_r = -0.01 \quad w_l = 0 \quad \epsilon = 0.99$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_1D/1D_C-N1000_fit.pdf}
+        \caption{$w_r = -0.01 \quad w_l = 0.01 \quad \epsilon = 0.7$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_1D/1D_D-N1000_fit.pdf}
+        \caption{$w_r = -0.3 \quad w_l = 0.3 \quad \epsilon = 0.99$}
+    \end{subfigure}
+    \caption{Ajuste de los datos a la ecuación \ref{eq:acumulativa_general}. Los valores \( w_l \) y \( w_r \) corresponden a la velocidad de la pared derecha e izquierda, respectivamente. Todas las colisiones son  inelásticas.}
+    \label{fig:ajuste_1D_inelastic}
+\end{figure}
+
+\vspace{3mm}
+
+Comprobamos que ninguno de los parámetros se ha mantenido igual a los elásticos, ni tampoco el valor que se veía constante \( \beta \) lo es ahora. Debemos entonces afirmar que la relación entre casos elásticos e inelásticos es muy diferente, y que en esta última no es posible realizar ninguna aproximación a funciones con parámetros constantes. 
+
 
 \section{Dos dimensiones}
 
@@ -203,5 +267,7 @@ Los casos donde no se puede hacer un desarrollo matemático se muestran en las f
 \subsection{Relativista}
 
 \subsection{Colisión inelástica}
+
+\subsection{Análisis de los resultados}
 
 \end{document}
