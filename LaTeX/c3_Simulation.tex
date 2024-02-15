@@ -217,15 +217,20 @@ donde \( \alpha, \beta, \gamma, \delta \) son constantes a determinar para cada 
     \label{fig:ajuste_1D_relativity}
 \end{figure}
 
+\textcolor{red}{Hay que cambiar las graficas porque los parametros de la legenda estan mal escritos}
+
 \vspace{3mm}
 
-Se observa al ajustar los datos (Figura \ref{fig:ajuste_1D_relativity}) que todas las funciones se aproximan de manera muy exacta. Además el parámetro \( \beta \) toma un valor constante \( \approx 0.74 \). El único valor que se mantiene constante en estos billares es el coeficiente de restitución y la velocidad máxima que puede adquirir la partícula, ambos iguales a la unidad. De este modo podemos relacionar el número de colisiones elásticas con la velocidad de la partícula de la forma
+Se observa al ajustar los datos (Figura \ref{fig:ajuste_1D_relativity}) que todas las funciones se aproximan de manera muy exacta. Además el parámetro \( \beta \) toma un valor constante \( \approx 0.74 \). Los valores que se mantienen constanten en estos billares es el coeficiente de restitución, la velocidad máxima que puede adquirir la partícula, y la velocidad del muro. Con estos valores nombrados debería existir alguna relación. Para buscar esta relación nos centraremos únicamente en partículas individuales en un rango de velocidades iniciales \( v_0 \in [0.001, 0.9] \) con un mismo valor para la pared (Figura \textcolor{red}{Incluir figura: parametros...}). 
 
-\begin{equation}
-    \expval{v} = 1 - \gamma e^{-0.74n}
-\end{equation}
+Realizando el mismo procedimiento pero con las paredes, es decir, se simulan partículas con una misma velocidad en billares con velocidad en los muros \( w \in [0.001, 0.9] \) (Figura \textcolor{red}{Incluir figuras: parametros...} )
 
-Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}) debemos comprobar si ese valor constante \( \beta \) sigue siendo igual o se ve modificado por igual en todos los casos, incluso si varía dentro de los casos inlásticos. 
+\textcolor{blue}{Parece ser que \( \gamma \) varía linelmente con la velocidad de la partícula para una misma velocidad de muro.}
+
+\textcolor{blue}{Cuando la velocidad del muro varía y la de la partícula es constante no parece haber ningún tipo de relción. }
+
+
+Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}) debemos comprobar si ese valor constante \( \beta \) sigue siendo igual o se ve modificado por igual en todos los casos, incluso si varía dentro de los casos inelásticos. 
 
 \begin{figure}[H]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -257,7 +262,7 @@ Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \r
 
 \vspace{3mm}
 
-Comprobamos que ninguno de los parámetros se ha mantenido igual a los elásticos, ni tampoco el valor que se veía constante \( \beta \) lo es ahora. Debemos entonces afirmar que la relación entre casos elásticos e inelásticos es muy diferente, y que en esta última no es posible realizar ninguna aproximación a funciones con parámetros constantes. 
+Comprobamos que ninguno de los parámetros se ha mantenido igual a los elásticos, ni tampoco el valor que se veía constante \( \beta \) lo es ahora. Debemos entonces afirmar que la relación entre casos elásticos e inelásticos es muy diferente, y que en esta última \textcolor{red}{En verdad en ninguna se puede definir una relación, solo lineal con la velocidad en el caso elástico para pared constante} no es posible realizar ninguna aproximación a funciones con parámetros constantes. 
 
 
 \section{Dos dimensiones}
