@@ -6,7 +6,6 @@ from scipy.optimize import curve_fit
 
 def fit_function(x, m, n, d):
     return m * x**2 + n * x + d
-
 def fit_values(x, y):
     popt, _ = curve_fit(fit_function, x, y)
     a, b, c = popt
@@ -22,7 +21,7 @@ def fit_values(x, y):
     y_line = fit_function(x_line, a, b, c)
     return x_line, y_line, r_squared, a, b, c
 
-with open(f"/Users/borjasanchezgonzalez/Desktop/parametros__V-0.01.txt") as textfile:
+with open(f"/Users/borjasanchezgonzalez/Desktop/parametros__V-0.2.txt") as textfile:
     lines1 = [line.split() for line in textfile]
 
 aux1 = np.array(lines1, dtype=float)
@@ -40,27 +39,27 @@ color_rojo = "#ac2929" # Rojo
 fig2, ax2 = plt.subplots(3, 1)
 
 x1, y1, r1, m ,n ,d = fit_values(v0, a)
-ax2[0].plot(v0, a, color=color_azul2)
-ax2[0].plot(x1, y1, color="black")
-ax2[0].set_title(r"$\gamma$" + f" :  a = {m:.02f}  b = {n:.02f}  c = {d:.02f}  $R^2$ = {r1:.05f}")
+ax2[0].plot(v0, a, color=color_azul2, label="Simulacion")
+ax2[0].plot(x1, y1, color="black", label="fit")
+ax2[0].set_title(r"$\gamma$" + f" :  a = {m:.03f}  b = {n:.03f}  c = {d:.03f}  $R^2$ = {r1:.05f}")
 
 x2, y2, r2, m ,n ,d= fit_values(v0, b)
-ax2[1].plot(v0, b, color=color_azul2)
-ax2[1].plot(x2, y2, color="black")
-ax2[1].set_title(r"$\beta$" + f" :  a = {m:.02f}  b = {n:.02f}  c = {d:.02f}  $R^2$ = {r1:.05f}")
+ax2[1].plot(v0, b, color=color_azul2, label="Simulacion")
+ax2[1].plot(x2, y2, color="black", label="fit")
+ax2[1].set_title(r"$\beta$" + f" :  a = {m:.03f}  b = {n:.03f}  c = {d:.03f}  $R^2$ = {r2:.05f}")
 
 x3, y3, r3, m ,n ,d = fit_values(v0, c)
-ax2[2].plot(v0, c, color=color_azul2)
-ax2[2].plot(x3, y3, color="black")
-ax2[2].set_title(r"$\alpha$" + f" :  a = {m:.02f}  b = {n:.02f}  c = {d:.02f}  $R^2$ = {r1:.05f}")
+ax2[2].plot(v0, c, color=color_azul2, label="Simulacion")
+ax2[2].plot(x3, y3, color="black", label="fit")
+ax2[2].set_title(r"$\alpha$" + f" :  a = {m:.03f}  b = {n:.03f}  c = {d:.03f}  $R^2$ = {r2:.05f}")
 
 ax2[0].legend()
 ax2[1].legend()
 ax2[2].legend()
 
-ax2[0].set_xlabel("$v_0$")
-ax2[1].set_xlabel("$v_0$")
-ax2[2].set_xlabel("$v_0$")
+ax2[0].set_xlabel("$w$")
+ax2[1].set_xlabel("$w$")
+ax2[2].set_xlabel("$w$")
 
 plt.tight_layout()
 

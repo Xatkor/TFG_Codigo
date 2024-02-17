@@ -30,7 +30,7 @@ wall_velocities = [top_wall_velocity, bottom_wall_velocity, left_wall_velocity, 
 billiard = Simulation2D(wall_velocities, Relativistic_mode, Coef_restitution)
 
 # Number of collision and particles
-num_of_iterations = 1000
+num_of_iterations = 10000
 nmax = 1000
 
 # Run simulations
@@ -39,5 +39,5 @@ velocities, positions = billiard.evolve(num_of_iterations, nmax)
 billiard.show_billiard(ball_velocities_average=velocities, ball_positions=[])
 
 # Save mean velocity
-file_name = f"2D_C3-N{nmax}.txt"
+file_name = f"2D_C_X-N{nmax}.txt"
 billiard.save_results(velocities, file_name)

@@ -217,20 +217,51 @@ donde \( \alpha, \beta, \gamma, \delta \) son constantes a determinar para cada 
     \label{fig:ajuste_1D_relativity}
 \end{figure}
 
-\textcolor{red}{Hay que cambiar las graficas porque los parametros de la legenda estan mal escritos}
+\vspace{3mm}
+
+Se observa al ajustar los datos (Figura \ref{fig:ajuste_1D_relativity}) que todas las funciones se aproximan de manera muy exacta. Además el parámetro \( \gamma \) toma un valor constante \( \approx 0.74 \). Los valores que se mantienen constanten en estos billares es el coeficiente de restitución, la velocidad máxima que puede adquirir la partícula, la velocidad del muro, y la velocidad media de las partículas. Con estos valores nombrados debería existir alguna relación que de lugar a es valor constante. Para buscar esta relación nos centraremos únicamente en partículas individuales en un rango de velocidades iniciales \( v_0 \in [0.001, 0.9] \) con un mismo valor para la pared (Figura \ref{fig:ajuste_parametros_1D_relativity}). 
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/ajuste_parametros_W-001.pdf}
+        \caption{$w_r = -0.01 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/ajuste_parametros_W-01.pdf}
+        \caption{$w_r = -0.1 \quad w_l = 0$}
+    \end{subfigure}
+    \caption{Ajuste de los parámetros que ajustan los datos simulados para una misma velocidad de pared con respecto a un rango de velocidades la partícula. La función de ajuste utilizada es una función de segundo grado: \( ax^2 + bx + c \).}
+    \label{fig:ajuste_parametros_1D_relativity}
+\end{figure}
+
+Cuando la velocidad de las paredes es constante podemos ver un comportamiento claro en los parámetros en función de la velocidad, pero cada velocidad de pared va a generar distintos parámetros y no se podría obtener una relación clara.
 
 \vspace{3mm}
 
-Se observa al ajustar los datos (Figura \ref{fig:ajuste_1D_relativity}) que todas las funciones se aproximan de manera muy exacta. Además el parámetro \( \beta \) toma un valor constante \( \approx 0.74 \). Los valores que se mantienen constanten en estos billares es el coeficiente de restitución, la velocidad máxima que puede adquirir la partícula, y la velocidad del muro. Con estos valores nombrados debería existir alguna relación. Para buscar esta relación nos centraremos únicamente en partículas individuales en un rango de velocidades iniciales \( v_0 \in [0.001, 0.9] \) con un mismo valor para la pared (Figura \textcolor{red}{Incluir figura: parametros...}). 
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/ajuste_parametros_V-001.pdf}
+        \caption{$v_0 = 0.01$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_1D/ajuste_parametros_V-02.pdf}
+        \caption{$v_0 = 0.2$}
+    \end{subfigure}
+    \caption{Ajuste de los parámetros que ajustan los datos simulados para una misma velocidad de pared con respecto a un rango de velocidades la partícula. La función de ajuste utilizada es una función de segundo grado: \( ax^2 + bx + c \).}
+    \label{fig:ajuste_parametros_1D_relativity_Vcte}
+\end{figure}
 
-Realizando el mismo procedimiento pero con las paredes, es decir, se simulan partículas con una misma velocidad en billares con velocidad en los muros \( w \in [0.001, 0.9] \) (Figura \textcolor{red}{Incluir figuras: parametros...} )
+Realizando el mismo procedimiento pero con las paredes, es decir, se simulan partículas con una misma velocidad en billares con velocidad en los muros \( w \in [0.001, 0.9] \) (Figura \ref{fig:ajuste_parametros_1D_relativity_Vcte}). Se observa como la función que ajusta los parámetros es muy diferente a la empleada anteriormente y se tenga que buscar una función con caracterísitcas más especiales. Además si se comparan los cuatro casos mostrados, podemos ver que en el caso de velocidad de la pared constante la forma de los parámetros son muy similares (aunque con valores distintos), en cambio para la velocidad del muro constante el único parámetro que parece mantener la forma es \( \beta \). El resto de parámetros se van aproximando a una función constante a medida que el valor de la velocidad de la partícula se ve aumentado.
 
-\textcolor{blue}{Parece ser que \( \gamma \) varía linelmente con la velocidad de la partícula para una misma velocidad de muro.}
+\vspace{3mm}
 
-\textcolor{blue}{Cuando la velocidad del muro varía y la de la partícula es constante no parece haber ningún tipo de relción. }
-
-
-Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}) debemos comprobar si ese valor constante \( \beta \) sigue siendo igual o se ve modificado por igual en todos los casos, incluso si varía dentro de los casos inelásticos. 
+Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}) si existe algúna relación que pueda aproximar de manera general el billar. 
 
 \begin{figure}[H]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -262,12 +293,70 @@ Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \r
 
 \vspace{3mm}
 
-Comprobamos que ninguno de los parámetros se ha mantenido igual a los elásticos, ni tampoco el valor que se veía constante \( \beta \) lo es ahora. Debemos entonces afirmar que la relación entre casos elásticos e inelásticos es muy diferente, y que en esta última \textcolor{red}{En verdad en ninguna se puede definir una relación, solo lineal con la velocidad en el caso elástico para pared constante} no es posible realizar ninguna aproximación a funciones con parámetros constantes. 
+Comprobamos que ninguno de los parámetros se ha mantenido igual a los elásticos, ni tampoco el valor que se veía constante \( \gamma \) lo es ahora. Con esta simple visualización se puede afirmar sin realizar un mayor estudio que para un billar inelástico tampoco podemos encontrar ninguna función general que nos diga las velocidad en la n-esima colisión. 
 
 
 \section{Dos dimensiones}
 
+Pasemos ahora a un espacio de dos dimensiones donde la partícula puede moverse en ambos ejes y el billar está compuesto por cuatro paredes. A priori los resultados que se esperan obtener son similares a las simulaciones realizadas para una dimensión y la teoría desarrollada, pero esta vez nos interesa si el área disminuye o aumenta.
+
+\vspace{3mm}
+
+Las paredes del billar varían su posición según una función lineal, ya que, su velocidad es siempre contante. Eso implica que su área se ve modificada de manera cuadrática y pueden darse varias combinaciones: aumentar-disminuir, disminuir-aumentar, aumentar, disminuir. Es por ello que se podría esperar una variación de la velocidad media de las partículas según la función del área que nos encontremos. 
+
 \subsection{Clasico}
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_A-N1000.pdf}
+        \caption{Velocidad media de las partículas.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_A-N1000_Area.pdf}
+        \caption{Área del billar.}
+    \end{subfigure}
+    \caption{Resultados obtenidos para un billar con área siempre en aumento.}
+    \label{fig:2D_A-N1000_con_Area}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_B-N1000.pdf}
+        \caption{Velocidad media de las partículas.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_B-N1000_Area.pdf}
+        \caption{Área del billar.}
+    \end{subfigure}
+    \caption{Resultados obtenidos para un billar con área siempre en disminución.}
+    \label{fig:2D_B-N1000_con_Area}
+\end{figure}
+
+En los casos donde el área sigue una función lineal (Figura \ref{fig:2D_A-N1000_con_Area} y \ref{fig:2D_B-N1000_con_Area}) obtenemos el mismo resultado que en caso de una dimensión. La velocidad tiende a aumentar hasta el infinito sin establecer un valor constante ni finito cuando el área se ve amentada, y al verse disminuida la velocidad media se reduce hasta un valor estable donde no colisionará más con ninguna de las paredes que se mueven (o con ninguna otra si su movimiento forma un ángulo recto con alguna de esas paredes móviles).
+
+\vspace{3mm}
+
+En los casos donde todas las paredes se mueven, y lo hacen con velocidades distintas, (Figura \textcolor{red}{Añadir figura}) observamos como la velocidad media aumenta siempre a pesar de que el área aumenta y disminuye. Cabría pensar que lo lógico según lo visto hasta ahora es una disminución de la velocidad y luego un aumento en ella siguiendo la inversa del área. El motivo por el que no ocurre es por como es calculada el área, es decir, si hacemos un desarrollo matemático llegamos a 
+
+\begin{equation}
+    A(t) = \left[ a_0 + t (w_R - w_L) \right] \cdot \left[ b_0 + t (w_T - w_B) \right]
+\end{equation}
+
+donde \( w_i \) son las velocidades de las paredes (Top, Bottom, Left, Right en inglés), \( a_0 \) es la distancia inicial entre las paredes horizontales, y \( b_0 \) la distancia inicial entre las verticales. Vemos entonces que es posible definir una velocidad de las paredes equivalente \( w_H =  w_R - w_L \) y \( w_V = w_T - w_B \), con lo que se conseguiría un billar donde sólo se desplazaran dos paredes. Dentro de este billar equivalente, si al menos una de ellas se mueve hacia el interior del billar, en algún momento esa pared colisionará con la partícula lo que provocaría el aumento de su velocidad. Para verlo mejor imaginemos que una partícula con la única componente de velocidad no nula es la vertical donde la pared superior (Top) se aleja del centro, y la pared izquierda se dirige hacia el interior. Si la pared no se moviera, la partícula perdería velocidad hasta no colisionar con ninguna de las paredes, pero al no ser el caso, en algún momento la partícula obtendrá una velocidad no nula en la componente horizontal originando varias colisiones con las paredes laterales. Además, la partícula solamente colisionará con los muros laterales dado que seguirá perdiendo velocidad en la componente vertical pero no así su velocidad total, la cual se verá aumentada tras cada colisión con el muro izquierdo.
+
+\vspace{3mm}
+
+Con este ejemplo se afirma que en el caso de tener al menos una pared con movimiento hacia el interior del billar y esta posea una velocidad mayor a su paralela, independientemente del aumento o disminución del área, la partícula verá aumentada su velocidad total y se verá una acelaración de Fermi. Es importante notar que la pared que se dirige al interior debe tener una velocidad mayor a su pared paralela por el posible caso mostrado en la figura \ref{fig:clasico_distancia_infinito}, donde dos paredes paralelas se dirigian al centro y otra hacia el exterior ocasionando una disminución de la velocidad de la partícula.
+
+\textcolor{red}{Falta poner foto clasicas del area con forma cuadratica. Se deberían simular hasta 10.000 colisiones. Donde pone AÁDIR FIGURA se refiere a las graficas que se hablan aqui.}
+
+\textcolor{blue}{Cuando se hayan puesto las graficas dichas en rojo, seguir con relativista y ver si sigue la misma línea}
 
 \subsection{Relativista}
 
