@@ -88,7 +88,6 @@ class Simulation1D:
             simulation_time = [0]
             time = 0
 
-            df = pd.DataFrame()
 
             # Number of collisions and starting the simulation
             i = 0
@@ -221,10 +220,11 @@ class Simulation2D:
       Place where the simulation is done
     """
 
-    def __init__(self, wall_velocities, Relativistic_mode=False, restitution=1):
+    def __init__(self, wall_velocities, wall_distances, Relativistic_mode=False, restitution=1):
         """
          Args:
             wall_velocities: List of wall velocities.
+            wall_distances: List of distances of walls from origin. Top, Bottom, Left, Right
             Relativistic_mode: True or False. Default False.
             restitution: Restitution of the ball. Default: 1.
                     elastic collision -> restitution = 1
@@ -242,10 +242,15 @@ class Simulation2D:
         self.right_wall_velocity = np.asarray(wall_velocities[3])
 
         # Positions of the walls
-        self.top_wall_position = np.array([[0, 1000], [2, 1000]], dtype=np.float64)
-        self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
-        self.left_wall_position = np.array([[1, 0], [1, 1]])
-        self.right_wall_position = np.array([[1000, 0], [1000, 1]])
+        self.top_wall_distance = wall_distances[0]
+        self.bottom_wall_distance = wall_distances[1]
+        self.left_wall_distance = wall_distances[2]
+        self.right_wall_distance = wall_distances[3]
+
+        self.top_wall_position = np.array([[0, self.top_wall_distance], [2, self.top_wall_distance]], dtype=np.float64)
+        self.bottom_wall_position = np.array([[0, self.bottom_wall_distance], [2, self.bottom_wall_distance]], dtype=np.float64)
+        self.left_wall_position = np.array([[self.left_wall_distance, 0], [self.left_wall_distance, 1]])
+        self.right_wall_position = np.array([[self.right_wall_distance, 0], [self.right_wall_distance, 1]])
 
         self.top_wall_positions = []
         self.bottom_wall_positions = []
@@ -263,17 +268,17 @@ class Simulation2D:
         ball_velocities_sum = np.zeros(num_of_iterations + 1)
         for j in tqdm(range(nmax)):
             # The code only support positions in the positive XY plane
-            self.top_wall_position = np.array([[0, 5000], [2, 5000]], dtype=np.float64)
-            self.bottom_wall_position = np.array([[0, 1], [2, 1]], dtype=np.float64)
-            self.left_wall_position = np.array([[1, 0], [1, 1]])
-            self.right_wall_position = np.array([[5000, 0], [5000, 1]])
+            self.top_wall_position = np.array([[0, self.top_wall_distance], [2, self.top_wall_distance]], dtype=np.float64)
+            self.bottom_wall_position = np.array([[0, self.bottom_wall_distance], [2, self.bottom_wall_distance]], dtype=np.float64)
+            self.left_wall_position = np.array([[self.left_wall_distance, 0], [self.left_wall_distance, 1]])
+            self.right_wall_position = np.array([[self.right_wall_distance, 0], [self.right_wall_distance, 1]])
 
             # Creating a ball
             if self.Relativistic_mode:
-                x, y = random.randint(2, 997), random.randint(2, 997)
+                x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(self.bottom_wall_distance + 5, self.top_wall_distance - 5)
                 vx, vy = random.uniform(-0.5, 0.5), random.uniform(-0.5, 0.5)
             else:
-                x, y = random.randint(2, 999), random.randint(2, 997)
+                x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(self.bottom_wall_distance + 5, self.top_wall_distance - 5)
                 vx, vy = random.uniform(-1000, 1000), random.uniform(-1000, 1000)
 
             pos_ball = np.array([x, y])
@@ -411,6 +416,9 @@ class Simulation2D:
         df["bottom_velocities"] = self.bottom_wall_velocity[1]
         df["left_velocities"] = self.left_wall_velocity[0]
         df["right_velocities"] = self.right_wall_velocity[0]
+        df["Coef_restitution"] = self.restitution
+        df["Vertical_distance_initial"] = self.top_wall_distance - self.bottom_wall_distance
+        df["Horizontal_distance_initial"] = self.right_wall_distance - self.left_wall_distance
         df.to_csv(name, sep="\t")
         # Save velocities as DataFrame
         # df = pd.DataFrame(list_velocities_modulus)
