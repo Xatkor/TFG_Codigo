@@ -273,6 +273,26 @@ class Simulation2D:
             self.left_wall_position = np.array([[self.left_wall_distance, 0], [self.left_wall_distance, 1]])
             self.right_wall_position = np.array([[self.right_wall_distance, 0], [self.right_wall_distance, 1]])
 
+            # Creating walls
+            top_wall = InfiniteWall(self.top_wall_position[0], self.top_wall_position[1], self.top_wall_velocity,
+                                    side="top",
+                                    relativistic=self.Relativistic_mode, restitution=self.restitution)
+            bottom_wall = InfiniteWall(self.bottom_wall_position[0], self.bottom_wall_position[1],
+                                       self.bottom_wall_velocity,
+                                       side="bottom",
+                                       relativistic=self.Relativistic_mode, restitution=self.restitution)
+            left_wall = InfiniteWall(self.left_wall_position[0], self.left_wall_position[1],
+                                     self.left_wall_velocity,
+                                     side="left",
+                                     relativistic=self.Relativistic_mode, restitution=self.restitution)
+            right_wall = InfiniteWall(self.right_wall_position[0], self.right_wall_position[1],
+                                      self.right_wall_velocity,
+                                      side="right",
+                                      relativistic=self.Relativistic_mode, restitution=self.restitution)
+
+            obstacles = [top_wall, bottom_wall, left_wall, right_wall]
+
+
             # Creating a ball
             if self.Relativistic_mode:
                 x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(self.bottom_wall_distance + 5, self.top_wall_distance - 5)
@@ -312,23 +332,23 @@ class Simulation2D:
                     break
 
                 # Re-creating walls with the new position
-                top_wall = InfiniteWall(self.top_wall_position[0], self.top_wall_position[1], self.top_wall_velocity,
-                                        side="top",
-                                        relativistic=self.Relativistic_mode, restitution=self.restitution)
-                bottom_wall = InfiniteWall(self.bottom_wall_position[0], self.bottom_wall_position[1],
-                                           self.bottom_wall_velocity,
-                                           side="bottom",
-                                           relativistic=self.Relativistic_mode, restitution=self.restitution)
-                left_wall = InfiniteWall(self.left_wall_position[0], self.left_wall_position[1],
-                                         self.left_wall_velocity,
-                                         side="left",
-                                         relativistic=self.Relativistic_mode, restitution=self.restitution)
-                right_wall = InfiniteWall(self.right_wall_position[0], self.right_wall_position[1],
-                                          self.right_wall_velocity,
-                                          side="right",
-                                          relativistic=self.Relativistic_mode, restitution=self.restitution)
+                # top_wall = InfiniteWall(self.top_wall_position[0], self.top_wall_position[1], self.top_wall_velocity,
+                #                         side="top",
+                #                         relativistic=self.Relativistic_mode, restitution=self.restitution)
+                # bottom_wall = InfiniteWall(self.bottom_wall_position[0], self.bottom_wall_position[1],
+                #                            self.bottom_wall_velocity,
+                #                            side="bottom",
+                #                            relativistic=self.Relativistic_mode, restitution=self.restitution)
+                # left_wall = InfiniteWall(self.left_wall_position[0], self.left_wall_position[1],
+                #                          self.left_wall_velocity,
+                #                          side="left",
+                #                          relativistic=self.Relativistic_mode, restitution=self.restitution)
+                # right_wall = InfiniteWall(self.right_wall_position[0], self.right_wall_position[1],
+                #                           self.right_wall_velocity,
+                #                           side="right",
+                #                           relativistic=self.Relativistic_mode, restitution=self.restitution)
 
-                obstacles = [top_wall, bottom_wall, left_wall, right_wall]
+                # obstacles = [top_wall, bottom_wall, left_wall, right_wall]
 
                 # Time to the next collision and with the resulting wall
                 times_obstacles = calc_next_obstacle(ball.pos, ball.velocity, ball.radius, obstacles)
@@ -349,13 +369,17 @@ class Simulation2D:
                         new_ball_velocity_X = times_obstacles[0][1].update(vel1)[0]
                         new_ball_velocity_Y = times_obstacles[1][1].update(vel1)[1]
                     vel1 = (new_ball_velocity_X, new_ball_velocity_Y)
-                    pos_ball = ball.pos + ball.velocity * t
-                    ball = Ball(pos_ball, vel1, 0.0)
+                    pos_ball = ball.pos + np.multiply(ball.velocity, t)
+                    ball.pos = pos_ball
+                    ball.velocity = vel1
+                    # ball = Ball(pos_ball, vel1, 0.0)
                 else:
                     new_ball_velocity = times_obstacles[0][1].update(vel1)
-                    pos_ball = ball.pos + ball.velocity * t
+                    pos_ball = ball.pos + np.multiply(ball.velocity, t)
                     vel1 = new_ball_velocity
-                    ball = Ball(pos_ball, vel1, 0.0)
+                    ball.pos = pos_ball
+                    ball.velocity = vel1
+                    # ball = Ball(pos_ball, vel1, 0.0)
 
                 # Store times
                 # in relativistic mode it is needed to refactor the time due to dilation
@@ -377,6 +401,15 @@ class Simulation2D:
                 self.bottom_wall_positions.append(self.bottom_wall_position)
                 self.left_wall_positions.append(self.left_wall_position)
                 self.right_wall_positions.append(self.right_wall_position)
+
+                top_wall.start_point = self.top_wall_position[0]
+                top_wall.end_point = self.top_wall_position[1]
+                bottom_wall.start_point = self.bottom_wall_position[0]
+                bottom_wall.end_point = self.bottom_wall_position[1]
+                left_wall.start_point = self.left_wall_position[0]
+                left_wall.end_point = self.left_wall_position[1]
+                right_wall.start_point = self.right_wall_position[0]
+                right_wall.end_point = self.right_wall_position[1]
 
                 i += 1
 
