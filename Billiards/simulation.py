@@ -257,6 +257,8 @@ class Simulation2D:
         self.left_wall_positions = []
         self.right_wall_positions = []
 
+        self.area = []
+
     def evolve(self, num_of_iterations, nmax):
         """
         Args:
@@ -414,10 +416,17 @@ class Simulation2D:
                 i += 1
 
             # Speed of the ball
+            self.area = self.calc_area()
             ball_velocities_modulus = np.linalg.norm(ball_velocities, axis=1)
             if len(ball_velocities_modulus) <= num_of_iterations:
                 add = [ball_velocities_modulus[-1]] * (num_of_iterations + 1 - len(ball_velocities_modulus))
                 ball_velocities_modulus = np.append(ball_velocities_modulus, add)
+
+                if self.area[-1] < 0:
+                    add = [self.area[-2]] * (num_of_iterations + 1 - len(self.area))
+                else:
+                    add = [self.area[-1]] * (num_of_iterations + 1 - len(self.area))
+                self.area = np.append(self.area, add)
 
             ball_velocities_sum = ball_velocities_sum + ball_velocities_modulus
             list_velocities_modulus.append(ball_velocities_modulus)
@@ -443,6 +452,14 @@ class Simulation2D:
             graph2.plot_velocity(ball_velocities_average, self.Relativistic_mode, points=False)
             graph2.display()
 
+    def calc_area(self):
+        Ty = [self.top_wall_positions[k][0][1] for k in range(len(self.top_wall_positions))]
+        By = [self.bottom_wall_positions[k][0][1] for k in range(len(self.bottom_wall_positions))]
+        Lx = [self.left_wall_positions[k][0][0] for k in range(len(self.left_wall_positions))]
+        Rx = [self.right_wall_positions[k][0][0] for k in range(len(self.right_wall_positions))]
+        area = np.multiply(np.subtract(Ty, By), np.subtract(Rx, Lx))
+        return area
+
     def save_results(self, ball_velocities_average, name="file.txt"):
         df = pd.DataFrame(ball_velocities_average)
         df["top_velocities"] = self.top_wall_velocity[1]
@@ -450,8 +467,9 @@ class Simulation2D:
         df["left_velocities"] = self.left_wall_velocity[0]
         df["right_velocities"] = self.right_wall_velocity[0]
         df["Coef_restitution"] = self.restitution
-        df["Vertical_distance_initial"] = self.top_wall_distance - self.bottom_wall_distance
-        df["Horizontal_distance_initial"] = self.right_wall_distance - self.left_wall_distance
+        # df["Vertical_distance_initial"] = self.top_wall_distance - self.bottom_wall_distance
+        # df["Horizontal_distance_initial"] = self.right_wall_distance - self.left_wall_distance
+        df["Area"] = self.area
         df.to_csv(name, sep="\t")
         # Save velocities as DataFrame
         # df = pd.DataFrame(list_velocities_modulus)

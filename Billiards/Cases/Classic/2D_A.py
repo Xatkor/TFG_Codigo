@@ -39,7 +39,7 @@ def main():
     billiard = Simulation2D(wall_velocities, wall_distances, Relativistic_mode, Coef_restitution)
 
     # Number of collision and particles
-    num_of_iterations = 20000
+    num_of_iterations = 2000
     nmax = 1000
 
     # Run simulations
@@ -48,7 +48,7 @@ def main():
     billiard.show_billiard(ball_velocities_average=velocities, ball_positions=[])
 
     # Save mean velocity
-    file_name = f"2D_A-N{nmax}.txt"
+    file_name = f"2D_AB-N{nmax}.txt"
     billiard.save_results(velocities, file_name)
 
 
