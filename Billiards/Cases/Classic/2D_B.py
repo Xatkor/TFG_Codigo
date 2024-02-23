@@ -16,20 +16,20 @@ def main():
     # -------------------------------------
     # Distance of walls
     # -------------------------------------
-    top_wall_distance = 1000
+    top_wall_distance = 2001
     bottom_wall_distance = 1
     left_wall_distance = 1
-    right_wall_distance = 1000
+    right_wall_distance = 500
 
     wall_distances = [top_wall_distance, bottom_wall_distance, left_wall_distance, right_wall_distance]
 
     # -------------------------------------
     # Velocities of walls
     # -------------------------------------
-    top_wall_velocity = np.array([0, -5.0], dtype=np.float64)
+    top_wall_velocity = np.array([0, -50.0], dtype=np.float64)
     bottom_wall_velocity = np.array([0, 0.0], dtype=np.float64)
     left_wall_velocity = np.array([0.0, 0])
-    right_wall_velocity = np.array([-5.0, 0])
+    right_wall_velocity = np.array([-50.0, 0])
 
     wall_velocities = [top_wall_velocity, bottom_wall_velocity, left_wall_velocity, right_wall_velocity]
 
@@ -39,7 +39,7 @@ def main():
     billiard = Simulation2D(wall_velocities, wall_distances, Relativistic_mode, Coef_restitution)
 
     # Number of collision and particles
-    num_of_iterations = 20000
+    num_of_iterations = 10000
     nmax = 1000
 
     # Run simulations
@@ -48,7 +48,7 @@ def main():
     billiard.show_billiard(ball_velocities_average=velocities, ball_positions=[])
 
     # Save mean velocity
-    file_name = f"2D_B-N{nmax}.txt"
+    file_name = f"2D_BBR-N{nmax}.txt"
     billiard.save_results(velocities, file_name)
 
 

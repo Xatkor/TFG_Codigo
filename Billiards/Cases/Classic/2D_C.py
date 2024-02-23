@@ -26,10 +26,10 @@ def main():
     # -------------------------------------
     # Velocities of walls
     # -------------------------------------
-    top_wall_velocity = np.array([0, -3.0], dtype=np.float64)
-    bottom_wall_velocity = np.array([0, 3.0], dtype=np.float64)
-    left_wall_velocity = np.array([3.0, 0])
-    right_wall_velocity = np.array([-3.0, 0])
+    top_wall_velocity = np.array([0, 5.0], dtype=np.float64)
+    bottom_wall_velocity = np.array([0, 1.0], dtype=np.float64)
+    left_wall_velocity = np.array([50.0, 0])
+    right_wall_velocity = np.array([50.0, 0])
 
     wall_velocities = [top_wall_velocity, bottom_wall_velocity, left_wall_velocity, right_wall_velocity]
 
@@ -48,7 +48,7 @@ def main():
     billiard.show_billiard(ball_velocities_average=velocities, ball_positions=[])
 
     # Save mean velocity
-    file_name = f"2D_C5-N{nmax}.txt"
+    file_name = f"2D_C3x-N{nmax}.txt"
     billiard.save_results(velocities, file_name)
 
 

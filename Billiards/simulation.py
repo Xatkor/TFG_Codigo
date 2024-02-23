@@ -321,8 +321,6 @@ class Simulation2D:
             simulation_time = [0]
             time = 0
 
-            df = pd.DataFrame()
-
             # Number of collisions and starting the simulation
             i = 0
             while i < num_of_iterations:
@@ -430,6 +428,18 @@ class Simulation2D:
 
             ball_velocities_sum = ball_velocities_sum + ball_velocities_modulus
             list_velocities_modulus.append(ball_velocities_modulus)
+            self.area = []
+            V_distance = self.top_wall_distance - self.bottom_wall_distance
+            H_distance = self.right_wall_distance - self.left_wall_distance
+            wH = self.right_wall_distance - self.left_wall_distance
+            wV = self.top_wall_distance - self.bottom_wall_distance
+            tiempos = simulation_time
+            for index, tiempo in enumerate(tiempos):
+                self.area.append(wH * wV * np.power(tiempo, 2) + tiempo * (H_distance * wV + V_distance * wH) + H_distance * V_distance)
+
+            add = [self.area[-1]] * (num_of_iterations + 1 - len(self.area))
+            self.area = np.append(self.area, add)
+
 
         return ball_velocities_sum / nmax, ball_positions
 
@@ -461,7 +471,7 @@ class Simulation2D:
         return area
 
     def save_results(self, ball_velocities_average, name="file.txt"):
-        df = pd.DataFrame(ball_velocities_average)
+        df = pd.DataFrame(ball_velocities_average, columns=["ball_velocities"])
         df["top_velocities"] = self.top_wall_velocity[1]
         df["bottom_velocities"] = self.bottom_wall_velocity[1]
         df["left_velocities"] = self.left_wall_velocity[0]

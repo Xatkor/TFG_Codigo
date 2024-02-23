@@ -16,10 +16,10 @@ def main():
     # -------------------------------------
     # Distance of walls
     # -------------------------------------
-    top_wall_distance = 1000
+    top_wall_distance = 2001
     bottom_wall_distance = 1
     left_wall_distance = 1
-    right_wall_distance = 1000
+    right_wall_distance = 500
 
     wall_distances = [top_wall_distance, bottom_wall_distance, left_wall_distance, right_wall_distance]
 
@@ -48,7 +48,7 @@ def main():
     billiard.show_billiard(ball_velocities_average=velocities, ball_positions=[])
 
     # Save mean velocity
-    file_name = f"2D_A-N{nmax}.txt"
+    file_name = f"2D_AR-N{nmax}.txt"
     billiard.save_results(velocities, file_name)
 
 
