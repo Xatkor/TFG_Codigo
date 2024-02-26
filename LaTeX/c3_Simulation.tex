@@ -1,8 +1,8 @@
-\documentclass[11pt, spanish]{book}
-\usepackage{MiEstilo}
-
-\begin{document}
-
+%\documentclass[11pt, spanish]{book}
+%\usepackage{MiEstilo}
+%
+%\begin{document}
+%
 \chapter{Resultados numéricos}
 
 Para diversos casos donde las paredes se mueven mover o no, se va realizar la simulación de un partícula en el interior de un billar rectangular. Para ello el procedimiento es usar el código creado \textcolor{red}{Referenciar código mio} para \( 10^3 \) partículas, no interactuantes entre sí. De este modo es similar a realizar una simulación de un gas ideal donde cada partícula inicia con una velocidad y posición distinta al resto dentro del mismo recinto. Con los datos obtenidos se puede obtener la velocidad media tras cada colisión y comprobar la existencia de la aceleración de Fermi.
@@ -389,7 +389,6 @@ Como se puede ver los resultados tienen la misma forma para un mismo área inici
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_C1-N1000.pdf}
-    \caption{Área del billar.}
     \caption{Resultados obtenidos para un billar con área siempre en aumento. El área no muestra el número de colisiones dado que se representa por el tiempo simulado durante las 10.000 colisiones.}
     \label{fig:2D_C-N1000}
 \end{figure}
@@ -458,11 +457,30 @@ Para los billares rectangulares se tendrán los mismos resultados reafirmando as
 
 Las colisiones inelásticas simuladas serán también usando la teoría relativista, ya que es la desarrollada en la expresión \ref{eq:Solucion_cobweb_inelastica} \textcolor{red}{En otro capítulo}. El procedimiento es el mismo que el usado en la subsección anterior con la diferencia de tener un coeficiente de restitución menor a la unidad y aplicarlo a los caos donde se observa al aceleración de Fermi. 
 
-\vspace{3mm}
+\newpage
+\textcolor{red}{¿Simulaciones incorrectas? ¿Deberían ser llegar a la línea discontínua?}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_2D/2D_A-N1000.pdf}
+    \caption{$\epsilon = 0.99$}
+    \label{fig:2D_A_ine-N1000}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_2D/2D_A2-N1000.pdf}
+    \caption{$\epsilon = 0.7$}
+    \label{fig:2D_A_ine-N1000}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_2D/2D_A3-N1000.pdf}
+    \caption{$\epsilon = 0.8$}
+    \label{fig:2D_A_ine-N1000}
+\end{figure}
 
 \subsection{Análisis de los resultados}
 
-\end{document}
+%\end{document}

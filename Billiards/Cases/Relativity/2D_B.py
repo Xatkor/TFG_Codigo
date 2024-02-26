@@ -40,7 +40,7 @@ def main():
 
     # Number of collision and particles
     num_of_iterations = 10000
-    nmax = 1000
+    nmax = 10
 
     # Run simulations
     velocities, positions = billiard.evolve(num_of_iterations, nmax)
@@ -48,7 +48,7 @@ def main():
     billiard.show_billiard(ball_velocities_average=velocities, ball_positions=[])
 
     # Save mean velocity
-    file_name = f"2D_BB-N{nmax}.txt"
+    file_name = f"2D_BB2-N{nmax}.txt"
     billiard.save_results(velocities, file_name)
 
 

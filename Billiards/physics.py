@@ -5,8 +5,6 @@ import numpy as np
 INF = float("inf")
 
 
-# SOLO SE ESTÁ USANDO LA FUNCION "time_of_impact_with_wall" y "relativistic_time_of_impact_with_wall"
-
 def time_of_impact(pos1: tuple, vel1: tuple, radius1: float, pos2: tuple, vel2: tuple, radius2: float,
                    t_eps=1e-10) -> float:
     """ Calculate for two moving balls the time until impact.
@@ -29,7 +27,7 @@ def time_of_impact(pos1: tuple, vel1: tuple, radius1: float, pos2: tuple, vel2: 
     pos_diff = np.subtract(pos2, pos1)
     vel_diff = np.subtract(vel2, vel1)
 
-    pos_dot_vel = pos_diff.dot(vel_diff)  # dot profuct: pos_diff * vel_diff
+    pos_dot_vel = pos_diff.dot(vel_diff)  # dot product: pos_diff * vel_diff
     if pos_dot_vel >= 0:
         # balls are moving apart, no impact
         return INF
@@ -92,6 +90,7 @@ def elastic_collision(pos1: tuple, vel1: tuple, mass1: float, pos2: tuple, vel2:
 
     return vel1, vel2
 
+
 def time_of_impact_with_wall(pos1, vel1, radius, posW, obstacle):
     """ Calculate when the ball collide with vertical or horizontal wall.
 
@@ -100,8 +99,7 @@ def time_of_impact_with_wall(pos1, vel1, radius, posW, obstacle):
         vel1: Velocity of the ball.
         radius: Radius of the ball.
         posW: Position of the wall.
-        velW: Velocity of the wall.
-        normal: Normal vector of the wall.
+        obstacle: Obstacle
 
     Returns:
         Time of the impact, it is infinite if no impact.
@@ -137,50 +135,6 @@ def time_of_impact_with_wall(pos1, vel1, radius, posW, obstacle):
     else:
         return t
 
-def relativistic_time_of_impact_with_wall(pos1, vel1, radius, posW, obstacle):
-    """ Calculate when the ball collide with vertical or horizontal wall.
-
-    Args:
-        pos1: Position of the ball.
-        vel1: Velocity of the ball.
-        radius: Radius of the ball.
-        obstacle: Obstacle to check collision
-
-    Returns:
-        Time of the impact, it is infinite if no impact.
-
-    """
-
-    _normal = obstacle._normal
-    velW = obstacle.velocity
-    side = obstacle.side
-    lorentz_contraction = 1 / sqrt(1 - np.linalg.norm(velW, ord=2))
-
-    if _normal[0] != 0:
-        # Vertical wall
-        if vel1[0] == velW[0]:
-            # Same velocity, never collide
-            return INF
-        if side == "left":
-            t = (radius + posW[0] - pos1[0]) / ((vel1[0] - velW[0]) * lorentz_contraction) + pos1[0] * velW[0]
-        else:
-            t = (-radius + posW[0] - pos1[0]) / ((vel1[0] - velW[0]) * lorentz_contraction) + pos1[0] * velW[0]
-    else:
-        # Horizontal wall
-        if vel1[1] == velW[1]:
-            # Same velocity, never collide
-            return INF
-        if side == "top":
-            t = (-radius + posW[1] - pos1[1]) / ((vel1[1] - velW[1]) * lorentz_contraction) + pos1[1] * velW[1]
-        else:
-            t = (radius + posW[1] - pos1[1]) / ((vel1[1] - velW[1]) * lorentz_contraction) + pos1[1] * velW[1]
-
-    if t < 1e-9:
-        # they don't collide
-        return INF
-    else:
-        return t
-
 
 def calc_next_obstacle(pos, vel, radius, obstacles):
     """ Find the closest colliding obstacle for the given ball
@@ -203,6 +157,3 @@ def calc_next_obstacle(pos, vel, radius, obstacles):
             t = time_of_impact_with_wall(pos, vel, radius, obs.start_point, obs)
             times.append((t, obs))
     return sorted(times, key=lambda x: x[0])
-
-
-

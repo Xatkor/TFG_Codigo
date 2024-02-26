@@ -88,7 +88,6 @@ class Simulation1D:
             simulation_time = [0]
             time = 0
 
-
             # Number of collisions and starting the simulation
             i = 0
             while i < num_of_iterations:
@@ -236,10 +235,10 @@ class Simulation2D:
         self.restitution = restitution
 
         # Velocities of walls
-        self.top_wall_velocity = np.asarray(wall_velocities[0])
-        self.bottom_wall_velocity = np.asarray(wall_velocities[1])
-        self.left_wall_velocity = np.asarray(wall_velocities[2])
-        self.right_wall_velocity = np.asarray(wall_velocities[3])
+        self.top_wall_velocity = np.array(wall_velocities[0])
+        self.bottom_wall_velocity = np.array(wall_velocities[1])
+        self.left_wall_velocity = np.array(wall_velocities[2])
+        self.right_wall_velocity = np.array(wall_velocities[3])
 
         # Positions of the walls
         self.top_wall_distance = wall_distances[0]
@@ -248,7 +247,8 @@ class Simulation2D:
         self.right_wall_distance = wall_distances[3]
 
         self.top_wall_position = np.array([[0, self.top_wall_distance], [2, self.top_wall_distance]], dtype=np.float64)
-        self.bottom_wall_position = np.array([[0, self.bottom_wall_distance], [2, self.bottom_wall_distance]], dtype=np.float64)
+        self.bottom_wall_position = np.array([[0, self.bottom_wall_distance], [2, self.bottom_wall_distance]],
+                                             dtype=np.float64)
         self.left_wall_position = np.array([[self.left_wall_distance, 0], [self.left_wall_distance, 1]])
         self.right_wall_position = np.array([[self.right_wall_distance, 0], [self.right_wall_distance, 1]])
 
@@ -270,8 +270,10 @@ class Simulation2D:
         ball_velocities_sum = np.zeros(num_of_iterations + 1)
         for j in tqdm(range(nmax)):
             # The code only support positions in the positive XY plane
-            self.top_wall_position = np.array([[0, self.top_wall_distance], [2, self.top_wall_distance]], dtype=np.float64)
-            self.bottom_wall_position = np.array([[0, self.bottom_wall_distance], [2, self.bottom_wall_distance]], dtype=np.float64)
+            self.top_wall_position = np.array([[0, self.top_wall_distance], [2, self.top_wall_distance]],
+                                              dtype=np.float64)
+            self.bottom_wall_position = np.array([[0, self.bottom_wall_distance], [2, self.bottom_wall_distance]],
+                                                 dtype=np.float64)
             self.left_wall_position = np.array([[self.left_wall_distance, 0], [self.left_wall_distance, 1]])
             self.right_wall_position = np.array([[self.right_wall_distance, 0], [self.right_wall_distance, 1]])
 
@@ -294,17 +296,18 @@ class Simulation2D:
 
             obstacles = [top_wall, bottom_wall, left_wall, right_wall]
 
-
             # Creating a ball
             if self.Relativistic_mode:
-                x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(self.bottom_wall_distance + 5, self.top_wall_distance - 5)
-                vx, vy = random.uniform(-0.5, 0.5), random.uniform(-0.5, 0.5)
+                x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(
+                    self.bottom_wall_distance + 5, self.top_wall_distance - 5)
+                vx, vy = random.uniform(-0.5, 0.5), random.uniform(-0.5, 0.5)  # random.uniform(-0.5, 0.5)
             else:
-                x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(self.bottom_wall_distance + 5, self.top_wall_distance - 5)
+                x, y = random.randint(self.left_wall_distance + 5, self.right_wall_distance - 5), random.randint(
+                    self.bottom_wall_distance + 5, self.top_wall_distance - 5)
                 vx, vy = random.uniform(-1000, 1000), random.uniform(-1000, 1000)
 
-            pos_ball = np.array([x, y])
-            vel1 = np.asarray([vx, vy])
+            pos_ball = np.array([x, y], dtype=np.float64)
+            vel1 = np.array([vx, vy], dtype=np.float64)
             ball = Ball(pos_ball, vel1)
 
             # Array which will store the properties of the ball for each collision
@@ -317,6 +320,7 @@ class Simulation2D:
             self.left_wall_positions = [self.left_wall_position]
             self.right_wall_positions = [self.right_wall_position]
 
+            self.area = []
             # Starting simulation time
             simulation_time = [0]
             time = 0
@@ -325,10 +329,23 @@ class Simulation2D:
             i = 0
             while i < num_of_iterations:
 
+                Areaa = np.multiply(np.subtract(self.top_wall_position[0][1], self.bottom_wall_position[0][1]),
+                                    np.subtract(self.right_wall_position[1][0], self.left_wall_position[1][0]))
+                self.area = np.append(self.area, Areaa)
+
                 # If two walls are at the same position there is no billiard.
-                if self.top_wall_position[0][1] < self.bottom_wall_position[0][1] or self.left_wall_position[1][0] > \
-                        self.right_wall_position[1][0]:
-                    # print("There is no more billiard. Some walls have merged.")
+                # if self.top_wall_position[0][1] < self.bottom_wall_position[0][1] or self.left_wall_position[1][0] > \
+                #         self.right_wall_position[1][0]:
+                #     print("There is no more billiard. Some walls have merged.")
+                #     break
+                if self.area[-1] <= 1e-9:
+                    # print(f"There is no more billiard. Some walls have merged. Collision: {i}")
+                    break
+
+                if ball.pos[1] - self.top_wall_position[0][1] > 1e12 or ball.pos[1] - self.bottom_wall_position[0][
+                    1] < -1e12 or ball.pos[0] - self.left_wall_position[1][0] < -1e12 or self.right_wall_position[1][
+                    0] - ball.pos[0] < -1e12:
+                    print("hasta aqui")
                     break
 
                 # Re-creating walls with the new position
@@ -391,10 +408,10 @@ class Simulation2D:
                 ball_velocities.append(vel1)
 
                 # Store walls' properties
-                self.top_wall_position = self.top_wall_position + self.top_wall_velocity * t
-                self.bottom_wall_position = self.bottom_wall_position + self.bottom_wall_velocity * t
-                self.left_wall_position = self.left_wall_position + self.left_wall_velocity * t
-                self.right_wall_position = self.right_wall_position + self.right_wall_velocity * t
+                self.top_wall_position = np.add(self.top_wall_position, np.multiply(self.top_wall_velocity, t))
+                self.bottom_wall_position = np.add(self.bottom_wall_position, np.multiply(self.bottom_wall_velocity, t))
+                self.left_wall_position = np.add(self.left_wall_position, np.multiply(self.left_wall_velocity, t))
+                self.right_wall_position = np.add(self.right_wall_position, np.multiply(self.right_wall_velocity, t))
 
                 # Adding walls' position to the array
                 self.top_wall_positions.append(self.top_wall_position)
@@ -414,32 +431,16 @@ class Simulation2D:
                 i += 1
 
             # Speed of the ball
-            self.area = self.calc_area()
             ball_velocities_modulus = np.linalg.norm(ball_velocities, axis=1)
             if len(ball_velocities_modulus) <= num_of_iterations:
                 add = [ball_velocities_modulus[-1]] * (num_of_iterations + 1 - len(ball_velocities_modulus))
                 ball_velocities_modulus = np.append(ball_velocities_modulus, add)
 
-                if self.area[-1] < 0:
-                    add = [self.area[-2]] * (num_of_iterations + 1 - len(self.area))
-                else:
-                    add = [self.area[-1]] * (num_of_iterations + 1 - len(self.area))
+                add = [self.area[-1]] * (num_of_iterations + 1 - len(self.area))
                 self.area = np.append(self.area, add)
 
             ball_velocities_sum = ball_velocities_sum + ball_velocities_modulus
             list_velocities_modulus.append(ball_velocities_modulus)
-            self.area = []
-            V_distance = self.top_wall_distance - self.bottom_wall_distance
-            H_distance = self.right_wall_distance - self.left_wall_distance
-            wH = self.right_wall_distance - self.left_wall_distance
-            wV = self.top_wall_distance - self.bottom_wall_distance
-            tiempos = simulation_time
-            for index, tiempo in enumerate(tiempos):
-                self.area.append(wH * wV * np.power(tiempo, 2) + tiempo * (H_distance * wV + V_distance * wH) + H_distance * V_distance)
-
-            add = [self.area[-1]] * (num_of_iterations + 1 - len(self.area))
-            self.area = np.append(self.area, add)
-
 
         return ball_velocities_sum / nmax, ball_positions
 
