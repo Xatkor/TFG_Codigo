@@ -26,7 +26,11 @@
 \usepackage[most]{tcolorbox}
 \usepackage{float}
 \usepackage{physics}
-\usepackage{biblatex}
+\usepackage[backend=biber,
+style=numeric,
+maxbibnames=10,
+sorting=none,
+citestyle=numeric-comp]{biblatex}
 \addbibresource{referencias.bib}
 \newtcolorbox{fancybox}[1][]{ %%%%%%%
 enhanced,
@@ -48,10 +52,4 @@ left=0.8em,right=0.8em,top=1ex,bottom=1ex,colback=verdeodi!20,colframe=verdeodi,
 	citecolor=red,
 	linktocpage,     % Add this if you want links in ToC just in the numbers
 	pdftex,          % PDF metadata
-	pdfauthor={Carlos Molina Ordóñez},
-	pdftitle={Layout de canales de lectura por columna para sensores de imagen CMOS: técnicas, extracción y simulación},
-	pdfsubject={Layout de canal de lectura para sensores de imagen CMOS},
-	pdfkeywords={TFG sensor imagen cmos layout canal lectura read-out channel image semiconductor},
-	pdfproducer={Latex with hyperref},
-	pdfcreator={pdflatex with latexmk in Arch Linux written using Atom}
 }
