@@ -26,6 +26,8 @@
 \usepackage[most]{tcolorbox}
 \usepackage{float}
 \usepackage{physics}
+\usepackage{biblatex}
+\addbibresource{referencias.bib}
 \newtcolorbox{fancybox}[1][]{ %%%%%%%
 enhanced,
 boxrule=1pt,arc=8pt,boxsep=0pt,
@@ -36,3 +38,20 @@ left=0.8em,right=0.8em,top=1ex,bottom=1ex,colback=verdeodi!20,colframe=verdeodi,
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true, %set true if you want colored links
+	linktoc=all,     %set to all if you want both sections and subsections linked
+	linkcolor=blue,  %choose some color if you want links to stand out
+	urlcolor=blue,
+	citecolor=red,
+	linktocpage,     % Add this if you want links in ToC just in the numbers
+	pdftex,          % PDF metadata
+	pdfauthor={Carlos Molina Ordóñez},
+	pdftitle={Layout de canales de lectura por columna para sensores de imagen CMOS: técnicas, extracción y simulación},
+	pdfsubject={Layout de canal de lectura para sensores de imagen CMOS},
+	pdfkeywords={TFG sensor imagen cmos layout canal lectura read-out channel image semiconductor},
+	pdfproducer={Latex with hyperref},
+	pdfcreator={pdflatex with latexmk in Arch Linux written using Atom}
+}

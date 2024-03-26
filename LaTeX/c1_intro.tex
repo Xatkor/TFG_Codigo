@@ -1,8 +1,38 @@
-\documentclass[11pt, spanish]{book}
-\usepackage{MiEstilo}
-
-\begin{document}
+%\documentclass[11pt, spanish]{book}
+%\usepackage{MiEstilo}
+%
+%\begin{document}
 
 \chapter{Introducción}
 
-\end{document}
+El 15 de octubre de año 1991 se detectó una partícula cósmica con la mayor energía registrada \textcolor{red}{Referenciar articulo}, la llamada \textit{Oh-My-God particle}\cite{Lee2009a} (\textit{Partícula Oh dios mío} en español). Previo a esta observación ya se habían obtenido otras observaciones y desarrollado ideas de su posible causa.
+
+\vspace{3mm}
+
+Unos 40 años antes se inició a desarrollar una teoría cuyo autor inicial fue Fermi \textcolor{red}{Referenciar articulo} donde intentaba dar una explicación del origen de los rayos cósmicos. Tras su publicación se han desarrollado más artículos probando la existencia de la denominada Aceleración de Fermi. Esta aceleración se define como el gran aumento de energía que obtiene una partícula encerrada en un billar cuyas paredes con impenetrables. Dentro del billar la partícula puede definirse con un hamiltoniano
+
+\begin{align}
+    H = \dfrac{p^2}{2m} + V & & V = \begin{cases}
+        0 \text{ en el interior de } \Omega \\
+        \infty \text{ en el exterior de } \Omega
+    \end{cases}
+\end{align}
+
+\vspace{3mm}
+
+Con esta definición de hamiltoniano no podemos describir totalmente el movimiento de la partícula, ya que en la frontera del billar no está definido (se hace infinito). Entre colisiones se tendrá el movimiento de una partícula libre pero al llegar a la frontera, la partícula colisionará con la pared y verá modificada su velocidad. 
+
+\vspace{3mm}
+
+En el caso de tener paredes en movimiento se puede seguir usando la misma definición de hamiltoniano y potencial, pero ahora se debe de tener en cuenta que la geometría del billar depende del tiempo \( \Omega(t) \).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/billar_generico.pdf}
+    \caption{Billar genérico}
+    \label{fig:bilar_generico}
+\end{figure}
+
+Diversos artículos recientes han tratado de buscar una explicación a la aparición de esta aceleración en billares cuyas fronteras se encuentran en movimiento. Los billares generalmente estudiados han sido los circulares o elípticos \textcolor{red}{Referenciar articulo}, y el de Fermi-Ulam \textcolor{red}{Referenciar articulo}. En este trabajo se va a estudiar un billar rectangular con paredes móviles cuya velocidad es constante, y la posible relación que pueda tener la aparición de la aceleración de Fermi con la distacia entre paredes o el área del billar.
+
+%\end{document}
