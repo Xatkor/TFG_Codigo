@@ -1,8 +1,8 @@
-%\documentclass[11pt, spanish]{book}
-%\usepackage{MiEstilo}
-%
-%
-%\begin{document}
+\documentclass[11pt, spanish]{book}
+\usepackage{MiEstilo}
+
+
+\begin{document}
 
 \chapter{Partícula en un billar}
 
@@ -213,10 +213,9 @@ Tras la colisón en este sistema de referencia \( S \) con la pared en reposo, l
     \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}\label{eq:velocidad_perpendicular}
 \end{align}
 
-\section{Aceleración de Fermi
-}
+\section{Aceleración de Fermi}
 
-Como se ha podido ver tras cada colisión la partícula puede ver modificada su velocidad o no. La pregunta que surge es para que casos podemos decir que la velocidad va a aumentar y para cuales disminuirá. Además es interesante estudiar cuál es el límite de esta velocidad. 
+El desarrollo de la dinámica de las partículas bajo el marco relativista muestra como la velocidad de una partícula se modifica tras cada colisión. La pregunta que surge es cómo será esa variación en la velocidad tras cada colisión.  
 
 \vspace{3mm}
 
@@ -260,7 +259,7 @@ Para analizar ambos casos es conveniente usar \cite{Strogatz} \textit{Cobwebs} \
         \label{fig:Cobweb_Classic_1D}
 \end{figure}
 
-Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtiene la partícula va a depender de la dirección que tome la velocidad de la pared. Así en aquellos casos donde las paredes se muevan en el mismo sentido de la partícula desacelerarán la partícula hasta llegar a una velocidad \( u_k \) donde la partícula dejará de colisionar con la pared móvil, ya que se llegará a un punto donde \( u_k < w_n \). En el caso opuesto donde las paredes siempre se dirijan hacia la partícula veremos como su velocidad aumenta sin ningún límite tras cada colisión. Estaríamos entonces presenciando la aceleración de Fermi.
+Podemos observar como ambas rectas son paralelas y la nueva velocidad que obtiene la partícula va a depender de la dirección que tome la velocidad de la pared. Así en aquellos casos donde las paredes se muevan en el mismo sentido de la partícula desacelerarán la partícula hasta llegar a una velocidad \( u_k \) donde la partícula dejará de colisionar con la pared móvil, ya que se llegará a un punto donde \( u_k < w_n \). En el caso opuesto donde las paredes siempre se dirijan hacia la partícula veremos como su velocidad aumenta sin ningún límite tras cada colisión. 
 
 \vspace{3mm}
 
@@ -320,7 +319,13 @@ Para ver la estabilidad del punto se debe analizar si \( \left| f'(c) \right| \)
 
 \vspace{3mm}
 
-En un espacio de dos dimensiones tenemos más variables a tener en cuenta y no es posible realizar estas simplificaciones, pero podemos extrapolar estos resultados para preveer el comportamiento de la velocidad. En este espacio tenemos ahora un área que se verá modificada de acuerdo a la velocidad de las paredes pero cada billar va a ver una tasa de cambio en su área distinta, y no podemos decir que con una disminución en el área existirá aceleración de Fermi. Lo que se puede decir, y lo comprobaremos con los resultados numéricos, es la aparición de la aceleración de Fermi siempre cuando una de las paredes se dirija hacia el interior independientemente de como varía el área o la dirección de la partícula y el resto de paredes. Existen configuraciones donde no se vea la aceleración de Fermi, pero son aquellas donde la partícula apenas colisiones con alguna de las paredes móviles (p.e. Colisiones en una única dirección contra paredes paralelas cuya distancia se mantenga constante y las demás no se dirijan hacia el interior).
+\textcolor{green!70!black}{
+Estos resultados muestran lo que se conoce como la Aceleración de Fermi. Esta aceleración fue estudiada por Enrico Fermi en los rayos cósmicos buscando una explicación del origen de la alta velocidad observada en las partículas cargadas. Su propuesta original fue la reflexión de las partículas con campos magnéticos la principal causa del aumento de las velocidades.} 
+
+\vspace{3mm}
+
+\textcolor{green!70!black}{
+En este trabajo se busca estudiar esa misma aceleración pero en recintos cerrados donde la velocidad se ve modificada por la colisión de contra las paredes de manera sucesiva. Para ello se introduce la suposición de la aparición de esta aceleración en aquellos billares cuando la distancia entre paredes, si hablamos de una dimneisón o el área va en disminución. Además los resultados obtenidos pueden dar lugar a ideas que permitan dentro de nuestro desarrollo tecnológico acelerar las partículas para un mejor estudio del universo.} 
 
 \section{Colisión inelástica}
 
@@ -384,4 +389,4 @@ Si volvemos al caso elástico con \( \epsilon = 1 \) obtenemos el mismo resultad
 
 Los diagramas \ref{fig:Cobweb_inelastics} muestran como el valor dado por \ref{eq:Solucion_cobweb_inelastica_valor} siempre es atractivo, es decir, cualquier condición inicial va a terminar con la velocidad máxima dada.
 
-%\end{document}
+\end{document}
