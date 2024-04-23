@@ -7,7 +7,7 @@
 
 \chapter{Resultados numéricos}
 
-Para diversos casos donde las paredes se mueven mover o no, se va realizar la simulación de un partícula en el interior de un billar rectangular. Para ello el procedimiento es usar el código creado \cite{MiCodigo} \textcolor{blue}{Referenciar código mio} para \( 10^3 \) partículas, no interactuantes entre sí. De este modo es similar a realizar una simulación de un gas ideal donde cada partícula inicia con una velocidad y posición distinta al resto dentro del mismo recinto. Con los datos obtenidos se puede obtener la velocidad media tras cada colisión y comprobar la existencia de la aceleración de Fermi.
+Para diversos casos donde las paredes se mueven mover o no, se va realizar la simulación de un partícula en el interior de un billar rectangular. Para ello el procedimiento es usar el código creado \cite{MiCodigo} para \( 10^3 \) partículas, no interactuantes entre sí. De este modo es similar a realizar una simulación de un gas ideal donde cada partícula inicia con una velocidad y posición distinta al resto dentro del mismo recinto. Con los datos obtenidos se puede obtener la velocidad media tras cada colisión y comprobar la existencia de la aceleración de Fermi.
 
 \begin{figure}[H]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -27,11 +27,11 @@ Para diversos casos donde las paredes se mueven mover o no, se va realizar la si
 \end{figure}
 
 
-Los billares que interesan simular son aquellos que tienen al menos una de las paredes con velocidad no nula, ya que, es así cuando la velocidad de la partícula se ve modificada. Además para realizar una mejor comparación vamos a separar los casos donde la partícula se encuentra en un espacio de una dimensión y el de dos dimensiones, comparando ambas teorías en sus correspondiente dimensión, y por otro lado que ocurre cuando las colisiones no son totalmente elásticas.
+Los billares que interesan simular son aquellos que tienen al menos una de las paredes con velocidad no nula, ya que, es así cuando la velocidad de la partícula \cambios{cambia de valor.} Además para realizar una mejor comparación vamos a separar los casos donde la partícula se encuentra en un espacio de una dimensión y el de dos dimensiones, comparando ambas teorías en sus correspondiente dimensión, y por otro lado que ocurre cuando las colisiones no son totalmente elásticas.
 
 \section{Caso unidimensional}
 
-Nos situamos en un espacio donde las partículas están confinadas entre las paredes de un billar rectangular, y donde su movimiento está restringido a la línea recta que une dos paredes paralelas. Con esta restricción y la posibilidad de que esas paredes paralelas puedan moverse sobre esa misma línea vamos a ver si los resultados numéricos afirman la teoría.
+Nos situamos en un espacio donde las partículas están confinadas entre las paredes de un billar rectangular, y su movimiento está restringido a la línea recta que une dos paredes paralelas. Con esta restricción y la posibilidad de que esas paredes paralelas puedan moverse sobre esa misma línea vamos a ver \cambios{la concordancia de los resultados numéricos con la teoría.}
 
 \vspace{3mm}
 
@@ -39,7 +39,7 @@ Con estas condiciones vamos a simular situaciones donde la distancia \( d(t) \) 
 
 \subsection{Clasico}
 
-Según la teoría desarrollada en el capítulo anterior cuando al menos una de las paredes se mueve de forma que su movimiento tiende a aumentar el área del billar (en este caso la distancia entre las paredes se ve aumentada) entonces la velocidad disminuye. Esto se ve también en las simulaciones (Figura \ref{fig:clasico_1D_A}) llegando además a una velocidad donde la partícula ve modificada su velocidad hasta una menor que la velocidad de la pared a la que se dirige.
+Siguiendo la teoría desarrollada en el capítulo anterior cuando al menos una de las paredes se mueve de forma que su movimiento tiende a aumentar el área del billar (en este caso la distancia entre las paredes se ve aumentada) entonces la velocidad disminuye. Esto se ve también en las simulaciones (Figura \ref{fig:clasico_1D_A}) llegando además a una velocidad \cambios{que desciende a un valor inferior a la de la pared con la que busca colisionar.}
 
 \begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -59,7 +59,7 @@ Según la teoría desarrollada en el capítulo anterior cuando al menos una de l
     \label{fig:clasico_1D}
 \end{figure}
 
-Si nos situamos en el caso contrario, donde la distancia entre paredes se ve disminuida, vemos que los resultados son inversos (Figura \ref{fig:clasico_1D_B}). La velocidad tiende hacia el infinito sin aproximarse a un ningún valor al igual que se podía ver en las Cobwebs (Figura \ref{fig:Cobweb_Classic_1D} \textcolor{red}{En otro capitulo}). 
+Si nos situamos en el caso contrario, donde la distancia entre paredes se ve disminuida, vemos que los resultados son inversos (Figura \ref{fig:clasico_1D_B}). La velocidad tiende hacia el infinito sin aproximarse a un ningún valor al igual que se podía ver en las Cobwebs (Figura \ref{fig:Cobweb_Classic_1D}). 
 
 \vspace{3mm}
 
@@ -82,19 +82,19 @@ Es interesante ver también los casos donde las paredes tienen velocidades disti
     \caption{Velocidades medias según la distancia entre paredes con velocidades clásicas.}
 \end{figure}
 
-Se observa como el ampliar o reducir la distancia cambia totalmente el sistema. En el primer caso (Figura \ref{fig:clasico_distancia_cero}) las distancia entre las paredes aumenta lentamente y se ve como es necesario varias colisiones antes de conseguir una velocidad estable. Por el otro lado (Figura \ref{fig:clasico_distancia_infinito}), la distancia se reduce y su velocidad media aumenta tras cada colisión sin llegar a un valor estable, además de tender hacia el infinito. 
+Se observa como el ampliar o reducir la distancia cambia totalmente el sistema. En el primer caso (Figura \ref{fig:clasico_distancia_infinito}) la distancia entre las paredes aumenta lentamente y se ve como es \cambios{necesario hasta 10.000 colisiones antes de conseguir una velocidad estable.} Por el otro lado (Figura \ref{fig:clasico_distancia_cero}), la distancia se reduce y su velocidad media aumenta tras cada colisión \cambios{con tendencia hacia el inifito.}
 
 \vspace{3mm}
 
-Con estas últimas simulaciones se puede afirmar que dado una billar con ambas paredes en movimiento donde las paredes se persiguen es posible encontrar otro billar donde únicamente una donde las paredes sea móvil y obtener los mismos resultados. En el caso que las paredes posean direcciones distintas también será posible encontrar un billar equivalente dado que la velocidad cambia tras cada colisión y sólo es necesario encontrar una velocidad para la pared que tras cada colisión aumente o disminuya la velocidad un factor que queramos. 
+Con estas últimas simulaciones se puede afirmar que dado una billar con ambas paredes en movimiento donde las paredes se persiguen es posible encontrar otro billar donde únicamente una de las paredes sea móvil y obtener los mismos resultados. En el caso que las paredes posean direcciones distintas también será posible encontrar un billar equivalente dado que la velocidad cambia tras cada colisión y sólo es necesario encontrar una velocidad equivalente en la pared para la pared que tras cada colisión aumente o disminuya la velocidad un factor que queramos. 
 
 \subsection{Relativista}
 
-Si nos situamos ahora en el contexto relativista se tiene la restricción para la velociad de la partícula donde no es posible superar la velocidad de la luz, además de haberlo comprobado teóricamente en el capítulo anterior. Realizando las mismas simulaciones pero con velocidades en función de la velocidad de la luz \( u \in [0, 0.5c] \), vemos como los resultados tienen una forma similar a la teoría clásica. Cuando se tiene una pared en reposo y otra con un movimiento con tendencia a aumentar la distancia, la velocidad media disminuye hasta un valor constante (Figura \ref{fig:relatividad_1D_A}). 
+Si nos situamos ahora en el contexto relativista se tiene la restricción para la velocidad de la partícula donde no es posible superar la velocidad de la luz (además de haberlo comprobado teóricamente en el capítulo anterior). Realizando las mismas simulaciones pero con velocidades en función de la velocidad de la luz \( v \in [0, 0.5c] \), vemos como los resultados tienen una forma similar a la teoría clásica. Cuando se tiene una pared en reposo y otra con un movimiento con tendencia a aumentar la distancia, la velocidad media disminuye hasta un valor constante inferior a la velocidad de la pared móvil (Figura \ref{fig:relatividad_1D_A}). 
 
 \vspace{3mm}
 
-El caso opuesto donde las paredes se distancian (Figura \ref{fig:relatividad_1D_B}), se observa también un aumento de la velocidad pero aquí si vemos el límite que toma, el de la velocidad de la luz. Cuando la pared realiza un movimiento ``lento'' no se consigue alcanzar una velocidad casi a la de la luz hasta 3.000 colisiones después, en cambio con una velocidad mayor (10\% el de la luz) apenas se necesitan 20 colisiones. Vemos así la importancia que obtiene la velocidad de las paredes para obtener una velocidad elevada en poco tiempo.
+El caso opuesto donde las paredes se distancian (Figura \ref{fig:relatividad_1D_B}), se observa también un aumento de la velocidad pero aquí si vemos el límite que toma, el de la velocidad de la luz. Cuando la pared realiza un movimiento ``lento'' no se consigue alcanzar una velocidad cercana a la de la luz hasta 3.000 colisiones después, en cambio con una velocidad mayor (\(v = 0.1c\)) apenas se necesitan 20 colisiones. Vemos así la importancia de la velocidad de las paredes para obtener una velocidad elevada en pocas colisiones.
 
 \vspace{3mm}
 
@@ -115,11 +115,11 @@ El caso opuesto donde las paredes se distancian (Figura \ref{fig:relatividad_1D_
     \caption{Velocidades medias según la distancia entre paredes con velocidades relativistas.}
 \end{figure}
 
-Se pueden observar distintos escenarios con ambas paredes móviles. En primer lugar (Figura \ref{fig:relatividad_1D_C}), la distancia entre las paredes aumenta, lo que resulta en una velocidad media descendente hasta que se alcanza una velocidad constante. Posteriormente, cuando la distancia entre las paredes disminuye (Figura \ref{fig:relatividad_1D_C2}), se observa nuevamente un aumento en la velocidad, aproximándose a la velocidad de la luz.
+Se puede también observar distintos escenarios con ambas paredes móviles. En primer lugar (Figura \ref{fig:relatividad_1D_C}), la distancia entre las paredes aumenta con \cambios{una velocidad relativa entre ellas de \( 0.001c \), lo que resulta en una velocidad media descendente hasta que se alcanza una velocidad constante.} En el siguiente gráfico (Figura \ref{fig:relatividad_1D_C2}), cuando la distancia entre las paredes disminuye , se observa nuevamente un aumento en la velocidad, aproximándose a la velocidad de la luz \cambios{tras 3.000 colisiones}. \cambios{Este valor de colisiones es idéntico al obtenido previamente cuando una única pared se movía con una velocidad \( w = 0.001c \), entonces se reafirma el encontrar billares equivalentes.}
 
 \vspace{3mm}
 
-Se puede notar la diferencia que existe entre la rapidez a la que la velocidad crece y decrece. Cuando la distancia aumenta la velocidad perdida en 500 colisiones es de un \( 60\% \) mientras que al disminuir la distancia en el mismo número de colisiones aumenta en un \( 586\% \). Esto hace ver la gran aceleración que se ve producida aún teniendo la tasa de cambio de la distancia en un mismo factor (las paredes interecambian velocidades de un caso a otro). También se puede observar la diferencia del número de colisiones necesarias para llegar a una velocidad estable, 500 colisiones cuando se distancias las paredes frente a 3.000 colisiones cuando se acercan.
+\cambios{Profundizando un poco más en los resultados, se puede notar la diferencia que existe entre la rapidez a la que la velocidad crece y decrece. Cuando la distancia aumenta con una velocidad \( w = 0.001\), la velocidad cambia de \( 0.24c \) a \( 0.01c \) en 500 colisiones, lo que supone un perdida del \( -96\% \). Mientras que al disminuir a esa misma velocidad la distancia, en el mismo número de colisiones la velocidad pasa de \( 0.24c \) a \( 0.63c \) equivalente a un \( +162\% \). Esto hace ver la gran aceleración que se ve producida aún teniendo la tasa de cambio de la distancia en un mismo factor.} También se puede observar la diferencia del número de colisiones necesarias para llegar a una velocidad estable, 500 colisiones cuando se distancias las paredes frente a 3.000 colisiones cuando se acercan.
 
 \begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -144,7 +144,7 @@ Hasta ahora hemos visto como tanto para el caso clásico como para el relativist
 
 \vspace{3mm}
 
-De las distintas formas que pueden suprimir la aceleración vamos a utlizar la pérdida de energía que se produce en cada colisión, así estaríamos ante colisiones inelásticas. Recordemos que esta supresión sólo se aplica al caso relativista, ya que, es el que más interés causa al ser el más cercano a la realidad. Estos casos estudiados teóricamente se pueden ver en las figuras \ref{fig:1D_inelastic_A} y \ref{fig:1D_inelastic_B}. Podemos notar como una colisión casi inelástica reduce drásticamente la velocidad máxima posible de la partícula para una misma velocidad dada.
+De las distintas formas que pueden suprimir la aceleración vamos a utlizar la pérdida de energía que se produce en cada colisión, así estaríamos ante colisiones inelásticas. Recordemos que esta supresión sólo se aplica al caso relativista, ya que, es el que más interés causa al ser el más cercano a la realidad. Estos casos estudiados teóricamente se pueden ver en las figuras \ref{fig:1D_inelastic_A} y \ref{fig:1D_inelastic_B} \cambios{ donde podemos notar como una colisión casi elástica reduce drásticamente la velocidad máxima posible de la partícula para una misma velocidad dada. Para comparar valores, en una colisión con un desvio del \( 1\% \) \( (\epsilon = 0.99) \) en el coeficiente de restitución la velocidad máxima pasa de ser la unidad a 0.1917. Este resultado se diferencia en un \( 80\% \) del caso elástico.}
 
 
 \begin{figure}[H]
@@ -181,7 +181,7 @@ De las distintas formas que pueden suprimir la aceleración vamos a utlizar la p
 
 \subsection{Análisis de los resultados}
 
-Como se ha podido ver las gráficas mostradas se asemejan a funciones contínuas. En los casos donde aparecía la aceleración de Fermi se pueden aproximar a funciones sigmoide
+\cambios{Las gráficas mostradas se asemejan a funciones contínuas en las cuales la forma que tienen se asemeja a una función sigmoide}
 
 \begin{equation}
     f(n) = \dfrac{\beta}{\beta + e^{-n\alpha}}
@@ -200,13 +200,13 @@ donde \( \alpha, \beta, \gamma, \delta \) son constantes a determinar para cada 
     f(n \rightarrow \infty) = \delta
 \end{equation}
 
-\cambios{Entonces, ese primer parámetro corresponde a la velocidad final de la partícula. El parámetro \( \beta \) se atribuye a la tasa de repetición de sucesos, es decir, las veces que la velocidad de la partícula cambia. En caso de que su valor sea infinito el resultado sería el mismo a de paredes estáticas.}
+\cambios{Entonces, ese primer parámetro corresponde a la velocidad final de la partícula. El parámetro \( \beta \) se atribuye a la tasa de repetición de sucesos, es decir, las veces que la velocidad de la partícula cambia. En caso de que su valor sea infinito el resultado sería el mismo al de paredes estáticas.}
 
 \begin{equation}
     \lim_{\beta \rightarrow \infty} f(n) = \delta
 \end{equation}
 
-\cambios{La relación que guarda este parámetro con la velocidad de las paredes es inversamente proporcional \( \beta \propto Kw^-1 \) donde \( K \) es una constante a determinar. Es correcto entonces introducir otro valor que determine el número crítico de sucesos}
+\cambios{La relación que guarda este parámetro con la velocidad de las paredes es inversamente proporcional \( \beta \propto Kw^-1 \) donde \( K \) es una constante a determinar. Es correcto entonces introducir otro valor que determine el número crítico de sucesos (cantidad de veces que la velocidad cambia)}
 
 \begin{equation}
     f(n) = \delta - \gamma \exp\left[ -\beta \left( \dfrac{n}{n_c} \right)^\alpha \right]
@@ -298,9 +298,9 @@ Realizando el mismo procedimiento pero con las paredes, es decir, se simulan par
 
 \vspace{3mm}
 
-Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}) si existe algúna relación que pueda aproximar de manera general el billar. 
+Procediendo del mismo modo pero ahora con las colisiones inelásticas (Figura \ref{fig:ajuste_1D_inelastic}), se busca comprobar si existe alguna relación que pueda aproximar de manera general el billar. 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_1D/1D_A-N1000_fit.pdf}
@@ -335,17 +335,17 @@ Comprobamos que ninguno de los parámetros se ha mantenido igual a los elástico
 
 \section{Caso bidimensional}
 
-Pasemos ahora a un espacio de dos dimensiones donde la partícula puede moverse en ambos ejes y el billar está compuesto por cuatro paredes. A priori los resultados que se esperan obtener son similares a las simulaciones realizadas para una dimensión y la teoría desarrollada, pero esta vez nos interesa si el área disminuye o aumenta.
+Pasemos ahora a un espacio de dos dimensiones donde la partícula puede moverse en ambos ejes y el billar está compuesto por cuatro paredes. A priori los resultados que se esperan obtener son similares a las simulaciones realizadas para una dimensión y la teoría desarrollada, pero esta vez nos interesa ver si el área disminuye o aumenta.
 
 \vspace{3mm}
 
-Las paredes del billar varían su posición según una función lineal, ya que, su velocidad es siempre contante. Eso implica que su área se ve modificada de manera cuadrática y pueden darse varias combinaciones: aumentar-disminuir, disminuir-aumentar, aumentar, disminuir. Es por ello que se podría esperar una variación de la velocidad media de las partículas según la función del área que nos encontremos. 
+Las paredes del billar varían su posición según una función lineal, ya que, su velocidad es siempre constante. Eso implica que su área se ve modificada de manera cuadrática y pueden darse varias combinaciones en la distancia de las paredes: aumentar-disminuir, disminuir-aumentar, aumentar todas, disminuir todas. Es por ello que se espera una variación de la velocidad media de las partículas según la función del área que nos encontremos. 
 
 \subsection{Clasico}
 
 Nos situamos en un espacio donde no existe una velocidad límite definida y que se va a simular con hasta 10.000 colisiones.
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_A-N1000.pdf}
@@ -361,7 +361,7 @@ Nos situamos en un espacio donde no existe una velocidad límite definida y que 
     \label{fig:2D_A-N1000_con_Area}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_B-N1000.pdf}
@@ -381,15 +381,17 @@ En los casos donde el área aumenta (Figura \ref{fig:2D_A-N1000_con_Area}) obten
 
 \vspace{3mm}
 
-Con estos resultados ya se podría ver una relación inversa entre el área y la velocidad media, pero encontrar una función que las relacione es complicado dado que el área al venir dado por 
+Con estos resultados ya se podría ver una relación inversa entre el área y la velocidad media, pero encontrar una función que las relacione es complicado dado que el área viene dado por 
 
 \begin{equation}\label{eq:area}
     A(t) = \left[ a_0 + t (w_R - w_L) \right] \cdot \left[ b_0 + t (w_T - w_B) \right]
 \end{equation}
 
-donde \( w_i \) son las velocidades de las paredes (Top, Bottom, Left, Right en inglés), \( a_0 \) es la distancia inicial entre las paredes horizontales, y \( b_0 \) la distancia inicial entre las verticales, tendrá la forma de una parábola y la velocidad media puede tener la forma de una función lineal en el caso de aumentar, o de una función exponencial decreciente cuando su velocidad disminuye. Hasta ahora se han analizado billares cuadrados, pero la pregunta es si los resultados son generales para cualquier billar con forma de cuadrilátero. La repsuesta se puede responder fijándonos en las figuras \ref{fig:2D_AR-N1000_con_Area} y \ref{fig:2D_BR-N1000_con_Area}. 
+donde \( w_i \) son las velocidades de las paredes (Top, Bottom, Left, Right en inglés), \( a_0 \) es la distancia inicial entre las paredes horizontales, y \( b_0 \) la distancia inicial entre las verticales. Tendrá la forma de una parábola y la velocidad media puede tener la forma de una función lineal en el caso de aumentar, o de una función exponencial decreciente cuando su velocidad disminuye. Hasta ahora se han analizado billares cuadrados, pero la pregunta es si los resultados son generales para cualquier billar con forma de cuadrilátero. La respuesta se puede responder fijándonos en las figuras \ref{fig:2D_AR-N1000_con_Area} y \ref{fig:2D_BR-N1000_con_Area}. 
 
-\begin{figure}[H]
+\vspace{3mm}
+
+\begin{figure}[h!]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_AR-N1000.pdf}
@@ -405,7 +407,7 @@ donde \( w_i \) son las velocidades de las paredes (Top, Bottom, Left, Right en 
     \label{fig:2D_AR-N1000_con_Area}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_BR-N1000.pdf}
@@ -421,24 +423,29 @@ donde \( w_i \) son las velocidades de las paredes (Top, Bottom, Left, Right en 
     \label{fig:2D_BR-N1000_con_Area}
 \end{figure}
 
-Como se puede ver los resultados tienen la misma forma para un mismo área inicial, es decir, la velocidad media no depende de la forma que vaya tomando el billar sino del área que tenga. Lo mismo ocurrirá si tomamos billares con todos las paredes moviéndose y de cualquier forma cuadrilátera (Figura \ref{fig:2D_C-N1000}). En esta última figura se puede apreciar como uno de los billares simulados tiene dos paredes paralelas moviéndose a la misma velocidad y otras dos paredes que aumentan el área. Esto provoca lo visto anteriormente, la velocidad media de las partículas desciende hasta un valor pero llega un momento donde únicamente colisionará con las paredes de misma velocidad paralelas, y las partículas oscilarán entre un valor de velocidad finito. 
+Como se puede ver los resultados tienen la misma forma para un mismo área inicial, es decir, la velocidad media no depende de la forma que vaya tomando el billar sino del área que tenga. Lo mismo ocurrirá si tomamos billares con todas las paredes moviéndose y de cualquier forma cuadrilátera (Figura \ref{fig:2D_C-N1000}). En esta última figura se puede apreciar como uno de los billares simulados (color naranja) tiene dos paredes paralelas moviéndose a la misma velocidad y otras dos paredes que aumentan el área. \cambios{Esto provoca que una de las componentes de la velocidad se reduzca a un valor inferior al de las pareres con velocidad en la misma dirección y colisione repetidamente con las paredes paralelas de misma velocidad.}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.55]{images/Simulaciones/Clasico_2D/2D_C1-N1000.pdf}
-    \caption{Resultados obtenidos para un billar con área siempre en aumento. El área no muestra el número de colisiones dado que se representa por el tiempo simulado durante las 10.000 colisiones.}
+    \caption{Resultados obtenidos para un billar con área siempre en aumento.}
     \label{fig:2D_C-N1000}
 \end{figure}
 
-Con la ecuación \ref{eq:area} vemos entonces que es posible definir una velocidad de las paredes equivalente \( w_H =  w_R - w_L \) y \( w_V = w_T - w_B \), con lo que se conseguiría un billar donde sólo se desplazaran dos paredes. Dentro de este billar equivalente, si al menos una de ellas se mueve hacia el interior del billar, en algún momento esa pared colisionará con la partícula lo que provocaría el aumento de su velocidad. Para verlo mejor imaginemos que una partícula con la única componente de velocidad no nula es la vertical donde la pared superior (Top) se aleja del centro, y la pared izquierda se dirige hacia el interior. Si la pared no se moviera, la partícula perdería velocidad hasta no colisionar con ninguna de las paredes, pero al no ser el caso, en algún momento la partícula obtendrá una velocidad no nula en la componente horizontal originando varias colisiones con las paredes laterales. Además, la partícula solamente colisionará con los muros laterales dado que seguirá perdiendo velocidad en la componente vertical pero no así su velocidad total, la cual se verá aumentada tras cada colisión con el muro izquierdo.
+Con la ecuación \ref{eq:area} vemos entonces que es posible definir una velocidad de las paredes equivalente \( {w_H =  w_R - w_L} \) y \( w_V = w_T - w_B \), con lo que se conseguirá un billar donde sólo se desplazaran dos paredes. Dentro de este billar equivalente, si al menos una de ellas se mueve hacia el interior del billar, en algún momento esa pared colisionará con la partícula lo que provocaría el aumento de su velocidad. Para verlo mejor imaginemos que una partícula la única componente de velocidad no nula sea vertical donde la pared superior (Top) se aleja del centro, y la pared izquierda (Left) se dirige hacia el interior. Si la pared no se moviera, la partícula perdería velocidad hasta no colisionar con ninguna de las paredes, pero al no ser el caso, en algún momento la partícula obtendrá una velocidad no nula en la componente horizontal originando varias colisiones con las paredes laterales. Además, la partícula solamente colisionará con los muros laterales dado que seguirá perdiendo velocidad en la componente vertical pero no así su velocidad total, la cual se verá aumentada tras cada colisión con el muro izquierdo.
 
 \vspace{3mm}
+\newpage
 
 Con este ejemplo se afirma que en el caso de tener al menos una pared con movimiento hacia el interior del billar y esta posea una velocidad mayor a su paralela, la partícula verá aumentada su velocidad total y se verá una acelaración de Fermi. Es importante notar que la pared que se dirige al interior debe tener una velocidad mayor a su pared paralela por el posible caso mostrado en la figura \ref{fig:clasico_distancia_infinito}, donde dos paredes paralelas se dirigían al centro y otra hacia el exterior ocasionando una disminución de la velocidad.
+
+\newpage
 
 \subsection{Relativista}
 
 De nuevo nos adentramos en un espacio relativista que sigue las ecuaciones \ref{eq:velocidad_paralela} y \ref{eq:velocidad_perpendicular} \textcolor{red}{En otro capítulo}. Las velocidades de las partículas seguirán siendo iguales que en el caso unidimensional, es decir, los módulos de la velocidad de cada partícula estarán comprendidos entre cero y la mitad de la velocidad de la luz. Además aprovechando los resultados del apartado anterior, los billares usados serán tanto rectangulares como cuadrados dado que los resultados no se verán modificados.
+
+\vspace{3mm}
 
 \begin{figure}[h]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -456,9 +463,9 @@ De nuevo nos adentramos en un espacio relativista que sigue las ecuaciones \ref{
     \label{fig:2DR_A-N1000_con_Area}
 \end{figure}
 
-En el caso de observar un aumento de área (Figura \ref{fig:2DR_A-N1000_con_Area}) se puede observar que sigue el mismo patrón observado en el caso clásico. Esto es de esperar dado que a velocidades bajas la teoría relativista y clásica es practicamente la misma. En cambio, cuando tenemos velocidades altas (Figura \ref{fig:2DR_BR-N1000_con_Area}) sí podemos ver como se aproxima a una velocidad límite igual a la de la luz. Además se puede apreciar la gran diferencia de colisiones necesarias para llegar a un valor proximo al de la luz. 
+\cambios{Se aprecia en la Figura \ref{fig:2DR_A-N1000_con_Area} como el aumento del área provoca un aumento en la velocidad la igual que pasaba en el resultado clásico.}. Cuando tenemos velocidades cercanas a la luz, \( v = 0.4c \) (Figura \ref{fig:2DR_BR-N1000_con_Area}) podemos ver como se aproxima a una velocidad límite igual a la de la luz. \cambios{Además se puede apreciar la gran diferencia de colisiones necesarias entre una velocidad de paredes iguales a \( w = 0.001 \) necesitando algo más de 1.000 colisiones, y \( w = 0.01 \) que apenas hacen falta 100 colisiones para llegar a un valor proximo al de la luz. }
 
-\begin{figure}[H]
+\begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Relatividad_2D/2D_BR-N1000.pdf}
@@ -476,6 +483,7 @@ En el caso de observar un aumento de área (Figura \ref{fig:2DR_A-N1000_con_Area
 
 Para los billares rectangulares se tendrán los mismos resultados reafirmando así la importancia del área y no de la geometría del billar. 
 
+
 \subsection{Colisión inelástica}
 
 Las colisiones inelásticas simuladas serán también usando la teoría relativista, ya que es la desarrollada en la expresión \ref{eq:Solucion_cobweb_inelastica} \textcolor{red}{En otro capítulo}. El procedimiento es el mismo que el usado en la subsección anterior con la diferencia de tener un coeficiente de restitución menor a la unidad y aplicarlo a los casos donde se observa al aceleración de Fermi. Se debe de tener en cuenta que en un espacio de dos dimensiones tenemos dos componentes de velocidad, y por lo tanto no se obtendrá una solución precisa para la velocidad máxima permitida. La partícula verá modificada su velocidad paralela y perpendicular tras cada colisión siendo amabas intercambiables, es decir, si colisiona con la componente \( x \) será la paralela pero en la siguiente colisión puede que colisiones con la \( y \), y la componente \( x \) sea ahora la perpendicular. Es por ello que obtener una solución analítica es bastante complicado en caso de que existiera. 
@@ -490,7 +498,7 @@ En este trabajo nos enfocaremos en usar los límites de la velocidad que podemos
      0 &\leq u_\perp^2 \nonumber
 \end{align}
 
-\begin{figure}[H]
+\begin{figure}[!h]
     \begin{subfigure}[b]{0.5\textwidth}
         \centering
         \includegraphics[scale=0.55]{images/Simulaciones/Inelastico_2D/2D_A-N1000.pdf}
@@ -506,7 +514,7 @@ En este trabajo nos enfocaremos en usar los límites de la velocidad que podemos
     \label{fig:2DR_A-N1000_Ine}
 \end{figure}
 
-Una ligera modificación del coeficiente de restitución (Figura \ref{fig:2DR_A-N1000_Ine}) genera una alta disminución en la velocidad máxima que se puede obtener. Estos resultados se dan cuando la partícula consigue colisionar con ambas componentes de su velocidad, de este modo ambas llegan a una velocidad límite (Figura \ref{fig:2DR_A-N1000_Ine_velocidades}).
+\cambios{También ocurre que una ligera modificación en el coeficiente de restitución provoca que la velocidad máxima posible decrezca, al igual que en el caso unidimensional. Esto se puede ver en la figura figura \ref{fig:2DR_A-N1000_Ine} donde la velocidad máxima es de \( 0.77c \) (un \( 23\% \) menor con un cambio del \( 1\%  \) en \( \epsilon \)).} Estos resultados se dan cuando la partícula consigue colisionar con ambas componentes de su velocidad, de este modo ambas llegan a una velocidad límite (Figura \ref{fig:2DR_A-N1000_Ine_velocidades}).
 
 \begin{figure}[H]
     \begin{subfigure}[b]{0.5\textwidth}
@@ -530,6 +538,6 @@ Como se ha comprobado los resultados difieren ligeramente del caso unidimensiona
 
 \vspace{3mm}
 
-La forma de las gráficas obtenidas en la sección relativista en dos dimensiones son exactamentes iguales a las ya analizadas en una dimensión, es por ello que ese análisis de resultados es válido para esta dimensión también. 
+La forma de las gráficas obtenidas en la sección relativista en dos dimensiones son exactamentes iguales a las ya analizadas en una dimensión, es por ello que \cambios{ un análisis de estos resultados obtendrá los mismos reusltados que los ya estudiados en el caso unidimensional}
 
 \end{document}
