@@ -1,0 +1,89 @@
+%\documentclass[11pt, spanish]{book}
+%\usepackage{MiEstilo}
+%
+%\begin{document}
+%
+\chapter{Introducción}
+
+El 15 de octubre de año 1991 se detectó una partícula cósmica con la mayor energía registrada, la llamada \textit{Oh-My-God particle}\cite{OhMyParticle}. Previo a esta observación ya se habían obtenido otras observaciones y desarrollado ideas de su posible causa.
+
+\vspace{3mm}
+
+Unos 40 años antes se inició a desarrollar una teoría cuyo autor inicial fue Fermi \cite{Fermi} en su estudio de los rayos cósmicos donde buscaba dar explicación al origen de la alta velocidad observada en partículas cargadas. Su propuesta original fue la reflexión de las partículas con campos magnéticos la principal causa del aumento de las velocidades. De este modo, la aceleración se define como el gran aumento de energía que adquiere una partícula tras varias interacciones sucesivas con su entorno. 
+
+\vspace{3mm}
+
+El primer estudio realizado se trata del modelo Fermi-Ulam \cite{FermiUlam} que consiste en una partícula que colisiona elásticamente con una pared estática y otra en movimiento. Diversos artículos recientes han tratado de buscar una explicación a la aparición de esta aceleración en billares cuyas fronteras se encuentran en movimiento \cite{EnergyDifussion,SuppressingFermi, SuppressingFermi2, ReferenciaProfe, NonAutonomous, ExponentialEnergy, GeneralBilliard, GeneralBilliard2} en recintos con formas circulares e incluso compuestos. 
+
+\vspace{3mm}
+
+En el presente trabajo se busca estudiar dicha aceleración dentro de recintos cerrados llamados billares en espacios de una y dos dimensiones, donde la partícula colisiona elásticamente con sus paredes impenetrables y replican la acción de los campos magnéticos mencionados sobre la partícula. Dentro del billar la partícula puede definirse con un hamiltoniano
+
+\begin{align}
+    H = \dfrac{p^2}{2m} + V & & V = \begin{cases}
+        0 \text{ en el interior de } \Omega \\
+        \infty \text{ en el exterior de } \Omega
+    \end{cases}
+\end{align}
+
+
+Con esta definición de hamiltoniano no podemos describir totalmente el movimiento de la partícula, ya que en la frontera del billar no está definido (se hace infinito). Entre colisiones se tendrá el movimiento de una partícula libre sin estar sometida a ninguna fuerza pero al llegar a la frontera, la partícula colisionará con la pared y la dirección de la partícula será modificada y además, según las condiciones del billar, su valor. 
+
+\vspace{3mm}
+
+En el caso de tener paredes en movimiento se puede seguir usando la misma definición de hamiltoniano y potencial, pero ahora se debe de tener en cuenta que la geometría del billar depende del tiempo \( \Omega(t) \).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.8]{images/billar_generico.pdf}
+    \caption{Billar genérico}
+    \label{fig:bilar_generico}
+\end{figure}
+
+
+\section{Objetivos}
+
+En este trabajo se van a estudiar billares rectangulares en una y dos dimensiones (Ver figura \ref{fig:billar_rectangular}) con diversas condiciones en sus paredes donde la velocidad de estas será siempre constante.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.35]{images/billar_rectangular_1D.pdf}
+        \caption{Billar en una dimensión}
+        \label{fig:billar_rectangular_1D}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=0.35]{images/billar_rectangular.pdf}
+        \caption{Billar en dos dimensiones}
+        \label{fig:billar_rectangular_2D}
+    \end{subfigure}
+    \caption{Billares rectangulares.}
+        \label{fig:billar_rectangular}
+\end{figure}
+
+Para el estudio se van a deducir las ecuaciones que describen la dinámica de la partícula usando la relatividad especial y desarrollar a su vez un código (ver anexo) que permita simular correctamente el billar.
+
+\vspace{3mm}
+
+Dentro de este estudio se pretende analizar la suposición de la influencia de la distancia o área de los billares en la presencia o no de la aceleración de Fermi. 
+
+\vspace{3mm}
+
+Este tema es de especial interés dado la posibilidad de entender mejor la dinámica de partículas relativistas y su posible réplica en entornos controlados que permitan dentro de nuestro desarrollo tecnológico acelerar las partículas para un mejor estudio del universo. 
+
+\section{Estructura del trabajo}
+
+Este trabajo se compone de dos capítulos principales que desarrollan la parte teórica y experimental. En el primero de estos, se van a encontrar las ecuaciones de movimiento relativistas de una partícula contenida en una billar rectangular en ambas dimensiones que permita realizar un estudio de estabilidad, límites, etc.
+
+\vspace{3mm}
+
+Posteriormente, se realizarán diversas simulaciones que permitan estudiar en profundidad cada billar y la presencia de dicha aceleración. Además, se implementará una condición que busca suprimir la aceleración de Fermi. 
+
+\vspace{3mm}
+
+Finalmente se concluye con un resumen de los resultados obtenidos y la veracidad de las suposición realizada.
+
+%\end{document}
