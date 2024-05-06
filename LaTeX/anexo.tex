@@ -1,0 +1,207 @@
+\chapter*{Anexo}
+
+Este anexo pretende explicar los aspectos más destacados del código desarrollado en Python y dar una idea de como se han realizado las simulaciones.
+
+\vspace{3mm}
+
+El código se separa en 4 partes donde cada una tiene su función
+
+\begin{itemize}
+    \item obstacles.py
+    \begin{itemize}
+        \item Contiene los objetos que definen la partícula y pared.
+    \end{itemize}
+    \item physics.py
+    \begin{itemize}
+        \item Contiene las funciones que permiten encontrar el siguiente obstáculo con el que colisionará la partícula, además del momento en el que lo hará.
+    \end{itemize}
+    \item simulation.py
+    \begin{itemize}
+        \item Aquí es donde se simulan los billares con las condiones dadas desde alto nivel. 
+    \end{itemize}
+    \item plotter.py
+    \begin{itemize}
+        \item Se encarga de esbozar las trayectorias de la partícula y paredes, además de reportar la velocidad tras cada iteración de manera gráfica.
+    \end{itemize}
+\end{itemize}
+
+\section*{Obstacles.py}
+
+Define dos clases, una para la partícula 
+
+\begin{lstlisting}[breaklines]
+    class Ball:
+    """ A ball which is going to move in the billiard"""
+
+    def __init__(self, pos, vel, radius=0) -> None:
+        """
+         Args:
+            pos: Position of the ball
+            vel: Velocity of the ball.
+            radius: Radius pf the ball. Default: 0
+           """
+        self.pos = np.asarray(pos)
+        self.velocity = np.asarray(vel)
+        self.radius = radius
+\end{lstlisting}
+
+y otra para las paredes
+
+\begin{lstlisting}[breaklines]
+    class InfiniteWall:
+    """ An infinite wall where balls can collide only from one side. """
+
+    def __init__(self, start_point, end_point, velocity, side, relativistic=False, restitution=1) -> None:
+        """
+         Args:
+            start_point: A point of the wall.
+            end_point: A point of the wall.
+            velocity: Velocity of the wall. If relativistic is True, velocity must be a fraction of the speed of light
+            side: Position of the wall: left, right, top, bottom.
+            relativistic: True if wall is relativistic. Default: False
+            restitution: Restitution of the ball. Default: 1.
+                    elastic collision -> restitution = 1
+                    inelastic collision -> restitution <= 0
+           """
+        self.start_point = np.asarray(start_point)
+        self.end_point = np.asarray(end_point)
+        self.velocity = np.asarray(velocity)
+        self.side = side
+        self.relativistic = relativistic
+        self.restitution = restitution
+\end{lstlisting}
+
+\vspace{3mm}
+
+Dentro de la clase \textit{InfiniteWall} se calcula la normal de la pared para que se tenga un correcto posicionamiento y una función que implementa las ecuaciones \ref{eq:velocity_change1} y \ref{eq:velocity_change2} 
+
+\begin{lstlisting}[breaklines]
+def relativistic_velocity(self, vel):
+    """ Calculate the velocity of a ball after colliding with the wall when relativistic mode is enabled
+
+    Args:
+        vel: Velocity of the ball
+
+    Returns:
+        tuple: velocity of the ball after impact
+    """
+
+    if self.side == "left" or self.side == "right":
+        # wall_velocity = self.velocity[0]
+        # denominator = 1 - 2 * wall_velocity * vel[0] + wall_velocity * wall_velocity
+        # velocity_x = (-vel[0] + 2 * wall_velocity - vel[0] * wall_velocity * wall_velocity) / denominator
+        # velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
+        wall_velocity = self.velocity[0]
+        denominator = 1 - (1 + self.restitution) * wall_velocity * vel[
+            0] + wall_velocity * wall_velocity * self.restitution
+        velocity_x = (-vel[0] * self.restitution + (1 + self.restitution) * wall_velocity - vel[
+            0] * wall_velocity * wall_velocity) / denominator
+        velocity_y = (1 - wall_velocity * wall_velocity) * vel[1] / denominator
+    else:
+        wall_velocity = self.velocity[1]
+        denominator = 1 - (1 + self.restitution) * wall_velocity * vel[
+            1] + wall_velocity * wall_velocity * self.restitution
+        velocity_y = (-vel[1] * self.restitution + (1 + self.restitution) * wall_velocity - vel[
+            1] * wall_velocity * wall_velocity) / denominator
+        velocity_x = (1 - wall_velocity * wall_velocity) * vel[0] / denominator
+
+    return velocity_x, velocity_y
+\end{lstlisting}
+
+\section*{Physics.py}
+
+La función principal de este módulo es la que encuentra el tiempo que tarda la partícula en colisionar con todos los muros, y junto con otra llamada \textit{calc\textunderscore next\textunderscore obstacle} (devuelve los tiempos en orden ascendente) determina la pared con la que colisionará la partícula. Aquellos casos donde no colisione nunca devuelve un timepo infinito.
+
+\begin{lstlisting}[breaklines]
+def time_of_impact_with_wall(pos1, vel1, radius, posW, obstacle):
+    """ Calculate when the ball collide with vertical or horizontal wall.
+
+    Args:
+        pos1: Position of the ball.
+        vel1: Velocity of the ball.
+        radius: Radius of the ball.
+        posW: Position of the wall.
+        obstacle: Obstacle
+
+    Returns:
+        Time of the impact, it is infinite if no impact.
+
+    """
+
+    _normal = obstacle._normal
+    velW = obstacle.velocity
+    side = obstacle.side
+
+    if _normal[0] != 0:
+        # Vertical wall
+        if vel1[0] == velW[0]:
+            # Same velocity, never collide
+            return INF
+        if side == "left":
+            t = (radius + posW[0] - pos1[0]) / (vel1[0] - velW[0])
+        else:
+            t = (-radius + posW[0] - pos1[0]) / (vel1[0] - velW[0])
+    else:
+        # Horizontal wall
+        if vel1[1] == velW[1]:
+            # Same velocity, never collide
+            return INF
+        if side == "top":
+            t = (-radius + posW[1] - pos1[1]) / (vel1[1] - velW[1])
+        else:
+            t = (radius + posW[1] - pos1[1]) / (vel1[1] - velW[1])
+
+    if t < 1e-9:
+        # they don't collide
+        return INF
+    else:
+        return t
+\end{lstlisting}
+
+\section*{Simulation.py}
+
+Se compone de casi 500 líneas de código donde lo más destacabla resaltar sea el trozo donde obtiene la pared con la que colisiona, la comprobación de no colisionar con una esquina y la actualización de los valores de la partícula para la siguiente colisión.
+
+\begin{lstlisting}[breaklines]
+
+times_obstacles = calc_next_obstacle(ball.pos, ball.velocity, ball.radius, obstacles)
+
+t = times_obstacles[0][0]
+
+if t == self.INF:
+    # print(f"No more collisions after {i} collisions")
+    break
+
+# Update properties of the ball
+if times_obstacles[1][0] - times_obstacles[0][
+    0] < 1e-9:  # Time difference is to close, it collides with a corner
+    if times_obstacles[0][1].side == "top" or times_obstacles[0][1].side == "bottom":
+        new_ball_velocity_Y = times_obstacles[0][1].update(vel1)[1]
+        new_ball_velocity_X = times_obstacles[1][1].update(vel1)[0]
+    else:
+        new_ball_velocity_X = times_obstacles[0][1].update(vel1)[0]
+        new_ball_velocity_Y = times_obstacles[1][1].update(vel1)[1]
+    vel1 = (new_ball_velocity_X, new_ball_velocity_Y)
+    pos_ball = ball.pos + np.multiply(ball.velocity, t)
+    ball.pos = pos_ball
+    ball.velocity = vel1
+else:
+    new_ball_velocity = times_obstacles[0][1].update(vel1)
+    pos_ball = ball.pos + np.multiply(ball.velocity, t)
+    vel1 = new_ball_velocity
+    ball.pos = pos_ball
+    ball.velocity = vel1
+\end{lstlisting}
+
+Además, este módulo realiza las funciones de guardado de cada posición y velocidad de la simulación, llamar al módulo para graficar y calcula el área en cada colisión.
+
+\vspace{3mm}
+
+Para realizar la simulación correctamente se crea un script donde se importen la librería necesaria
+
+\begin{lstlisting}[breaklines]
+from Billiards.simulation import Simulation2D
+import numpy as np
+\end{lstlisting}
+
+y de definan las propiedades de las paredes, el número de iteraciones y el número de partículas a simular.

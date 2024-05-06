@@ -1,14 +1,14 @@
-\documentclass[11pt, spanish]{book}
-\usepackage{MiEstilo}
-
-
-\begin{document}
-
-\chapter{Partícula en un billar}
+%\documentclass[11pt, spanish]{book}
+%\usepackage{MiEstilo}
+%
+%
+%\begin{document}
+%
+\chapter{Dinámica de la partícula en el billar}
 
 \section{Billar clásico}
 
-Situándonos en la teoría clásica vamos a suponer un billar cuyas paredes tienen masa infinita y donde las colisiones producidas son totalmente elásticas. Procedamos a ver como se ve modificada la velocidad de la partícula en el momento de la colisión.
+Situándonos en la teoría clásica vamos a suponer un billar cuyas paredes tienen masa infinita y donde las colisiones producidas son totalmente elásticas. Procedamos a ver como se modifica la velocidad de la partícula en el momento de la colisión.
 
 \vspace{3mm}
 
@@ -120,15 +120,14 @@ En nuestro caso tenemos así las expresiones
     p^\mu_2 &= \left( E_2/c, \: c\sqrt{\gamma^2_2 -1} \right)   &\bar{p}^{\:\mu}_2 = \left( \bar{E_2}/c, \: c\sqrt{\bar{\gamma}^2_2 -1}  \right) \nonumber
 \end{align}
 
-donde \( \bar{p}^{\:\mu}_i \) son los 4-momentum tras la colisión. Dado que estamos considerando colisiones totalmente elásticas el 4-momentum se conserva, y podemos de este modo obtener la velocidad de la partícula. El sistema de ecuaciones a resolver es
+donde \( \bar{p}^{\:\mu}_i \) son los 4-momentum tras la colisión. Dado que estamos considerando colisiones totalmente elásticas el 4-momentum se conserva, y podemos obtener la velocidad de la partícula. El sistema de ecuaciones a resolver es
 
 \begin{equation}
     p^\mu_1 + p^\mu_2 = \bar{p}^{\:\mu}_1 + \bar{p}^{\:\mu}_2
 \end{equation}
-
 \begin{align}
         \begin{split}
-            m_1\gamma_1 + m_2 &= m_1\bar{\gamma}_1 + m_2\bar{\gamma}_2 \\
+            m_1\gamma_1 + m_2 &= m_1\bar{\gamma}_1 + m_2\bar{\gamma}_2 \\[1mm]
         0 + c\sqrt{\gamma^2_2 -1} &= c\sqrt{\bar{\gamma}^2_1 -1} + c\sqrt{\bar{\gamma}^2_2 -1}
         \end{split}
 \end{align}
@@ -151,7 +150,7 @@ En este nuevo sistema de referencia la posición y tiempo son
     t_S &= \gamma(t - \dfrac{xw}{c^2})
 \end{align}
 
-que tomando derivadas y dividiendo se obtiene como se trnasforma la velocidad
+que tomando derivadas y dividiendo se obtiene como se transforma la velocidad
 
 \begin{align}
     dx_S &= \gamma\left( dx - w dt \right) \nonumber\\
@@ -182,7 +181,7 @@ El resultado anterior permanece en consonancia con la teoría clásica que se ha
     \label{fig:muro_vertical}
 \end{figure}
 
-La posición de la partícula en el sistema de referencia \( S_0 \) viene descrita por el vector \( \mathbf{r} \) cuyas componente, al igual que la velocidad, serán paralelas o perpendiculares a la normal de la pared. El momento es transferido únicamente en la dirección perpendicular al muro, es decir, la única componente que se ve modificada es la paralela a la normal. 
+La posición de la partícula en el sistema de referencia \( S_0 \) viene descrita por el vector \( \mathbf{r} \) cuyas componentes, al igual que la velocidad, serán paralelas o perpendiculares a la normal de la pared. El momento es transferido únicamente en la dirección perpendicular al muro, es decir, la única componente que se ve modificada es la paralela a la normal. 
 
 
 \vspace{3mm}
@@ -206,7 +205,7 @@ Derivando cada componente de \ref{eq:transformacion_2d} y dividiendo como se ha 
     \dfrac{dr_{\perp, S}}{dt_S} = u_{\perp,S} &= u_\perp\dfrac{\sqrt{1 - {(w/c)}^2}}{1 - u_\parallel w_\parallel / c^2} \label{eq:velocity_change2}
 \end{align}
 
-Tras la colisón en este sistema de referencia \( S \) con la pared en reposo, las componentes se ven modificadas de acuerdo a \( \bar{u}_{\parallel, S} = -u_{\parallel, S} \) y \( \bar{u}_{\perp, S} = u_{\perp, S} \). De este modo volviendo al sistema de referencial inicial \( S_0 \) concluimos que las nuevas componentes de la velocidad para la partícula son
+Tras la colisón en este sistema de referencia \( S \) con la pared en reposo, las componentes se ven modificadas de acuerdo a \( \bar{u}_{\parallel, S} = -u_{\parallel, S} \) y \( \bar{u}_{\perp, S} = u_{\perp, S} \). Entonces volviendo al sistema de referencial inicial \( S_0 \) concluimos que las nuevas componentes de la velocidad para la partícula son
 
 \begin{align}
     \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2} \label{eq:velocidad_paralela}\\[2mm]
@@ -219,7 +218,7 @@ El desarrollo de la dinámica de las partículas bajo el marco relativista muest
 
 \vspace{3mm}
 
-Vamos a suponer que estamos en el espacio de una dismensión con dos paredes que móviles con una misma velocidad pero sentidos opuestos, esto es, si una se desplaza a la derecha la otra lo hará a la izquierda. Tras cada colisión la partícua obtendrá una velocidad
+Vamos a suponer que estamos en el espacio de una dismensión con dos paredes móviles con una misma velocidad pero sentidos opuestos, esto es, si una se desplaza a la derecha la otra lo hará a la izquierda. Tras cada colisión la velocidad de la partícula cambiará de la forma
 
 \begin{equation}\label{eq:velocidad_discreta_1D}
     u_n = u_{n-1} - 2\left( u_{n-1} - w_n \cdot (-1)^{n+1} \right)
@@ -237,7 +236,7 @@ Nos encontramos así con un mapa unidimensional (\textit{one-dimensional map} en
     \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
 \end{equation}
 
-Para analizar ambos casos es conveniente usar \cite{Strogatz} \textit{Cobwebs} \textcolor{blue}{Referencia Strogatz}, las cuales son gráficas que muestran hacia donde evoluciona la función en cada iteración. Así las gráficas obtenidas para ambos casos son las figuras mostradas en \ref{fig:Cobweb_Classic_1D}
+Para analizar ambos casos es conveniente usar \textit{Cobwebs} \cite{Strogatz} , las cuales son gráficas que muestran hacia donde evoluciona la función en cada iteración. Así las gráficas obtenidas para ambos casos son las figuras mostradas en \ref{fig:Cobweb_Classic_1D}
 
 \begin{figure}[H]
     \centering
@@ -308,24 +307,18 @@ La solución encontrada son dos puntos fijos pero debemos quedarnos con la posit
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=1.2]{images/Estabilidad_Cobweb.pdf}
+    \includegraphics[scale=0.9]{images/Estabilidad_Cobweb.pdf}
     \caption{Diagrama de la derivada de $u_n$ evaluada en el punto fijo en función de la velocidad de la pared. En rojo la estabilidad del punto.}
     \label{fig:estabilidad_cobweb}
 \end{figure}
 
 \vspace{3mm}
 
-Para ver la estabilidad del punto se debe analizar si \( \left| f'(c) \right| \) es mayor o menor a la unidad \cite{Strogatz} \textcolor{blue}{Refrencia Strogatz}. Usando la figura \ref{fig:estabilidad_cobweb} podemos ver como para valores \( w_n < 0 \) se cumple \( \left| f'(c) \right| < 1 \), siendo estables, y lo opuesto ocurre para \( w_n > 0 \) conviertiéndose en inestables.
+Para ver la estabilidad del punto se debe analizar si \( \left| f'(c) \right| \) es mayor o menor a la unidad \cite{Strogatz}. Usando la figura \ref{fig:estabilidad_cobweb} podemos ver como para valores \( w_n < 0 \) se cumple \( \left| f'(c) \right| < 1 \), siendo estables, y lo opuesto ocurre para \( w_n > 0 \) conviertiéndose en inestables.
 
 \vspace{3mm}
 
-\textcolor{green!70!black}{
-Estos resultados muestran lo que se conoce como la Aceleración de Fermi. Esta aceleración fue estudiada por Enrico Fermi en los rayos cósmicos buscando una explicación del origen de la alta velocidad observada en las partículas cargadas. Su propuesta original fue la reflexión de las partículas con campos magnéticos la principal causa del aumento de las velocidades.} 
-
-\vspace{3mm}
-
-\textcolor{green!70!black}{
-En este trabajo se busca estudiar esa misma aceleración pero en recintos cerrados donde la velocidad se ve modificada por la colisión de contra las paredes de manera sucesiva. Para ello se introduce la suposición de la aparición de esta aceleración en aquellos billares cuando la distancia entre paredes, si hablamos de una dimneisón o el área va en disminución. Además los resultados obtenidos pueden dar lugar a ideas que permitan dentro de nuestro desarrollo tecnológico acelerar las partículas para un mejor estudio del universo.} 
+Estos resultados evidencian el caso de estudio de este trabajo: La aceleración de Fermi. En capítulos próximos veremos que relación tiene con la distancia o área de los billares considerados.
 
 \section{Colisión inelástica}
 
@@ -335,7 +328,7 @@ Hasta ahora se ha supuesto que la colisión es totalmente elástica y no existe 
     \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
 \end{equation}
 
-donde \( \epsilon \) es el factor de restitución. Para obtener la solución en el caso realtivista podemos usar de nuevo las expresiones \ref{eq:velocity_change1} y \ref{eq:velocity_change2}, pero teniendo en cuenta que al igual que antes la única componente de la velocidad que se ve modificada es la paralela a la normal, manteniéndose constante la perpendicular. 
+donde \( \epsilon \) es el factor de restitución. Para obtener la solución en el caso relativista podemos usar de nuevo las expresiones \ref{eq:velocity_change1} y \ref{eq:velocity_change2}, pero teniendo en cuenta que al igual que antes la única componente de la velocidad que se ve modificada es la paralela a la normal, manteniéndose constante la perpendicular. 
 
 \vspace{3mm}
 
@@ -389,4 +382,4 @@ Si volvemos al caso elástico con \( \epsilon = 1 \) obtenemos el mismo resultad
 
 Los diagramas \ref{fig:Cobweb_inelastics} muestran como el valor dado por \ref{eq:Solucion_cobweb_inelastica_valor} siempre es atractivo, es decir, cualquier condición inicial va a terminar con la velocidad máxima dada.
 
-\end{document}
+%\end{document}

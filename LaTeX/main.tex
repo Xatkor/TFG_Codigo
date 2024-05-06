@@ -1,17 +1,46 @@
 \documentclass[11pt, spanish, english]{book}
 \usepackage{MiEstilo}
 
+%\newcommand{\cambios}[1]{\textcolor{green!70!black}{#1}}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\newcommand{\cambios}[1]{\textcolor{black}{#1}}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
 \begin{document}
+    \lstset{language=Python}
     \pagenumbering{roman}
     \input{portada.tex}
+    %\includegraphics[width=\textwidth]{declaracion_autoria_tfg.pdf}
     %Hola test \cite{OhMyParticle}
     \tableofcontents
     \input{resumen.tex}
     \pagenumbering{arabic}
-    \input{c1_intro.tex}
-    \input{c2_Billiard_V2.tex}
-    \input{c3_Simulation_V2.tex}
+    \input{c1_intro_V2.tex}
+    \input{c2_Billiard_V3.tex}
+    \input{c3_Simulation_V3.tex}
     \input{conclusiones.tex}
 
     \printbibliography
+
+    \input{anexo.tex}
 \end{document}
