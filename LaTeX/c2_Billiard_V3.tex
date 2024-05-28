@@ -40,7 +40,7 @@ Supongamos ahora que tenemos una partícula con momento \( \mathbf{p} \) y una p
 
 \vspace{3mm}
 
-El sistema de referencia S sitúa a la pared en su origen y se mueve con velocidad \( \mathbf{w} \) (igual a la del muro). La velocidad relativa de la partícula en ese nuevo sistema es
+El sistema de referencia S sitúa a la pared en su origen y se mueve con velocidad \( \mathbf{w} \) (igual a la pared). La velocidad relativa de la partícula en ese nuevo sistema es
 
 \begin{equation}
     \mathbf{v}_S = \mathbf{u} - \mathbf{w}
@@ -160,7 +160,7 @@ que tomando derivadas y dividiendo se obtiene como se transforma la velocidad
 
 \vspace{3mm}
 
-Al colisionar con la pared se invierte el sentido según \ref{eq:velocidad_inversa_clasica}, entonces la velocidad en el sistema de referencial inicial \( S_0 \) es
+Al colisionar con la pared se invierte el sentido según \ref{eq:velocidad_inversa_clasica}, entonces la velocidad en el sistema de referencia inicial \( S_0 \) es
 
 \begin{align}
     \bar{u_S} &= -u_S \nonumber \\
@@ -172,7 +172,7 @@ Al colisionar con la pared se invierte el sentido según \ref{eq:velocidad_inver
 
 \subsection{Dos dimensiones}
 
-El resultado anterior permanece en consonancia con la teoría clásica que se había obtenido con anterioridad cuando \( w/c \ll 1 \). Este método para obtener la velocidad tras la colisión puede aplicarse a un espacio de dos dimensiones, donde la partícula se mueve con una velocidad \( \mathbf{u} = (u_x, u_y) \) y una pared con velocidad \( \mathbf{w} = (w_x, w_y) \). El billar a estudiar tiene una geometría rectangular compuesto por paredes verticales y horizontales, de este modo podemos hacer la suposición de que las paredes se van mover con una velocidad siempre paralela a su normal. La velocidad será \( \mathbf{w} = (w_\parallel, 0) \) ó \( \mathbf{w} = (0, w_\parallel) \)\footnote{Con esta definición se puede simplificar la notación a \( \mathbf{w} = (w, 0) \), pero se mantendrá la simbología para remarcar la dirección de la velocidad que tiene la pared.} para los muros horizontales o verticales, respectivamente. Para las componentes de la partícula también tomamos esta convención, así la velocidad va a depender de si sus componentes son paralelas o perpendiculares a la normal de la pared, \( \mathbf{u} = (u_\parallel, u_\perp) \) ó \( \mathbf{u} = (u_\perp, u_\parallel) \) según colisione con la pared vertical o horizontal, respectivamente.
+El resultado anterior permanece en consonancia con la teoría clásica que se había obtenido con anterioridad cuando \( w/c \ll 1 \). Este método para obtener la velocidad tras la colisión puede aplicarse a un espacio de dos dimensiones, donde la partícula se mueve con una velocidad \( \mathbf{u} = (u_x, u_y) \) y una pared con velocidad \( \mathbf{w} = (w_x, w_y) \). El billar a estudiar tiene una geometría rectangular compuesto por paredes verticales y horizontales, de este modo podemos hacer la suposición de que las paredes se van mover con una velocidad siempre paralela a su normal. La velocidad será \( \mathbf{w} = (w_\parallel, 0) \) ó \( \mathbf{w} = (0, w_\parallel) \)\footnote{Con esta definición se puede simplificar la notación a \( \mathbf{w} = (w, 0) \), pero se mantendrá la simbología para remarcar la dirección de la velocidad que tiene la pared.} para los muros horizontales o verticales, respectivamente. Para las componentes de la partícula también tomamos esta convención, así la velocidad va a depender de si sus componentes son paralelas o perpendiculares a la normal de la pared, \( \mathbf{u} = (u_\parallel, u_\perp) \) ó \( \mathbf{u} = (u_\perp, u_\parallel) \) según colisione con la pared vertical u horizontal, respectivamente.
 
 \begin{figure}[H]
     \centering
@@ -236,7 +236,7 @@ Nos encontramos así con un mapa unidimensional (\textit{one-dimensional map} en
     \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
 \end{equation}
 
-Para analizar ambos casos es conveniente usar \textit{Cobwebs} \cite{Strogatz} , las cuales son gráficas que muestran hacia donde evoluciona la función en cada iteración. Así las gráficas obtenidas para ambos casos son las figuras mostradas en \ref{fig:Cobweb_Classic_1D}
+Para analizar ambos casos es conveniente usar \textit{Cobwebs} \cite{Strogatz} , las cuales son gráficas que muestran hacia donde evoluciona la función en cada iteración. Las gráficas que se obtienen para el caso clásico en función de la velocidad de la pared se pueden ver en la figura \ref{fig:Cobweb_Classic_1D}
 
 \begin{figure}[H]
     \centering
@@ -299,7 +299,7 @@ Para el caso donde utilizamos la teoría relativista (simplificando las expresio
 
 \vspace{3mm}
 
-La solución encontrada son dos puntos fijos pero debemos quedarnos con la positiva, ya que la velocidad que obtenemos debe ser siempre positiva debido al valor absoluto. Además ese valor negativo en \ref{eq:Solucion_cobweb} implica usar el trozo de la función situada en el primer cuadrante. Podemos profundizar más y ver qué estabilidad tiene este punto
+La solución encontrada son dos puntos fijos pero debemos quedarnos con la positiva, ya que la velocidad que obtenemos debe ser siempre positiva debido al valor absoluto. Además ese signo negativo en \ref{eq:Solucion_cobweb} implica usar el trozo de la función situada en el primer cuadrante. Podemos profundizar más y ver qué estabilidad tiene este punto
 
 \begin{equation}
     \dfrac{du_n}{du} = f'(u_n) = \dfrac{1 - 2w^2/c^2 + w^4/c^4}{1 + 4/c^4\left( u^2w^2-uw^3 \right) + 4/c^2\left( u^2w^2-uw \right) + w^4/c^4}
@@ -328,7 +328,7 @@ Hasta ahora se ha supuesto que la colisión es totalmente elástica y no existe 
     \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
 \end{equation}
 
-donde \( \epsilon \) es el factor de restitución. Para obtener la solución en el caso relativista podemos usar de nuevo las expresiones \ref{eq:velocity_change1} y \ref{eq:velocity_change2}, pero teniendo en cuenta que al igual que antes la única componente de la velocidad que se ve modificada es la paralela a la normal, manteniéndose constante la perpendicular. 
+donde \( \epsilon \) es el coeficiente de restitución. Para obtener la solución en el caso relativista podemos usar de nuevo las expresiones \ref{eq:velocity_change1} y \ref{eq:velocity_change2}, pero teniendo en cuenta que al igual que antes la única componente de la velocidad que se ve modificada es la paralela a la normal, manteniéndose constante la perpendicular. 
 
 \vspace{3mm}
 
