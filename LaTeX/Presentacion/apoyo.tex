@@ -1,0 +1,420 @@
+\documentclass[11pt, spanish]{article}
+
+\usepackage{../MiEstilo}
+
+\begin{document}
+
+\section{Introducción}
+
+\subsection{Aceleracion Fermi}
+
+Recibe el nombre en honor de Enrico Fermi quien fue el primero en estudiar dicha aceleración en rayos cósmicos y su origen. Se define como el gran aumento de energía que adquiere una partícula tras interaccionar varias veces con su entorno. \\
+
+Esto conlleva a que la velocidad final de la partícula sea infinita si nos sitúamos en la teoría clásica o en una velocidad igual a la de la luz. \\
+
+Hasta día de hoy, es un problema abierto que no consigue dar una respuesta cuando la aceleración puede darse de manera general.\\ 
+
+\subsection{Que es un billar}
+
+Los estudios realizados sobre esta aceleración son desarrollados en recintos cerrados a los que llamamos billares. Estos billares pueden tener una forma arbitraria y la partícula en su interior colisionará con sus paredes de manera que tras cada colisión la partícula desvía su camino en busca de colisionar con otra pared. \\
+
+Los billares más conocidos son los de Bunimovich, Sinai \textcolor{red}{Poner fotos}\\
+
+\begin{figure}[!h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \draw[rounded corners=42pt] (0, 0) rectangle (5, 3) {};
+        \end{tikzpicture}
+        \caption{Bunimovich}
+        \label{fig:Bunimovich}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \draw[] (0, 0) rectangle (3, 3) {};
+            \draw[fill=verdeodi, color=verdeodi] (1.5,1.5) circle (20pt); 
+        \end{tikzpicture}
+        \caption{Sinai}
+        \label{fig:Bunimovich}
+    \end{subfigure}
+\end{figure}
+
+Estos billares han sido estudiados para ver si aparece la aceleración de Fermi y el motivo de su aparición, ya que, ambos son billares caóticos. Es decir, un cambio muy ligero en las condiciones iniciales cambia la trayectoria de la partícula. \\
+
+El trabajo tomó de inicio un estudio sobre un billar circular que podía dilatarse o contraerse. Por ello, en este caso de estudio el billar escogido es uno con forma rectangular donde las paredes pueden moverse sobre su dirección normal. \\
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.3]{../images/billar_rectangular.pdf}
+    \caption{Sinai}
+    \label{fig:Bunimovich}
+\end{figure}
+
+\section{Dinamica}
+
+\subsection{Clásica}
+
+Iniciando desde la teoría clásica la ecuación que define el movimento de la partícula la describe
+
+\begin{equation}\label{eq:elastic_col}
+    \mathbf{p}' = \mathbf{p} - 2\mathbf{n}(\mathbf{p} \cdot \mathbf{n})
+\end{equation}
+
+donde vemos que el cambio en el momento siempre es en la componente normal a la pared, debido al producto \( (\mathbf{p} \cdot \mathbf{n}) \). \\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1.5]{../images/elastic_collision.pdf}
+    \caption{Cambio de momento tras una colisión elástica}
+    \label{fig:elastic_col}
+\end{figure}
+
+En el caso de colisionar con una pared en movimiento podemos cambiar el sistema de referencia a uno donde la pared se sitúe en reposo
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1.5]{../images/cambio_sistema_referencia.pdf}
+    \caption{Posición de la pared y la partícula en los sistemas $S_0$ y $S$}
+    \label{fig:cambio_referencia}
+\end{figure}
+
+de modo que tenemos tras volver al sistema incial de referencia
+
+\begin{equation}
+    \mathbf{v}_S = \mathbf{u} - \mathbf{w} \longrightarrow \mathbf{u}' = \mathbf{u} - 2\mathbf{n}\left[(\mathbf{u} - \mathbf{w}) \cdot \mathbf{n}\right]
+\end{equation}
+
+\subsection{Relativista}
+
+En el marco de la relatividad especial debemos de tener en cuenta las trnasofrmaciones asociadas 
+
+\begin{align}\label{eq:transformacion_2d}
+    r_{\parallel,S} &= \gamma\left( r_\parallel - w_\parallel t \right) \nonumber\\
+    r_{\perp, S} &= r_\perp  \\
+    t_S &= \gamma\left( t - \dfrac{r_\parallel w_\parallel}{c^2} \right) \nonumber
+\end{align}
+
+donde \( r_{\parallel,S}\) es la componente paralela a la normal, y \(  r_{\perp, S} \) la perpendicular. Derivando las expresiones y sabiendo que en el sistema donde la pared está en reposo tras colisionar la velocidad es igual pero de sentido contrario se tiene en el sistema en reposo
+
+\begin{align}
+    \dfrac{dr_{\parallel, S}}{dt_S} = u_{\parallel,S} &= \dfrac{u_\parallel - w_\parallel}{1 - w_\parallel u_\parallel / c^2} \label{eq:velocity_change1}\\[2mm]
+    \dfrac{dr_{\perp, S}}{dt_S} = u_{\perp,S} &= u_\perp\dfrac{\sqrt{1 - {(w/c)}^2}}{1 - u_\parallel w_\parallel / c^2} \label{eq:velocity_change2}
+\end{align}
+
+y al vovler al sistema original 
+
+\begin{align}
+    \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2} \label{eq:velocidad_paralela}\\[2mm]
+    \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}\label{eq:velocidad_perpendicular}
+\end{align}
+
+Estas ecuaciones corresponden a dos dimensiones, pero se posible usar la componente paralela como única componente del caso de una dimensión.
+
+\subsection{Fermi}
+
+Se realiza un análisis de las ecuaiones mostradas en un caso sencillo de una dimensión para ver que límites podemos encontrarnos. Lo más sencillo de estudiar es el caso de dos paredes móviles ambas con la misma velocidad. Entonces la ecuación de movimeinto será para el caso clásico
+
+\begin{equation}\label{eq:velocidad_discreta_1D}
+    u_n = u_{n-1} - 2\left( u_{n-1} - w_n \cdot (-1)^{n+1} \right)
+\end{equation}
+
+Para simplificarlo y realizar un estudio suponemos que la colisión será igual en ambas paredes, es decir, sólo cambiará la dirección tras la colisión, los demás aspectos físicos serán iguales. Entonces, tomando valor absoluto como si la partícula rebotara con la misma pared una y otra vez tenemos
+
+\begin{equation}\label{eq:valor_absoluto_clasico}
+    \left| u_n \right| =\left| -u_{n-1} + 2w_n \right|
+\end{equation}
+
+Esta simplificación la podemos hacer de la misma manera en el caso relativista
+
+\begin{equation}\label{eq:valor_absoluto_relativista}
+    \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
+\end{equation}
+
+Vemos entonce que las ecuaciones son discretas, por lo que tiene sentido realizar un estudio de estabilidades para ver su tendencia. Para ellos usamos Cobwebs. Estas gráficas son usadas en el estudio de sistemas dinámicos unidimensionales para ver su comportamiento. Para dibujar las gráficas se dibuja una línea que sigue la función \( u_n = u_{n-1} \) y por otro lado la función que se quierre analizar. Iniciando desde un punto \( x_0 \) desde la línea recta, se traslada dicho punto en el eje vertical hasta la función. Llegado a intersectar ese punto se traza una linea en horizontal hastas intersectar a la función recta para obtener \( x_1 \). De manera sucesiva se van obteniendo los distintos puntos, y con ello su tendencia. 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=1.5]{../images/Cobweb_Classic_1D_A.pdf}
+        \caption{$w_n>0$}
+        \label{fig:Cobweb_Classic_1D_A}
+    \end{subfigure}
+    \hfill
+    %\hspace{0mm}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=1.5]{../images/Cobweb_Classic_1D_B.pdf}
+        \caption{$w_n<0$}
+        \label{fig:Cobweb_Classic_1D_B}
+    \end{subfigure}
+    \caption{Cobwebs en el caso clásico donde se ha considerado que la partícula inicia con una velocidad $u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a) La pared se mueve en la misma dirección que la partícula. b) La pared va en sentido contrario a la partícula. En ambas imágenes se muestra en azul la función \ref{eq:valor_absoluto_clasico} y en gris \( u_n = u_{n-1} \).}
+        \label{fig:Cobweb_Classic_1D}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[scale=1.3]{../images/Cobweb_Relatitivy_1D_A.pdf}
+        \caption{$w_n<0$}
+        \label{fig:Cobweb_Rel_1D_A}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[scale=1.3]{../images/Cobweb_Relatitivy_1D_B.pdf}
+        \caption{$w_n<0$}
+        \label{fig:Cobweb_Rel_1D_B}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[scale=1.3]{../images/Cobweb_Relatitivy_1D_C.pdf}
+        \caption{$w_n>0$}
+        \label{fig:Cobweb_Rel_1D_C}
+    \end{subfigure}
+    \caption{Cobwebs en el caso relativista donde se ha considerado \( c=1 \) y la partícula  con una velocidad inicial $u_0 > 0$ y colisionará con la pared situada a la derecha inicialmente. a), b) La pared va en sentido contrario a la partícula con distinta velocidad para cada figura. c) La pared se mueve en la misma dirección y sentido que la partícula. En todas las imágenes se muestra en azul la función  y en gris \( u_n = u_{n-1} \).}
+        \label{fig:Cobweb_Rel_1D}
+\end{figure}
+
+Los puntos fijos se obtienen con \( u_n = f(u_n) \) obteniendo infinito o cero en el caso clásico y \( u_n = c \) para el relativista, además de ser este último un punto fijo estable. Cualquier condición inicial de la partícula llegará a obtener este valor final. \\
+
+Hemos entonces encontrado la aceleración de Fermi dentro de estos billares. 
+
+\subsection{Inelástica}
+
+Para suprimir esta aceleración y evitar que la partícula acelere hasta llegar a esta velocidad inteoducimos pérdidas de energia tras colisiones de la forma 
+
+\begin{equation}
+    \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
+\end{equation}
+
+donde \( \epsilon \) es el factor de restitución. Esto lleva a la ecuación de movimiento 
+
+\begin{equation}
+    u_n = \dfrac{-\left[ 1 -  (\epsilon - 1)w/c^2 \right] + \sqrt{\left[ 1 - \epsilon (\epsilon - 1)w/c^2 \right]^2 + 4(1+\epsilon)^2(w/c)^2}}{2(1+\epsilon)w/c^2}
+\end{equation}
+
+donde la gráfica asociada Es
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{../images/Simulaciones/Relatividad_1D/Plano_fases.pdf}
+    \caption{Velocidad máxima de la partícula para las distintas configuraciones del coeficiente de restitución y de la pared.}
+    \label{fig:plano_fases_coef_wall}
+\end{figure}
+
+\section{Simulaciones}
+
+Se simulan usando las ecuaciones mostradas 10.000 partículas en billares tanto cuadrados como rectangulares con cada partícula partiendo de una posisión y velocidad aleatoria. \\
+
+\subsection{Clasico}
+
+Se observa la aprición de la aceleración de Fermi en billares donde la distancia entre las paredes o el área disminuyen 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{../images/Simulaciones/Clasico_1D/1D_B-N1000.pdf}
+        \caption{\( d \rightarrow \infty \)}
+        \label{fig:clasico_1D_A}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{../images/Simulaciones/Clasico_1D/1D_C2-N1000.pdf}
+        \caption{\( d \rightarrow \infty \)}
+        \label{fig:clasico_1D_B}
+    \end{subfigure}
+    \caption{Una dimensión}
+    \label{fig:clasico_1D}
+\end{figure}
+
+Lo mismo ocurre en dos dimensiones 
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{../images/Simulaciones/Clasico_2D/2D_B-N1000.pdf}
+        \caption{Velocidad media de las partículas.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{../images/Simulaciones/Clasico_2D/2D_B-N1000_Area.pdf}
+        \caption{Área del billar.}
+    \end{subfigure}
+    \caption{Resultados obtenidos para un billar con área siempre en disminución. El área no muestra el número de colisiones dado que se representa por el tiempo simulado durante las 10.000 colisiones.}
+    \label{fig:2D_B-N1000_con_Area}
+\end{figure}
+
+La velocidad tiene al infinito cuando el área disminuye. 
+
+\subsection{Relativista}
+
+En el caso relativista las gráficas toman otra forma
+
+\begin{figure}[H]
+    \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/1D_B-Juntos-N1000.pdf}
+        \caption{$d \rightarrow 0$}
+        \label{fig:relatividad_1D_B}
+    \caption{1D}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000.pdf}
+        \caption{Velocidad media de las partíc  ulas.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000_Area.pdf}
+        \caption{Área del billar.}
+    \end{subfigure}
+    \caption{Resultados obtenidos para dos billares con misma área siempre en disminución. El área no muestra el número de colisiones dado que se representa por el tiempo simulado durante las 10.000 colisiones.}
+    \label{fig:2DR_BR-N1000_con_Area}
+\end{figure}
+
+Comparando con el clásico, el área disminuye de la misma manera y la velocidad tiene en este caso al punto fijo calculado previamente, que es la velocidad de la luz. \textcolor{blue}{Mencionar los valores obtenidos} \textcolor{blue}{Meter tablas comparativas}
+
+\subsection{Inleástica}
+
+Las colisiones inelásticas se han calculado para los casos relativistas, ya que, a velociades bajas amabs teorías coinciiden. Ambas tienen una función lineal. \textcolor{blue}{En las gráficas se aprecia esa tendencia lineal en la relatividad. Coincide con la clásica.}\\
+
+En una dimensión sabemos que velocidad límite alcanzará, ya que, se ha calculado analíticamente. En cambio en dos dimensiones resulta más dificil obteer una expresión cerrada, pero sí se puede comprobar que será mayor a la velocidad límite obtenida en una dimensión 
+
+\begin{align}
+    u_{1D} &\leq u_{2D} \nonumber\\
+    u_{\parallel} &\leq \sqrt{u_\parallel^2 + u_\perp^2}\\
+     0 &\leq u_\perp^2 \nonumber
+\end{align}
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/1D_B-N1000_fit.pdf}
+        \caption{$w_r = -0.001 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/1D_B2-N1000_fit.pdf}
+        \caption{$w_r = -0.01 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/1D_B3-N1000_fit.pdf}
+        \caption{$w_r = -0.1 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/1D_C2-N1000_fit.pdf}
+        \caption{$w_r = 0.01 \quad w_l = 0.011$}
+    \end{subfigure}
+    \caption{1D}
+    \label{fig:ajuste_1D_relativity}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Inelastico_2D/2D_A-N1000.pdf}
+        \caption{\( \epsilon = 0.99 \)}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Inelastico_2D/componentes_2.pdf}
+        \caption{\( \epsilon = 0.99 \)}
+    \end{subfigure}
+    \caption{2D}
+    \label{fig:2DR_A-N1000_Ine_velocidades}
+\end{figure}
+
+Podemo ver que las componentes de la velocidad en 2 dimensones llegan ambas hasta una velocidad estable ambas, debido a que acaban colisionando ambas con todas las paredes del billar. \\
+
+En el caso unidimenisonal se realiza un ajuste con la función acumulativa 
+
+\begin{equation}\label{eq:acumulativa_general}
+    f(n) = \delta - \gamma\exp(-\beta n^\alpha)
+\end{equation}
+
+donde \textcolor{blue}{Mostrar todas las ecuaciones en la diapositiva y cada resaltas aqeulla de la que se está hablando.} \( \delta \) es la velocidad máxima \( f(n \rightarrow \infty) = \delta \). \( \beta \) la tasa de repetición de sucesos, y el resto parámetros a determinar. Cuando \( \beta \) tiende a infinito 
+
+\begin{equation}
+    \lim_{\beta \rightarrow \infty} f(n) = \delta
+\end{equation}
+
+Entonces, no depende de las colisiones y la velocidad on cambia. El resultado obtenido se da en \( w = 0 \) y podemos tomar \( \beta \propto Kw^-1 \). 
+
+Al introducir un parámetro que define el número crítico de sucesos (Cantidade de veces que la velocidad cambia) 
+
+\begin{equation}
+    f(n) = \delta - \gamma \exp\left[ -\beta \left( \dfrac{n}{n_c} \right)^\alpha \right]
+\end{equation}
+
+Tenemos los límites \((n\gg n_c)  \rightarrow f(n \rightarrow \infty) = \delta\)) y \( (n \sim n_c) \rightarrow f(n) = \delta - \gamma e^{-K/w} \). \\
+
+Manteniendo la velocida de las paredes iguales ajustamos los resultados de diversas partículas con velocidades comprendidas entre slo valores  \( v_0 \in [0.001, 0.9] \)
+
+\begin{figure}[H]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_W-001.pdf}
+        \caption{$w_r = -0.01 \quad w_l = 0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_W-01.pdf}
+        \caption{$w_r = -0.1 \quad w_l = 0$}
+    \end{subfigure}
+    \caption{Ajuste de los parámetros que ajustan los datos simulados para una misma velocidad de pared con respecto a un rango de velocidades la partícula. La función de ajuste utilizada es una función de segundo grado: \( ax^2 + bx + c \).}
+    \label{fig:ajuste_parametros_1D_relativity}
+\end{figure}
+
+Se ve que se ajustan perfectamente a una función cuadrática. Entonces concluimos que el parámetro \( \beta \) guarda relación con
+
+\begin{equation}
+    \beta \propto K \dfrac{v^2_{rel}}{w}
+\end{equation}
+
+Repitiendo los mismo pero ahora es contante la velocidad inicial, y lo que cambia son las velocidades de las paredes \( w \in [0.001, 0.9] \)
+
+\begin{figure}[h]
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_V-001.pdf}
+        \caption{$v_0 = 0.01$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[scale=0.55]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_V-02.pdf}
+        \caption{$v_0 = 0.2$}
+    \end{subfigure}
+    \caption{Ajuste de los parámetros que ajustan los datos simulados para una misma velocidad de pared con respecto a un rango de velocidades la partícula. La función de ajuste utilizada es una función de segundo grado: \( ax^2 + bx + c \).}
+    \label{fig:ajuste_parametros_1D_relativity_Vcte}
+\end{figure}
+
+Ya no se ajustan bien algunos parámetros y tenemos que en \( w \rightarrow 0\), el parametro \( \beta \) no se anula. Por ello debe existir una función que así lo haga
+
+\begin{equation}
+    \lim_{w\rightarrow 0} \dfrac{v^2_{rel}}{w}g(w) = 0
+\end{equation}
+
+\section{Conclusiones}
+
+Concluimos entonces que la aceleración dentro de billares rectangulares aparece cuando la distancia o el área disminuye, y la forma que hemos visto de suprimir la aceleración y evitar que alcance valores muy elevados de velocidad es considerar pérdidas de energía. Aunque esto sigue haciendo que alcance la velocidad límite.
+
+\end{document}

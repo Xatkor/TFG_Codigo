@@ -1,0 +1,102 @@
+\documentclass[11pt, spanish]{article}
+
+\usepackage{../MiEstilo}
+
+\begin{document}
+
+\section{Diapositiva 1}
+
+En primer lugar vamos a definir lo que es la aceleración de Fermi. \\
+
+Se conoce como la aceleración de Fermi al gran aumento de energía que adquiere una partícula tras interacionar varias veces con elementos de su entorno, ya sean otros cuerpos, campos magnéticos, entre otros\dots \\
+
+% ---------------------------
+
+\section{Diapositiva 2}
+
+La primera vez que se estudió fue en los años 50 donde Enrico Fermi intentaba dar una explicación a la velocidad de los rayos cósmicos, los cuales alcanzan velocidades cercanas a la de la luz. \\ 
+
+A la derecha de la foto de Fermi se puede ver el modelo con el que realizó el estudio en una dimensión. \\
+
+Lo que se ve se denomina billar dinámico o simplemente billar. 
+
+% ---------------------------
+
+\section{Diapositiva 3}
+
+Estos billares son recintos cerrados donde en su interior se mueve una partícula con una trayectoria rectilínea, la cuál colisiona elásticamente con las fronteras. Este recinto recibe el nombre de billar, ya que se asemeja al juego. \\
+
+Estos billares pueden tener tanto trayectorias predecibles y periódicas como trayectorias caóticas. \\
+
+Los billares más conocidos son los de Bunimovich y el de Sinai. Ambos con paredes con velocidad nula. \\
+
+En el trabajo se han estudiado los billares de Fermi y rectangulares en dos dimensiones similar al de Sinai pero sin la circunferencia interior. 
+
+
+% ---------------------------
+
+\section{Diapositiva 4}
+
+Las ecuación de movimiento en un sistema clásico con paredes en movimiento se muestran en la ecuación (1), la cual aparece en diversos libros de mecánica clásica. En caso de tener las paredes en movimiento la ecuación sería la (2). Más adelante veremos como se ha obtenido la ecuación pero dentro del marco relativista. \\
+
+Una característica es que el cambio en la velocidad se produce únicamente en la componente normal a la pared dado que el producto vectorial es nulo para ángulos de 90º, justamente el ángulo entre la normal de la pared y la componente X según la imagen.
+
+% ---------------------------
+
+\section{Diapositiva 5}
+
+Las ecuaciones usando la relatividad especial se van a obtener directamente para una pared en movimiento, ya que, en esas ecuaciones si sustituimos la variable de la velocidad del muro por 0 quedarían las de paredes estáticas. \\
+
+Nos situamos en un sistema de referencia donde el muro tiene una velocidad nula. En este caso sería en el sistema S pintado en azul. \\
+
+Las ecuaciones de movimiento se obtienen siguiendo unos pasos "sencillos". 
+
+El primer paso ecribir las ecuaciones de posición t tiempo en el sistema S.
+
+\begin{align}\label{eq:transformacion_2d}
+    r_{\parallel,S} &= \gamma\left( r_\parallel - w_\parallel t \right) \nonumber\\
+    r_{\perp, S} &= r_\perp  \\
+    t_S &= \gamma\left( t - \dfrac{r_\parallel w_\parallel}{c^2} \right) \nonumber
+\end{align}
+
+\section{Diapositiva 6}
+
+El siguiente paso es derivar y dividirlas para obtener:
+
+\begin{align}
+    \dfrac{dr_{\parallel, S}}{dt_S} = u_{\parallel,S} &= \dfrac{u_\parallel - w_\parallel}{1 - w_\parallel u_\parallel / c^2} \label{eq:velocity_change1}\\[2mm]
+    \dfrac{dr_{\perp, S}}{dt_S} = u_{\perp,S} &= u_\perp\dfrac{\sqrt{1 - {(w_\parallel/c)}^2}}{1 - u_\parallel w_\parallel / c^2} \label{eq:velocity_change2}
+\end{align}
+
+Entonces, con esta velocidad sabemos que tras colisionar la componente normal a la pared de la velocidad invierte su signo y la paralela se mantiene invariante. 
+
+\section{Diapositiva 7}
+
+Entonces sustituyendo los resultados del paso 2 en las condiciones del paso 4, y despejando las componentes tras la colisión llegamos al resultado. 
+
+\begin{align}
+    \bar{u}_\parallel &= \dfrac{-u_\parallel + 2w_\parallel - u_\parallel(w_\parallel/c)^2}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2} \label{eq:velocidad_paralela}\\[2mm]
+    \bar{u}_\perp &= \dfrac{u_\perp\left(1 - (w_\parallel/c)^2\right)}{1 - 2w_\parallel u_\parallel / c^2 + (w_\parallel/c)^2}\label{eq:velocidad_perpendicular}
+\end{align}
+
+Estas ecuaciones son válidas para dos dimensiones y para una dimensión igual donde la componente paralela se anularía. 
+
+\section{Diapositiva 8}
+
+Estas ecuaciones dependen de la velocidad del muro, la cual supondremos que será constante y la misma para todas las paredes, y la velocidad previa de la partícula. Entonces, se puede crear una función discreta, ya que, se modifica la velocidad únicamente al colisionar. En el trayecto entre colisiones su valor no cambia. \\
+
+Para analizar la velocidad de la patícula a los largo de las colisiones se supone una partícula que rebota contra una misma pared simulando asó la colisión con paredes de igual velocidad. La función que describe la velocidad relativista en ese caso es:
+
+\begin{equation}
+    \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
+\end{equation}
+
+Está función tiene puntos fijos en el caso donde se escoge el signo negativo 
+
+\begin{equation*}
+    u_n = -\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2}
+\end{equation*}
+
+La función se puede analizar con Cobwebs donde se traza una línea \( u_n = u_{n-1} \) y la función que se quiere analizar. Iniciando en el valor inicial \( x_0 \) desde la función lineal se traza una recta vertical hasta intersectar con la otra función. Este nuevo punto se traslada a la función lineal y se repite el proceso. 
+
+\end{document}
