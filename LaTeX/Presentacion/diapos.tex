@@ -1,6 +1,8 @@
 \documentclass{beamer}
 \usetheme{Antibes}
 \usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
 
 % ---------- DISEÑO ------------------
 \definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
@@ -287,7 +289,7 @@
     \frametitle[prueb1]{Cobwebs}{Clásico}
     \centering
     \begin{columns}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.4\textwidth}
             \vspace{0.5cm}
             \begin{figure}
                 \centering
@@ -295,7 +297,14 @@
                 \caption{$w_n>0$}
             \end{figure}  
         \end{column}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.2\textwidth}
+            \centering
+            \begin{align*}
+                \color{gray} u_n &\color{gray} =  u_{n-1} \\[1cm]
+                \color{blue} f(u_n) &\color{blue} =  u_{n-1} - 2w_n
+            \end{align*}
+        \end{column}
+        \begin{column}{0.4\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[scale=1]{../images/Cobweb_Classic_1D_B.pdf}
@@ -309,18 +318,25 @@
     \frametitle[prueb1]{Cobwebs}{Relativista}
     \centering
     \begin{columns}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.4\textwidth}
             \vspace{0.cm}
             \begin{figure}
                 \centering
-                \includegraphics[scale=1]{../images/Cobweb_Relatitivy_1D_B.pdf}
+                \includegraphics[scale=1]{../images/Cobweb_Relatitivy_1D_C.pdf}
                 \caption{$w_n>0$}
             \end{figure}  
         \end{column}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.2\textwidth}
+            \centering
+            \begin{align*}
+                \color{gray} u_n &\color{gray} =  u_{n-1} \\[1cm]
+                \color{blue} \scalebox{0.6}{ $f(u_n)$} &\color{blue} = \scalebox{0.6}{$-\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2}$}
+            \end{align*}
+        \end{column}
+        \begin{column}{0.4\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=1]{../images/Cobweb_Relatitivy_1D_C.pdf}
+                \includegraphics[scale=1]{../images/Cobweb_Relatitivy_1D_B.pdf}
                 \caption{$w_n<0$}
             \end{figure}  
         \end{column}
@@ -328,7 +344,31 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle[prueb1]{Inelástico}
+    \begin{equation*}
+        \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
+    \end{equation*}
+    \begin{tikzpicture}[line/.style={->,shorten >=0.4cm,shorten <=0.4cm}, very thick]
+        \draw[] (0,0) -- (0, 0);
+        \draw[-stealth] (5.5, 0) -- (5.5, -2);
+    \end{tikzpicture}
+    \begin{equation*}
+        \bar{u}_\parallel = \dfrac{-\epsilon u_\parallel + w_\parallel (1 + \epsilon) -  u_\parallel (w_\parallel/c)^2}{1 - (1 + \epsilon)u_\parallel w_\parallel/c^2 + \epsilon (w_\parallel/c)^2}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
     \frametitle[prueb1]{Inelástico} 
+        \centering
+        \vspace{-0.7cm}
+            \begin{equation*}
+                \scalebox{0.6}{$u_n = \dfrac{-\left[ 1 -  (\epsilon - 1)w/c^2 \right] \pm \sqrt{\left[ 1 - \epsilon (\epsilon - 1)w/c^2 \right]^2 + 4(1+\epsilon)^2(w/c)^2}}{2(1+\epsilon)w/c^2}$ }
+            \end{equation*}
+            \vspace{-0.7cm}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.5]{../images/Simulaciones/Relatividad_1D/Plano_fases.pdf}
+            \end{figure}
 \end{frame}
 
 % -------- O -----------
@@ -338,26 +378,195 @@
 \subsection{Resultados numéricos}
 
 \begin{frame}
-    \frametitle[prueb1]{Clásico}
+    \frametitle[prueb1]{Simulación}
+    \begin{columns}
+        \hspace{-1cm}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.25]{../images/billar_generico_3.pdf}
+            \end{figure}  
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.25]{../images/Billiard_45.pdf}
+            \end{figure}  
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle[prueb1]{Unidimensional}
+    \begin{columns}
+        \hspace{-0.7cm}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.4]{../images/Simulaciones/Clasico_1D/1D_B-N1000.pdf}
+                \caption{Clásico}
+            \end{figure}         
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering 
+                \includegraphics[scale=0.4]{../images/Simulaciones/Inelastico_1D/1D_D-N1000.pdf}
+                \caption{Inelástico \( \epsilon = 0.7 \)}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle[prueb1]{Unidimensional}
+    \begin{columns}
+        \hspace{-0.7cm}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.4]{../images/Simulaciones/Relatividad_1D/1D_C2-N1000.pdf}
+            \end{figure}         
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{align*}
+                f(n) &= \delta - \gamma \exp\left[ -\beta \left( \dfrac{n}{n_c} \right)^\alpha \right]
+            \end{align*}
+            \begin{itemize}
+                \item \( \delta \) : Velocidad máxima 
+                \item \( \beta \) : Tasa repetición de sucesos
+                \item \( n_c \) : Número crítico de sucesos
+                \item \( \gamma, \alpha \) : Parámetros
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle[prueb1]{Unidimensional}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=0.35]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_W-001.pdf}
+            \caption{$w_r = -0.01 \quad w_l = 0$}
+        \end{figure}         
+    \end{column}
+    \begin{column}{0.5\textwidth}
+             \begin{equation*}
+                v_0 \in [0.001, 0.9]
+             \end{equation*}
+             \vspace{1cm}
+             \begin{equation*}
+                \beta \propto K \dfrac{v^2_{rel}}{w}
+            \end{equation*}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle[prueb1]{Unidimensional}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.35]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_V-02.pdf}
+                \caption{$v_0 = 0.2$}  
+            \end{figure}         
+        \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{equation*}
+            w \in [0.001, 0.9]
+         \end{equation*}
+         \vspace{1cm}
+         \begin{equation*}
+            \lim_{w\rightarrow 0} \dfrac{v^2_{rel}}{w}g(w) = 0
+        \end{equation*}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Relativista}
+    \frametitle[prueb1]{Bidimensional}{Clásico}
+    \centering
+    \vspace{-0.5cm}
+    \begin{columns}
+        \hspace{-0.7cm}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.4]{../images/Simulaciones/Clasico_2D/2D_B-N1000.pdf}
+                \caption{Velocidad}
+            \end{figure}         
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering 
+                \includegraphics[scale=0.4]{../images/Simulaciones/Clasico_2D/2D_B-N1000_Area.pdf}
+                \caption{Área}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Inelástico}
+    \frametitle[prueb1]{Bidimensional}{Relativista}
+    \centering
+    \vspace{-0.5cm}
+    \begin{columns}
+        \hspace{-0.7cm}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.4]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000.pdf}
+                \caption{Velocidad}
+            \end{figure}         
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering 
+                \includegraphics[scale=0.4]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000_Area.pdf}
+                \caption{Área}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
+
+\begin{frame}[t]
+    \frametitle[prueb1]{Unidimensional}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.35]{../images/Simulaciones/Inelastico_2D/componentes.pdf}
+                \caption{\( \epsilon = 0.99 \)}  
+            \end{figure}         
+        \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{align}
+            u_{1D} &\leq u_{2D} \nonumber\\
+            u_{\parallel} &\leq \sqrt{u_\parallel^2 + u_\perp^2}\\
+             0 &\leq u_\perp^2 \nonumber
+        \end{align}
+    \end{column}
+    \end{columns}
+\end{frame}
+
 % -------- O -----------
 
 % -------- CONCLUSIONES -----------
 \section{Conclusiones}
-% -------- O -----------
 
 \begin{frame}
     \frametitle[prueb1]{Conclusiones}
+    \begin{itemize}
+        \item 1D: La aceleración de Fermi aparece en billares cuya distancia se reduce
+        \item 2D: La aceleración de Fermi aparece en billares cuya área disminuye.
+        \item En ambas dimensiones la velocidad límite disminuye en gran medida con un ligero cambio en el coeficiente de restitución.
+        \item Se ha encontrado una buena aproximación al movimiento dentro del billar.
+    \end{itemize}
 \end{frame}
 
+% -------- O -----------
 
 \end{document}
 

@@ -97,6 +97,92 @@ Está función tiene puntos fijos en el caso donde se escoge el signo negativo
     u_n = -\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2}
 \end{equation*}
 
-La función se puede analizar con Cobwebs donde se traza una línea \( u_n = u_{n-1} \) y la función que se quiere analizar. Iniciando en el valor inicial \( x_0 \) desde la función lineal se traza una recta vertical hasta intersectar con la otra función. Este nuevo punto se traslada a la función lineal y se repite el proceso. 
+La función se puede analizar con Cobwebs donde se traza una línea \( u_n = u_{n-1} \) y la función que se quiere analizar. Iniciando en el valor inicial \( x_0 \) desde la función lineal se traza una recta vertical hasta intersectar con la otra función. Este nuevo punto se traslada a la función lineal y se repite el proceso. \\
+
+Se observa como en el caso relativista encontramo un límite para la velocidad. 
+
+\section{Diapositiva 9}
+
+Si analizamos ese límite que marca la intersección de ambas rectas se tiene:
+
+\begin{align}
+    u_n &= f(u_n) \\
+    u_n &= -\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \\
+    0 &= \dfrac{w_n\left( 2u_n^2-2c^2 \right)}{c^2} \\
+    u_n &= \pm c 
+\end{align}
+
+Según se ha definido el problema a analizar donde sólo colisiona con una pared de manera que rebota la partícula, el valor que debemos esocger es el positivo. Además cumple que este valor es un punto fijo atractuva, es decir, en el caso de velocidades opuestas entre pared y partícula, independientemente del valor inicial de la velocidad de la patícula, se tendrá que la partícula alcanzará ese valor. 
+
+\section{Diapositiva 10}
+
+Con estas últimas gráficas se ha podido ver la aparición de la aceleración de Fermi en aquellos casos donde la partícula y pared llevan velocidades enfrentedas. Esto euivale a billares donde la distancia disminuye entre paredes o el área aumenta en el caso de dos dimensiones. \\
+
+Una forma de suprimir dicha aceleración es añadir un factor de pérdida de energia al que se le llamará coeficiente de resituticón
+
+\begin{equation}
+    \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
+\end{equation}
+
+De este modo la ecuación de la componente paralela a la normal de la pared queda
+
+\begin{equation}
+    \bar{u}_\parallel = \dfrac{-\epsilon u_\parallel + w_\parallel (1 + \epsilon) -  u_\parallel (w_\parallel/c)^2}{1 - (1 + \epsilon)u_\parallel w_\parallel/c^2 + \epsilon (w_\parallel/c)^2}
+\end{equation}
+
+Y la velocidad límite en este caso es
+
+\begin{equation}
+    u_n = \dfrac{-\left[ 1 -  (\epsilon - 1)w/c^2 \right] \pm \sqrt{\left[ 1 - \epsilon (\epsilon - 1)w/c^2 \right]^2 + 4(1+\epsilon)^2(w/c)^2}}{2(1+\epsilon)w/c^2} 
+\end{equation}
+
+Que se pueden ver sus valores en el gráfico de colores.
+
+\section{Diapositiva 11}
+
+Vista la teoría se pasa ahora a las simulaciones las cuales han sido hechas con un código creado en python desde cero para este trabajo. En la memoria se detalla más sobre el código y su implementación.
+
+\section{Diapositiva 12}
+
+Se simulan 10.000 partículas con unas mismas condiciones del billar y se toma la velocidad tras cada colisión. Con esta velocidad se calcula la media de velocidad y se dibuja su gráfica tras cada colisión del conjunto. Las paredes pueden tener velocidades distintas y en la memoria se muestran varios casos distintos. 
+
+\section{Diapositiva 13}
+
+Se muestran únicamente aquellos billares donde se observa la aceleración de Fermi. \\
+
+En el caso clásico de una dimensión se tiene que la velocidad crece sin límite cuando las paredes del billar acortan la distancia entre ellas, y vemos que en el caso relativista esa velocidad llega a una velocidad límite igual a la de la luz. Estos resultados concuerdan con la teoría expuesta anteriormente.
+
+\section{Diapositiva 14}
+
+Buscando una manera de ajustar la gráfica y obtener una relación que nos diga la velocidad en cualquier colisión se usa una función acumulativa. Con los siguientes parámetros. \\
+
+Se realizan simulaciones con velocidades \( v_0 \in [0.001, 0.9] \) y se ajusta la función para cada una de las velocidades y ver que tendencia tienen los parámetros. \\
+
+Esa tendencia se estima para el parámetro \( \beta \) que sigue una función cuadrática 
+
+\begin{equation}
+    \beta \propto K \dfrac{v^2_{rel}}{w}
+\end{equation}
+
+Lo que se relaciona bien con la energía cinética, ya que, cuanto mayor es, menor son el número de colisiones necesarias para alcanzar la velocidad límite. \\
+
+\section{Diapositiva 15}
+
+Aunque esto ajusta bien la gráfica izquierda, surgen problemas en la gráfica derecha donde se mantiene una misma velocidad inicial de la partícula pero para distintos billares. Según la relación anterior \( \beta \) debería de ser infinito cuando \( w=0 \) pero vemos que \( \beta \) en ese caso es también nulo. \\
+
+Por ello esa constante \( K \) debe de ser una función dependiente de la velocidad de las paredes
+que cumpla
+
+\begin{equation}
+    \lim_{w\rightarrow 0} \dfrac{v^2_{rel}}{w}g(w) = 0
+\end{equation}
+
+\section{Diapositiva 16}
+
+En dos dimensiones encontramos las mismas formas en las gráficas que en una dimensión. LLegando al límite establecido. 
+
+\section{Diapositiva 17}
+
+En el caso inelástico la velocidad límite se ve que es mayor a la velocidad calculada en una dimensión y esto se debe a que existen dos componentes de velocidad, las cuales cada una alcanzará una velocidad límite igual entre ellas que será mayor que la velocidad de la única componente en una dimensión. 
 
 \end{document}
