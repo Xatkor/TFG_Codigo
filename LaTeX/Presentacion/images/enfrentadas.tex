@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+\usetikzlibrary{arrows,decorations.markings,plotmarks}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    % BOLA
+    \filldraw[color=verdeodi!80, fill=verdeodi!5](0.9, 0) circle (0.3);
+    \draw[-stealth] (1, 0) -- (1.5, 0) node[right, above]{\tiny$u$};
+
+    % PARED
+    \draw[-stealth, black!50] (2, 0.5) -- (1.5, 0.5);
+    \draw[-stealth, black!50] (2, 0.5) -- (2.5, 0.5) node[midway, above]{\tiny$w$};
+    \draw[very thick] (2, -1) -- (2, 1);
+
+\end{tikzpicture}
+
+\end{document}

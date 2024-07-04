@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
+\usetikzlibrary{arrows,decorations.markings,plotmarks}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \draw[thick] (0, 2) -- (2, 2);
+    \draw[thick, color=black!10] (0, 1.1) -- (2, 1.1);
+    \draw[thick, color=black!15] (0, 1) -- (2, 1);
+    \draw[thick, color=black!30] (0, 0.9) -- (2, 0.9);
+    \draw[thick, color=black!100] (0, 0.8) -- (2, 0.8);
+
+    \draw[color=verdeodi!80, fill=verdeodi!5] (1, 1.5) circle (0.1);
+    \draw[-stealth] (1, 1.6) -- (1, 1.8);
+    \draw[-stealth] (1, 1.4) -- (1, 1.2);
+\end{tikzpicture}
+
+\end{document}
+
+

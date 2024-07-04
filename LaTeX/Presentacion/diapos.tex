@@ -1,8 +1,21 @@
 \documentclass{beamer}
+\usepackage[spanish]{babel}
 \usetheme{Antibes}
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage[font={color=red,bf},labelfont={it}]{caption}
+\captionsetup{font=scriptsize,labelfont=scriptsize, figurename=Fig., labelfont={color=verdeodi}, justification=centering}
+
+
+\usepackage[backend=biber,
+style=numeric,
+maxbibnames=10,
+sorting=none,
+citestyle=numeric-comp]{biblatex}
+\addbibresource{referenciasPPT.bib}
 
 % ---------- DISEÑO ------------------
 \definecolor{verdeodi}{RGB}{53,113,105} %%%%%%%
@@ -21,10 +34,12 @@
 \setbeamercolor{frametitle}{bg=verdeodi!50,fg=white}
 
 \setbeamercolor*{titlelike}{parent=palette primary}
+
+\setbeamertemplate{caption}[numbered]
 % ---------- O ------------------
 
 \title{Estudio de la presencia de la aceleración de Fermi en billares rectangulares}
-\subtitle{Trabajo fin de grado}
+\subtitle{Grado en Física\\[1mm]Trabajo fin de grado}
 \author{Borja Sánchez González}
 \institute{Universidad Nacional de Educación a Distancia}
 \date{\empty}
@@ -32,7 +47,7 @@
 \AtBeginSection[]
 {
   \begin{frame}
-    \frametitle{Table of Contents}
+    \frametitle{Índice}
     \tableofcontents[currentsection]
   \end{frame}
 }
@@ -58,65 +73,27 @@
 % -------- INTRODUCCION-----------
 \section{Introducción}
 
-\subsection{¿Qué es la aceleración de Fermi?}
-
-\begin{frame}
-    \frametitle[prueb1]{Concepto}
-    \begin{columns}
-    \begin{column}{0.5\textwidth}
-        \textbf{Aceleración de Fermi}\\
-        Gran aumento de energía que adquiere una partícula tras varias interacciones.
-    \end{column}
-
-    \begin{column}{0.5\textwidth}
-        \begin{figure}
-            \includegraphics[scale=3]{images/aceleracion.pdf}    
-        \end{figure}    
-    \end{column}
-
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[scale=0.1]{images/Enrico_Fermi_1943-49.jpeg}  
-                \caption{Enrico Fermi}  
-            \end{figure}            
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[scale=2.5]{images/Fermi-ulam.pdf}  
-            \end{figure}            
-        \end{column}
-    \end{columns}
-\end{frame}
-
 \subsection{¿Qué es un billar?}
 
-\begin{frame}
-    \frametitle[prueb1]{Concepto}
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[scale=1]{images/bunimovich.pdf}    
-                \caption{Bunimovich}
-            \end{figure}  
-            
-        \end{column}
-    
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[scale=1]{images/sinai.pdf}
-                \caption{Sinai}
-            \end{figure}
-        \end{column}
-        \end{columns}
-\end{frame}
+%\begin{frame}
+%    \frametitle[prueb1]{Concepto}
+%    \begin{columns}
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \includegraphics[scale=1]{images/bunimovich.pdf}    
+%                \caption{Bunimovich}
+%            \end{figure}  
+%            
+%        \end{column}
+%    
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \includegraphics[scale=1]{images/sinai.pdf}
+%                \caption{Sinai}
+%            \end{figure}
+%        \end{column}
+%    \end{columns}
+%\end{frame}
 
 \begin{frame}
     \frametitle[prueb1]{Concepto}
@@ -126,16 +103,62 @@
             \infty \text{ en el exterior de } \Omega
         \end{cases}
     \end{align*}
+    \begin{figure}
+        \centering
+        %\includegraphics[scale=0.55]{../images/billar_generico.pdf}
+        \includegraphics[scale=1]{images/bunimovich.pdf}
+    \end{figure}
 \end{frame}
+
+\subsection{¿Qué es la aceleración de Fermi?}
+
+\begin{frame}
+    \frametitle[prueb1]{Concepto}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \textbf{Aceleración de Fermi}\\
+        Gran aumento de energía que adquiere una partícula tras varias interacciones.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}
+            %[trim={left bottom right top},clip]
+            %\includegraphics[scale=2.8, trim={0cm 0cm 0cm 0.5cm}]{images/aceleracion.pdf}    
+            \includegraphics[scale=0.1]{images/Enrico_Fermi_1943-49.jpeg}
+            \caption{Enrico Fermi}  
+        \end{figure}    
+    \end{column}
+
+    \end{columns}
+\end{frame}
+
+%\begin{frame}
+%    \begin{columns}
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[scale=0.1]{images/Enrico_Fermi_1943-49.jpeg}  
+%                \caption{Enrico Fermi}  
+%            \end{figure}            
+%        \end{column}
+%
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[scale=2.5]{images/Fermi-ulam.pdf}  
+%            \end{figure}            
+%        \end{column}
+%    \end{columns}
+%\end{frame}
+
+
 % -------- O -----------
 
 % -------- DINAMICA -----------
-\section{Dinámica de la partícula}
+\section{Partícula en un billar}
 \subsection{Ecuaciones de movimiento}
 
-
 \begin{frame}
-    \frametitle[prueb1]{Clásico}
+    \frametitle[prueb1]{Dinámica general}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{figure}
@@ -145,33 +168,63 @@
         \end{column}
         \begin{column}{0.5\textwidth}
             \centering
-            Estacionario
-            \begin{equation*}
-                \mathbf{p}' = \mathbf{p} - 2\mathbf{n}(\mathbf{p} \cdot \mathbf{n})
-            \end{equation*}\\
-            \vspace{1cm}
-            En movimiento
-            \begin{equation*}
-               \mathbf{u}' = \mathbf{u} - 2\mathbf{n}\left[(\mathbf{u} - \mathbf{w}) \cdot \mathbf{n}\right]
-            \end{equation*}
+            \textbf{Interior}
+            \begin{align*}
+                \dot{q} = \dfrac{\partial H}{\partial p} &\rightarrow q(t) = ut \\
+                \dot{p} = -\dfrac{\partial H}{\partial q} &\rightarrow p(t) = cte = mu
+            \end{align*}\\
+            \vspace{0.6cm}
+            \textbf{Frontera}
+            \begin{align*}
+                \mathbf{p}' &= \mathbf{p} - 2\mathbf{n}(\mathbf{p} \cdot \mathbf{n}) \\
+                p'_\parallel &= -p_\parallel
+            \end{align*}
         \end{column}
     \end{columns}
 \end{frame}
 
+%\begin{frame}
+%    \frametitle[prueb1]{Dinámica}
+%    \begin{columns}
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[scale=1.2]{../images/elastic_collision.pdf}
+%            \end{figure}         
+%        \end{column}
+%        \begin{column}{0.5\textwidth}
+%            \centering
+%            Pared en reposo
+%            \begin{equation*}
+%                \mathbf{p}' = \mathbf{p} - 2\mathbf{n}(\mathbf{p} \cdot \mathbf{n})
+%            \end{equation*}\\
+%            \vspace{1cm}
+%            Pared en movimiento
+%            \begin{equation*}
+%               \mathbf{u}' = \mathbf{u} - 2\mathbf{n}\left[(\mathbf{u} - \mathbf{w}) \cdot \mathbf{n}\right]
+%            \end{equation*}
+%        \end{column}
+%    \end{columns}
+%\end{frame}
+
 \begin{frame}
     \frametitle[prueb1]{Relativista}
     \begin{columns}
+        \hspace{0.5cm}
         \begin{column}{0.5\textwidth}
+            \vspace{1.5mm}
             \begin{figure}
                 \centering
                 \includegraphics[scale=1]{../images/cambio_sistema_referencia.pdf}
+                \caption{Sistemas de referencia}
             \end{figure}         
         \end{column}
-        \hspace{1cm}
+        %\hspace{0.5cm}
         \begin{column}{0.5\textwidth}
-            \begin{figure}[H]
+            \begin{figure}
                 \centering
-                \includegraphics[scale=1.2]{../images/muro_vertical.pdf}
+                \includegraphics[scale=1.15]{../images/muro_vertical.pdf}
+                \caption{Componentes de velocidad}
             \end{figure}
         \end{column}
     \end{columns}
@@ -228,7 +281,7 @@
     \frametitle[prueb1]{Relativista}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \begin{block}{Paso 4}
+            \begin{block}{Paso 3}
                 \begin{align*}
                     \bar{u}_{\parallel, S} &= -u_{\parallel, S} \\[9.5mm]
                     \bar{u}_{\perp, S} &= u_{\perp, S}
@@ -245,7 +298,7 @@
     \frametitle[prueb1]{Relativista}
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \begin{block}{Paso 4}
+            \begin{block}{Paso 3}
                 \begin{align*}
                     \bar{u}_{\parallel, S} &= -u_{\parallel, S} \\[9.5mm]
                     \bar{u}_{\perp, S} &= u_{\perp, S}
@@ -269,6 +322,9 @@
     \begin{equation*}
         \left| u_n \right| = \left|  \dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2} \right|
     \end{equation*}
+    \begin{figure}
+        \includegraphics[scale=2]{images/enfrentadas.pdf}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -286,65 +342,59 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Cobwebs}{Clásico}
+    \frametitle[prueb1]{Cobwebs}{}
     \centering
+    \textbf{Clásico}
     \begin{columns}
-        \begin{column}{0.4\textwidth}
+        \begin{column}{0.5\textwidth}
             \vspace{0.5cm}
             \begin{figure}
                 \centering
-                \includegraphics[scale=1]{../images/Cobweb_Classic_1D_A.pdf}
-                \caption{$w_n>0$}
+                %[trim={left bottom right top},clip]
+                \includegraphics[scale=1, trim={0.5cm 0cm 0cm 0cm}]{../images/Cobweb_Classic_1D_A.pdf}
+                \caption{Partícula y pared moviéndose en el mismo sentido ($w>0$).}
             \end{figure}  
         \end{column}
-        \begin{column}{0.2\textwidth}
-            \centering
-            \begin{align*}
-                \color{gray} u_n &\color{gray} =  u_{n-1} \\[1cm]
-                \color{blue} f(u_n) &\color{blue} =  u_{n-1} - 2w_n
-            \end{align*}
-        \end{column}
-        \begin{column}{0.4\textwidth}
+        \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[scale=1]{../images/Cobweb_Classic_1D_B.pdf}
-                \caption{$w_n<0$}
+                \caption{Partícula y pared moviéndose en sentidos opuestos ($w<0$).}
             \end{figure}  
         \end{column}
     \end{columns}
+    \begin{equation*}
+             \color{gray} u_n \color{gray} =  u_{n-1} \qquad\qquad \color{blue} f(u_n) \color{blue} =  u_{n-1} - 2w_n
+    \end{equation*}
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Cobwebs}{Relativista}
+    \frametitle[prueb1]{Cobwebs}{}
     \centering
+    \textbf{Relativista}
     \begin{columns}
-        \begin{column}{0.4\textwidth}
-            \vspace{0.cm}
+        \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=1]{../images/Cobweb_Relatitivy_1D_C.pdf}
-                \caption{$w_n>0$}
+                \includegraphics[scale=1, trim={0.5cm 0cm 0cm 0cm}]{../images/Cobweb_Relatitivy_1D_C.pdf}
+                \caption{Partícula y pared moviéndose en el mismo sentido  ($w>0$).}
             \end{figure}  
         \end{column}
-        \begin{column}{0.2\textwidth}
-            \centering
-            \begin{align*}
-                \color{gray} u_n &\color{gray} =  u_{n-1} \\[1cm]
-                \color{blue} \scalebox{0.6}{ $f(u_n)$} &\color{blue} = \scalebox{0.6}{$-\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2}$}
-            \end{align*}
-        \end{column}
-        \begin{column}{0.4\textwidth}
+        \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[scale=1]{../images/Cobweb_Relatitivy_1D_B.pdf}
-                \caption{$w_n<0$}
+                \caption{Partícula y pared moviéndose en sentidos opuestos ($w<0$).}
             \end{figure}  
         \end{column}
     \end{columns}
+    \begin{equation*}
+        \color{gray} u_n \color{gray} =  u_{n-1} \qquad\qquad \color{blue} \scalebox{0.8}{ $f(u_n)$} \color{blue} = \scalebox{0.8}{$-\dfrac{-u_{n-1} + 2w_n - u_{n-1}(w_n/c)^2}{1 - 2w_n u_{n-1}/c^2 + (w_n/c)^2}$}
+    \end{equation*}
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Inelástico}
+    \frametitle[prueb1]{Aproximación inelástica}
     \begin{equation*}
         \bar{u} = -\epsilon u \qquad \epsilon \in \left[ 0, 1 \right]
     \end{equation*}
@@ -362,12 +412,13 @@
         \centering
         \vspace{-0.7cm}
             \begin{equation*}
-                \scalebox{0.6}{$u_n = \dfrac{-\left[ 1 -  (\epsilon - 1)w/c^2 \right] \pm \sqrt{\left[ 1 - \epsilon (\epsilon - 1)w/c^2 \right]^2 + 4(1+\epsilon)^2(w/c)^2}}{2(1+\epsilon)w/c^2}$ }
+                \scalebox{0.6}{$u_n = \dfrac{-\left[ 1 -  (\epsilon - 1)w/c^2 \right] + \sqrt{\left[ 1 - \epsilon (\epsilon - 1)w/c^2 \right]^2 + 4(1+\epsilon)^2(w/c)^2}}{2(1+\epsilon)w/c^2}$ }
             \end{equation*}
-            \vspace{-0.7cm}
+            \vspace{-1cm}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.5]{../images/Simulaciones/Relatividad_1D/Plano_fases.pdf}
+                \includegraphics[scale=0.45, trim={0cm 0cm 1cm 0.8cm}, clip]{../images/Simulaciones/Relatividad_1D/Plano_fases.pdf}
+                \caption{Velocidades máximas de la partícula.}
             \end{figure}
 \end{frame}
 
@@ -377,20 +428,41 @@
 \section{Simulaciones}
 \subsection{Resultados numéricos}
 
+%\begin{frame}[t]
+%    \frametitle[prueb1]{Simulación}
+%    \begin{columns}
+%        \hspace{-1cm}
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[scale=0.25]{../images/billar_generico_3.pdf}
+%            \end{figure}  
+%        \end{column}
+%        \begin{column}{0.5\textwidth}
+%            \begin{figure}
+%                \centering
+%                \includegraphics[scale=0.25]{../images/Billiard_45.pdf}
+%            \end{figure}  
+%        \end{column}
+%    \end{columns}
+%\end{frame}
+
 \begin{frame}
     \frametitle[prueb1]{Simulación}
     \begin{columns}
-        \hspace{-1cm}
         \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \centering
-                \includegraphics[scale=0.25]{../images/billar_generico_3.pdf}
-            \end{figure}  
+            \begin{itemize}
+                \item Código desarrollado en Python
+                \item 10.000 partículas
+                \item \( v_0 \) pseudoaleatoria
+            \end{itemize}
         \end{column}
+        \hspace{-1.3cm}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.25]{../images/Billiard_45.pdf}
+                \includegraphics[scale=0.3, trim={3cm 2cm 2cm 2cm}]{../images/Billiard_45.pdf}
+                \caption{Trayectorias simuladas para una partícula.}
             \end{figure}  
         \end{column}
     \end{columns}
@@ -403,15 +475,21 @@
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.4]{../images/Simulaciones/Clasico_1D/1D_B-N1000.pdf}
-                \caption{Clásico}
+                \hspace{1.cm}
+                \textbf{Caso clásico}\par\medskip
+                \vspace{-0.2cm}
+                \includegraphics[scale=0.4, trim={0.5cm 0cm 1.5cm 0.9cm}, clip]{../images/Simulaciones/Clasico_1D/1D_B-N1000.pdf}
+                \caption{Velocidad media frente a colisión}
             \end{figure}         
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering 
-                \includegraphics[scale=0.4]{../images/Simulaciones/Inelastico_1D/1D_D-N1000.pdf}
-                \caption{Inelástico \( \epsilon = 0.7 \)}
+                \hspace{0.4cm}
+                \textbf{Caso inelástico \( \epsilon = 0.7 \)}\par\medskip
+                \vspace{-0.23cm}
+                \includegraphics[scale=0.4, trim={1cm 0cm 2cm 1cm}, clip]{../images/Simulaciones/Inelastico_1D/1D_D-N1000.pdf}
+                \captionof{figure}{Velocidad media frente a colisión.}
             \end{figure}
         \end{column}
     \end{columns}
@@ -420,11 +498,15 @@
 \begin{frame}[t]
     \frametitle[prueb1]{Unidimensional}
     \begin{columns}
-        \hspace{-0.7cm}
+        \hspace{-0.0cm}
         \begin{column}{0.5\textwidth}
+            \vspace{0.5cm}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.4]{../images/Simulaciones/Relatividad_1D/1D_C2-N1000.pdf}
+                \hspace{.5cm}
+                \textbf{Caso relativista}\par\medskip
+                \includegraphics[scale=0.4, trim={1cm 0cm 0cm 1cm}, clip]{../images/Simulaciones/Relatividad_1D/1D_C2-N1000.pdf}
+                \caption{Velocidad media frente a colisión.}
             \end{figure}         
         \end{column}
         \begin{column}{0.5\textwidth}
@@ -441,112 +523,134 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}[t]
+\begin{frame}%[t]
     \frametitle[prueb1]{Unidimensional}
     \begin{columns}
+        \hspace{0.5cm}
     \begin{column}{0.5\textwidth}
         \begin{figure}
             \centering
-            \includegraphics[scale=0.35]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_W-001.pdf}
-            \caption{$w_r = -0.01 \quad w_l = 0$}
+            \includegraphics[scale=0.35, trim={1cm 0cm 0cm 0cm}, clip]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_W-001.pdf}
+            \caption{Ajuste de parámetros para un mismo billar.}
         \end{figure}         
     \end{column}
     \begin{column}{0.5\textwidth}
-             \begin{equation*}
-                v_0 \in [0.001, 0.9]
-             \end{equation*}
+        \vspace{1cm}
+        \begin{equation*}
+        \begin{cases}
+             \begin{aligned}
+                v_0 &\in [0.001; 0.9]c \\[0.5cm]
+                w_r &= -0.01c \\ 
+                w_l &= 0
+            \end{aligned}
+        \end{cases}
+    \end{equation*}
              \vspace{1cm}
              \begin{equation*}
-                \beta \propto K \dfrac{v^2_{rel}}{w}
+                \beta \propto K \dfrac{v^2_{rel}}{w} = K\dfrac{(v_0 - w)^2}{w}
             \end{equation*}
     \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}[t]
+\begin{frame}%[t]
     \frametitle[prueb1]{Unidimensional}
     \begin{columns}
+        \hspace{0.5cm}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.35]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_V-02.pdf}
-                \caption{$v_0 = 0.2$}  
+                \includegraphics[scale=0.35, trim={1cm 0cm 0cm 0cm}, clip]{../images/Simulaciones/Relatividad_1D/ajuste_parametros_V-02.pdf}
+                \caption{Ajuste de parámetros para una misma velocidad inicial.}  
             \end{figure}         
         \end{column}
     \begin{column}{0.5\textwidth}
         \begin{equation*}
-            w \in [0.001, 0.9]
-         \end{equation*}
+            \begin{cases}
+                 \begin{aligned}
+                    w &\in [0.001; 0.9]c \\ 
+                    v_0 &= 0.2c
+                \end{aligned}
+            \end{cases}
+        \end{equation*}
          \vspace{1cm}
          \begin{equation*}
-            \lim_{w\rightarrow 0} \dfrac{v^2_{rel}}{w}g(w) = 0
+            \beta = \lim_{w\rightarrow 0} \dfrac{v^2_{rel}}{w}g(w) = 0
         \end{equation*}
     \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Bidimensional}{Clásico}
+    \frametitle[prueb1]{Bidimensional}{}
     \centering
+    \textbf{Clásico}
     \vspace{-0.5cm}
     \begin{columns}
-        \hspace{-0.7cm}
+        \hspace{-0.cm}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.4]{../images/Simulaciones/Clasico_2D/2D_B-N1000.pdf}
-                \caption{Velocidad}
+                \includegraphics[scale=0.4, trim={0.5cm 0cm 0cm 0.5cm},clip]{../images/Simulaciones/Clasico_2D/2D_B-N1000.pdf}
+                \caption{Velocidad media frente a colisión.}
             \end{figure}         
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering 
-                \includegraphics[scale=0.4]{../images/Simulaciones/Clasico_2D/2D_B-N1000_Area.pdf}
-                \caption{Área}
+                \vspace{0.1cm}
+                \includegraphics[scale=0.4, trim={1cm 0cm 0cm 0cm},clip]{../images/Simulaciones/Clasico_2D/2D_B-N1000_Area.pdf}
+                \caption{Evolución del área en cada colisión.}
             \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle[prueb1]{Bidimensional}{Relativista}
+    \frametitle[prueb1]{Bidimensional}{}
     \centering
+    \textbf{Relativista}
     \vspace{-0.5cm}
     \begin{columns}
-        \hspace{-0.7cm}
+        \hspace{-0.cm}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[scale=0.4]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000.pdf}
-                \caption{Velocidad}
+                \includegraphics[scale=0.4, trim={0.5cm 0cm 0cm 0.5cm},clip]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000.pdf}
+                \caption{Velocidad media frente a colisión.}
             \end{figure}         
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering 
-                \includegraphics[scale=0.4]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000_Area.pdf}
-                \caption{Área}
+                \captionsetup{justification=centering}
+                \vspace{0.4cm}
+                \includegraphics[scale=0.4, trim={0.8cm 0cm 0cm 0.5cm},clip]{../images/Simulaciones/Relatividad_2D/2D_BR-N1000_Area.pdf}
+                \caption{Evolución del área en cada colisión.}
             \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}[t]
-    \frametitle[prueb1]{Unidimensional}
+    \frametitle[prueb1]{Bidimensional}{}
+    \centering
+    \textbf{Inelástico}
+    \vspace{-0.5cm}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \centering
                 \includegraphics[scale=0.35]{../images/Simulaciones/Inelastico_2D/componentes.pdf}
-                \caption{\( \epsilon = 0.99 \)}  
+                \caption{Velocidad media frente a colisión. \( \epsilon = 0.99 \)}  
             \end{figure}         
         \end{column}
     \begin{column}{0.5\textwidth}
-        \begin{align}
+        \begin{align*}
             u_{1D} &\leq u_{2D} \nonumber\\
             u_{\parallel} &\leq \sqrt{u_\parallel^2 + u_\perp^2}\\
              0 &\leq u_\perp^2 \nonumber
-        \end{align}
+        \end{align*}
     \end{column}
     \end{columns}
 \end{frame}
@@ -559,14 +663,39 @@
 \begin{frame}
     \frametitle[prueb1]{Conclusiones}
     \begin{itemize}
-        \item 1D: La aceleración de Fermi aparece en billares cuya distancia se reduce
-        \item 2D: La aceleración de Fermi aparece en billares cuya área disminuye.
+        \item La aceleración de Fermi aparece en billares cuya distancia/área se reduce.
         \item En ambas dimensiones la velocidad límite disminuye en gran medida con un ligero cambio en el coeficiente de restitución.
-        \item Se ha encontrado una buena aproximación al movimiento dentro del billar.
+        \item Los resultados se ajustan correctamente a una distribución acumulativa.
     \end{itemize}
 \end{frame}
 
 % -------- O -----------
+
+% -------- BIBLIOGRAFÍA -----------
+%\section{Bibliografía}
+
+\begin{frame}
+    \frametitle[prueb1]{Bibliografía}
+    \begin{enumerate}[topsep=0pt,itemsep=4pt,partopsep=1ex,parsep=1ex]
+        \item E. Fermi. “On the origin of Cosmic Radiation”. En: (1949).
+        \item L.D. Pustyl’nikov. “On a problem of Ulam”. En: (1983).
+        \item R.S. Pinto y P.S. Letelier. “Fermi Acceleration in driven relativistic billiards”. En: (2011)
+        \item S. Strogatz. “Nonlinear dynamics and Chaos”. En: (1994).
+        \item \url{https://github.com/Xatkor/TFG_Codigo}
+       %\item https://github.com/Xatkor/TFG_Codigo
+    \end{enumerate}
+\end{frame}
+
+% -------- O -----------
+
+\section{} 
+
+\begin{frame}
+    \titlepage%
+    \centering
+    %\vspace{-1cm}
+    \Large\textbf{¡Muchas gracias!}
+\end{frame}
 
 \end{document}
 
